@@ -5,10 +5,13 @@
  */
 package sistemaventas;
 
+import sistemaventas.accesoDatos.conexion;
+
 /**
  *
  * @author calo_
  */
+
 public class SistemaVentas {
 
     /**
@@ -16,6 +19,8 @@ public class SistemaVentas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        conexion.getConexion();
+        
+        
     }
-    
 }
