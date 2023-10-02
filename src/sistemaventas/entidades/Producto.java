@@ -29,11 +29,11 @@ public class Producto {
         this.estado = estado;
     }
     
-    public int getIdProductor() {
+    public int getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProductor(int idProducto) {
+    public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
     }
 
