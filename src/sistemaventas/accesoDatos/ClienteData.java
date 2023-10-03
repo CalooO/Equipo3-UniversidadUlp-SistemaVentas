@@ -110,6 +110,32 @@ public class ClienteData {
         return listaCliente;
     }
     
+    public Cliente buscarClientePorId(int id){
+        String sql="select idCliente, apellido, nombre, domicilio, telefono from cliente where idCliente=?";
+        Cliente cliente = null;
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                cliente=new Cliente();
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDireccion(rs.getString("domicilio"));
+                cliente.setTelefono(rs.getString("telefono"));
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"No existe un cliente con ese id ");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de clientes "+ex.getMessage());
+        } catch(NullPointerException e){
+        }
+        return cliente;
+    }
+    
     public ArrayList<Cliente> clientesCompraron (){
         String sql="select * from cliente join detalleventa on idProducto = idProducto  "
                 + "where idProducto=?";

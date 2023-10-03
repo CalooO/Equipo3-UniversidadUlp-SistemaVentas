@@ -48,6 +48,11 @@ public class Principal extends javax.swing.JFrame {
         panel.add(btProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         btCliente.setText("Cliente");
+        btCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClienteActionPerformed(evt);
+            }
+        });
         panel.add(btCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         btVentas.setText("Ventas");
@@ -91,6 +96,15 @@ public class Principal extends javax.swing.JFrame {
         jdpMain.add(p);
         jdpMain.moveToFront(p);
     }//GEN-LAST:event_btProductoActionPerformed
+
+    private void btClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClienteActionPerformed
+        // TODO add your handling code here:
+        panel.setVisible(false);
+        ClientesView c = new ClientesView();
+        c.setVisible(true);
+        jdpMain.add(c);
+        jdpMain.moveToFront(c);
+    }//GEN-LAST:event_btClienteActionPerformed
 
     /**
      * @param args the command line arguments
