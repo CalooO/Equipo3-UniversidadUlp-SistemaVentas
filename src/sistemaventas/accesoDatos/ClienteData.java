@@ -60,6 +60,7 @@ public class ClienteData {
             if(1==todoCorrecto){
                  JOptionPane.showMessageDialog(null,"Cliente actualizado.");
             }
+            ps.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de los clientes "+ex.getMessage());
@@ -67,7 +68,7 @@ public class ClienteData {
     }
     
     public void eliminarInfoCliente(Cliente cliente){
-        String sql="UPDATE cliente SET apellido=null, nombre=null, domicilio=null, telefono=null "
+        String sql="delete from cliente "
                 + "where idCliente=?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -76,16 +77,42 @@ public class ClienteData {
             
             int todoCorrecto = ps.executeUpdate();
             if(1==todoCorrecto){
-                 JOptionPane.showMessageDialog(null,"Los datos del cliente fueron eliminados.");
+                 JOptionPane.showMessageDialog(null,"El cliente fue eliminado exitosamente.");
             }
+            ps.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de los clientes "+ex.getMessage());
         }
     }
         
+    public ArrayList<Cliente> listarCliente (){
+        String sql="select * from cliente ";
+        ArrayList<Cliente> listaCliente = new ArrayList<>();
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+           while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDireccion(rs.getString("domicilio"));
+                cliente.setTelefono(rs.getString("telefono"));
+                
+                listaCliente.add(cliente);
+           }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de clientes "+ex.getMessage());
+        }
+        return listaCliente;
+    }
+    
     public ArrayList<Cliente> clientesCompraron (){
-        String sql="select idCliente, apellido, nombre, domicilio, telefono from cliente ";
+        String sql="select * from cliente join detalleventa on idProducto = idProducto  "
+                + "where idProducto=?";
         ArrayList<Cliente> listaClientes=new ArrayList<>();
         try {
             PreparedStatement ps=con.prepareStatement(sql);
