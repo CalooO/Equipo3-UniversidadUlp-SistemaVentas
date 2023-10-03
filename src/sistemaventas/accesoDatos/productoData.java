@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import sistemaventas.entidades.Producto;
 
-public class productoData {
+public class ProductoData {
     private Connection cx = null;
 
-    public productoData() {
+    public ProductoData() {
         cx = conexion.getConexion();
     }
     
@@ -73,7 +73,7 @@ public class productoData {
         }
     }
     
-    public Producto obtenerProductoPodid(int id){
+    public Producto obtenerProductoPorid(int id){
         String sql="select idProducto, nombreProducto, descripcion, precioActual, stock, estado from producto where idProducto=?";
         Producto prod=null;
         try {

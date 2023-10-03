@@ -12,11 +12,11 @@ import sistemaventas.entidades.*;
  *
  * @sergiokaz
  */
-public class ventaData {
+public class VentaData {
     private Connection con = null;
     private ClienteData clienteData=new ClienteData();
 
-    public ventaData() {
+    public VentaData() {
         con = conexion.getConexion();
     }
     
