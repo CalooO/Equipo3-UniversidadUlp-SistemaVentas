@@ -26,50 +26,71 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jdpMain = new javax.swing.JDesktopPane();
+        panel = new javax.swing.JPanel();
+        btProducto = new javax.swing.JButton();
+        btCliente = new javax.swing.JButton();
+        btVentas = new javax.swing.JButton();
+        btDetalle = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jdpMain.setPreferredSize(new java.awt.Dimension(800, 700));
 
-        jButton1.setText("Producto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btProducto.setText("Producto");
+        btProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btProductoActionPerformed(evt);
             }
         });
-        jDesktopPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
+        panel.add(btProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
-        jButton2.setText("Cliente");
-        jDesktopPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
+        btCliente.setText("Cliente");
+        panel.add(btCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
-        jButton3.setText("Ventas");
-        jDesktopPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+        btVentas.setText("Ventas");
+        panel.add(btVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
 
-        jButton4.setText("Detalle de ventas");
-        jDesktopPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+        btDetalle.setText("Detalle de ventas");
+        panel.add(btDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+
+        jdpMain.setLayer(panel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jdpMainLayout = new javax.swing.GroupLayout(jdpMain);
+        jdpMain.setLayout(jdpMainLayout);
+        jdpMainLayout.setHorizontalGroup(
+            jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jdpMainLayout.setVerticalGroup(
+            jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdpMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdpMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        panel.setVisible(false);
+        ProductosView p = new ProductosView();
+        p.setVisible(true);
+        jdpMain.add(p);
+        jdpMain.moveToFront(p);
+    }//GEN-LAST:event_btProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,12 +126,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void mostrarMenu(){
+        panel.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JButton btCliente;
+    private javax.swing.JButton btDetalle;
+    private javax.swing.JButton btProducto;
+    private javax.swing.JButton btVentas;
+    private javax.swing.JDesktopPane jdpMain;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }
