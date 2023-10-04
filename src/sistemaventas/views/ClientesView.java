@@ -6,6 +6,7 @@
 package sistemaventas.views;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import sistemaventas.accesoDatos.ClienteData;
 import sistemaventas.entidades.Cliente;
 
@@ -234,7 +235,12 @@ public class ClientesView extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+       if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+          this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jtBotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonGuardarActionPerformed
