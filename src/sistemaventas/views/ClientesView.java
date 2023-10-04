@@ -46,10 +46,11 @@ public class ClientesView extends javax.swing.JInternalFrame {
         jtNombre = new javax.swing.JTextField();
         jtDomicilio = new javax.swing.JTextField();
         jtTelefono = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jtBotonGuardar = new javax.swing.JButton();
+        jtBotonEliminar = new javax.swing.JButton();
+        jtBotonModificar = new javax.swing.JButton();
         jtBotonBuscar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jTextField2.setText("jTextField1");
 
@@ -86,11 +87,26 @@ public class ClientesView extends javax.swing.JInternalFrame {
 
         jtTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jButton1.setText("Guardar");
+        jtBotonGuardar.setText("Guardar");
+        jtBotonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtBotonGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Eliminar");
+        jtBotonEliminar.setText("Eliminar");
+        jtBotonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtBotonEliminarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Modificar");
+        jtBotonModificar.setText("Modificar");
+        jtBotonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtBotonModificarActionPerformed(evt);
+            }
+        });
 
         jtBotonBuscar.setText("Buscar");
         jtBotonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,21 +115,35 @@ public class ClientesView extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jtBotonGuardar)
+                        .addGap(54, 54, 54)
+                        .addComponent(jtBotonModificar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,25 +151,25 @@ public class ClientesView extends javax.swing.JInternalFrame {
                             .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addComponent(jtBotonBuscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(78, 78, 78)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
-                .addGap(4, 4, 4)
-                .addComponent(jtBotonBuscar)
+                        .addComponent(jtBotonEliminar)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton4)))
                 .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(268, 268, 268)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,10 +192,11 @@ public class ClientesView extends javax.swing.JInternalFrame {
                     .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addComponent(jtBotonGuardar)
+                    .addComponent(jtBotonEliminar)
+                    .addComponent(jtBotonModificar)
+                    .addComponent(jButton4))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,20 +221,108 @@ public class ClientesView extends javax.swing.JInternalFrame {
                 }
             
             } else {
-                JOptionPane.showMessageDialog(this, "El campo dni y Id estan vacios, por favor llenar uno para buscar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Ingrese un numero al campo ID", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (NullPointerException e) {
 
+        } catch (java.lang.NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "El campo ID debe ser un numero");
         }
         
     }//GEN-LAST:event_jtBotonBuscarActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jtBotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonGuardarActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            if(jtId.getText().isEmpty()){
+                if(!jtApellido.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDomicilio.getText().isEmpty() && !jtTelefono.getText().isEmpty()){
+                    String apellido = jtApellido.getText();
+                    String nombre = jtNombre.getText();
+                    String domicilio = jtDomicilio.getText();
+                    String telefono = jtTelefono.getText();
+                    Cliente cliente = new Cliente();
+                    cliente.setApellido(apellido);
+                    cliente.setNombre(nombre);
+                    cliente.setDireccion(domicilio);
+                    cliente.setTelefono(telefono);
+                    
+                    cd.guardarCliente(cliente);
+                } else if (jtId.getText() == null){
+                    JOptionPane.showMessageDialog(this, "El id se genera automaticamente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                    jtId.setText("");
+                } else {
+                        JOptionPane.showMessageDialog(this, "Quedan campos vacios, llene todos excepto el Id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "El campo ID debe estar vacio");
+            } 
+            
+        } catch (java.lang.RuntimeException e){
+            JOptionPane.showMessageDialog(this, "??", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jtBotonGuardarActionPerformed
+
+    private void jtBotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonModificarActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+         
+                if(!jtId.getText().isEmpty() && !jtApellido.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDomicilio.getText().isEmpty() && !jtTelefono.getText().isEmpty()){
+                    int id = Integer.parseInt(jtId.getText());
+                    String apellido = jtApellido.getText();
+                    String nombre = jtNombre.getText();
+                    String domicilio = jtDomicilio.getText();
+                    String telefono = jtTelefono.getText();
+                    Cliente cliente = new Cliente();
+                    cliente.setIdCliente(id);
+                    cliente.setApellido(apellido);
+                    cliente.setNombre(nombre);
+                    cliente.setDireccion(domicilio);
+                    cliente.setTelefono(telefono);
+                    
+                    cd.modificarCliente(cliente);
+                } else if (jtId.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "Ingrese un ID para modificar un cliente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                    jtId.setText("");
+                } else {
+                        JOptionPane.showMessageDialog(this, "Quedan campos vacios, llene todos excepto el Id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                }
+
+            
+        } catch (java.lang.RuntimeException e){
+            JOptionPane.showMessageDialog(this, "??", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jtBotonModificarActionPerformed
+
+    private void jtBotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonEliminarActionPerformed
+        // TODO add your handling code here:
+        resp = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas eliminar a este usuario?", "", 
+                         JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    if(resp==0){
+                        if (!jtId.getText().isEmpty()) {
+                            Cliente cliente = new Cliente();
+                            cliente = cd.buscarClientePorId(Integer.parseInt(jtId.getText()));
+                                if (cliente.getNombre() != null) {
+                                    cd.eliminarInfoCliente(cliente);
+                                    JOptionPane.showMessageDialog(this, "Se ha eliminado el cliente exitosamente");
+                                }
+                        
+                        }
+                    } 
+    }//GEN-LAST:event_jtBotonEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -214,6 +333,9 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JButton jtBotonBuscar;
+    private javax.swing.JButton jtBotonEliminar;
+    private javax.swing.JButton jtBotonGuardar;
+    private javax.swing.JButton jtBotonModificar;
     private javax.swing.JTextField jtDomicilio;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtNombre;

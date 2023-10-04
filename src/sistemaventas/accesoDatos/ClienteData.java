@@ -35,9 +35,12 @@ public class ClienteData {
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
+            
             if(rs.next()){
                 cliente.setIdCliente(rs.getInt(1));
                  JOptionPane.showMessageDialog(null,"Cliente guardado.");
+            } else {
+                JOptionPane.showMessageDialog(null,"Cliente no guardado.");
             }
             ps.close();
             
@@ -51,14 +54,18 @@ public class ClienteData {
                 + "where idCliente=?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            
             ps.setString(1,cliente.getApellido());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getDireccion());
             ps.setString(4, cliente.getTelefono());
+            ps.setInt(5, cliente.getIdCliente());
             
             int todoCorrecto = ps.executeUpdate();
             if(1==todoCorrecto){
                  JOptionPane.showMessageDialog(null,"Cliente actualizado.");
+            } else {
+                JOptionPane.showMessageDialog(null,"Cliente no actualizado.");
             }
             ps.close();
             
