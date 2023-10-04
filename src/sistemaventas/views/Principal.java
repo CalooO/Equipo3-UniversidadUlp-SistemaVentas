@@ -28,55 +28,133 @@ public class Principal extends javax.swing.JFrame {
 
         jdpMain = new javax.swing.JDesktopPane();
         panel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         btProducto = new javax.swing.JButton();
         btCliente = new javax.swing.JButton();
-        btVentas = new javax.swing.JButton();
         btDetalle = new javax.swing.JButton();
+        btVentas = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jdpMain.setBackground(new java.awt.Color(255, 255, 255));
         jdpMain.setPreferredSize(new java.awt.Dimension(800, 700));
 
+        panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 153));
+
+        btProducto.setBackground(new java.awt.Color(255, 255, 255));
+        btProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btProducto.setText("Producto");
+        btProducto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btProductoActionPerformed(evt);
             }
         });
-        panel.add(btProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
+        btCliente.setBackground(new java.awt.Color(255, 255, 255));
+        btCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btCliente.setText("Cliente");
+        btCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btClienteActionPerformed(evt);
             }
         });
-        panel.add(btCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
+        btDetalle.setBackground(new java.awt.Color(255, 255, 255));
+        btDetalle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btDetalle.setText("Detalle de ventas");
+        btDetalle.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDetalleActionPerformed(evt);
+            }
+        });
+
+        btVentas.setBackground(new java.awt.Color(255, 255, 255));
+        btVentas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btVentas.setText("Ventas");
+        btVentas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btVentasActionPerformed(evt);
             }
         });
-        panel.add(btVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
 
-        btDetalle.setText("Detalle de ventas");
-        panel.add(btDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(34, 34));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("x");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel1.setPreferredSize(new java.awt.Dimension(34, 34));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btDetalle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btVentas)
+                .addContainerGap())
+        );
 
         jdpMain.setLayer(panel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpMain.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpMainLayout = new javax.swing.GroupLayout(jdpMain);
         jdpMain.setLayout(jdpMainLayout);
         jdpMainLayout.setHorizontalGroup(
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jdpMainLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jdpMainLayout.setVerticalGroup(
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,6 +197,15 @@ public class Principal extends javax.swing.JFrame {
         jdpMain.add(vvw);
         jdpMain.moveToFront(vvw);
     }//GEN-LAST:event_btVentasActionPerformed
+
+    private void btDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDetalleActionPerformed
+        
+        panel.setVisible(false);
+        DetalleVentasView detaVentas = new DetalleVentasView();
+        detaVentas.setVisible(true);
+        jdpMain.add(detaVentas);
+        jdpMain.moveToFront(detaVentas);
+    }//GEN-LAST:event_btDetalleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,6 +251,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btDetalle;
     private javax.swing.JButton btProducto;
     private javax.swing.JButton btVentas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JDesktopPane jdpMain;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
