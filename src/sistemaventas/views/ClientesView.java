@@ -305,10 +305,11 @@ public class ClientesView extends javax.swing.JInternalFrame {
 
     private void jtBotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonEliminarActionPerformed
         // TODO add your handling code here:
+        if (!jtId.getText().isEmpty()) {
         resp = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas eliminar a este usuario?", "", 
                          JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
                     if(resp==0){
-                        if (!jtId.getText().isEmpty()) {
+                        
                             Cliente cliente = new Cliente();
                             cliente = cd.buscarClientePorId(Integer.parseInt(jtId.getText()));
                                 if (cliente.getNombre() != null) {
@@ -317,7 +318,10 @@ public class ClientesView extends javax.swing.JInternalFrame {
                                 }
                         
                         }
-                    } 
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID para eliminar un cliente");
+        }
+        
     }//GEN-LAST:event_jtBotonEliminarActionPerformed
 
 
