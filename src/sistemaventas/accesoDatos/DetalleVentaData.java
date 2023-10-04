@@ -1,18 +1,11 @@
 
 package sistemaventas.accesoDatos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import sistemaventas.entidades.Cliente;
-import sistemaventas.entidades.DetalleVenta;
-import sistemaventas.entidades.Producto;
-import sistemaventas.entidades.Venta;
+import sistemaventas.entidades.*;
 
 public class DetalleVentaData {
     
@@ -23,6 +16,10 @@ public class DetalleVentaData {
     private ProductoData prodData = new ProductoData();
     private VentaData ventaData = new VentaData();
     private ClienteData clienteData = new ClienteData();
+
+    public DetalleVentaData() {
+         con = conexion.getConexion();
+    }
     
     public List<DetalleVenta> detalleDeVentas(){
         
@@ -75,7 +72,7 @@ public class DetalleVentaData {
         String sql = "INSERT into detalleventa (cantidad, idVenta, precioVenta, idProducto) VALUES (?,?,?,?)";
         
         try{
-            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             ps.setInt(1, detaVenta.getCantidad());
             ps.setInt(2, detaVenta.getVenta().getIdVenta());
@@ -90,7 +87,7 @@ public class DetalleVentaData {
                 
                 JOptionPane.showMessageDialog(null, "Detalles de venta guardados");
             }
-            
+            ps.close();
         }catch(SQLException ex){
             
             JOptionPane.showMessageDialog(null, "Error al acceder a la "

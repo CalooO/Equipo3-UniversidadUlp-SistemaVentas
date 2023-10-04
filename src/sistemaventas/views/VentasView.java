@@ -260,7 +260,7 @@ public class VentasView extends javax.swing.JInternalFrame {
     private void jbPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoActionPerformed
         // TODO add your handling code here:
         LocalDate fechaVenta = null;
-        Venta venta = null;
+        Venta venta = new Venta();
         DetalleVenta detalleVenta = null;
         VentaData ventaData = new VentaData();
         DetalleVentaData detalleVentaData = new DetalleVentaData();
@@ -278,7 +278,8 @@ public class VentasView extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "El campo fecha no puede ser posterior al día de hoy.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
-            venta = new Venta(cliente, fechaVenta);
+            venta.setCliente(cliente);
+            venta.setFechaVenta(fechaVenta);
 
             Producto producto = (Producto) jcomboProducto.getSelectedItem();
             idProducto = producto.getIdProducto();
@@ -311,7 +312,7 @@ public class VentasView extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException e) {
            JOptionPane.showMessageDialog(this, "El campo cantidad debe ser de formato numerico entero y sin puntos", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-//        } catch (NullPointerException e) {
+//       } catch (NullPointerException e) {
 //            JOptionPane.showMessageDialog(this, "El campo fecha es incorrecto, elija una fecha desde el boton del calendario", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 //            jFecha.setDate(null);
         }
