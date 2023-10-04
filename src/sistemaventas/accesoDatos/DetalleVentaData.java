@@ -49,14 +49,10 @@ public class DetalleVentaData {
                     
                     if(rs.getInt("idProducto") == producto.getIdProducto())
                         detalleVenta.setProducto(producto);
-                    if(rs.getString("nombreProducto") == producto.getNombreProducto())
-                        detalleVenta.setProducto(producto);
                 }
                 for(Venta venta:ventaData.listarVentas()){
                     
                     if(rs.getInt("idVenta") == venta.getIdVenta())
-                        detalleVenta.setVenta(venta);
-                    if(rs.getDate("fechaVenta").toLocalDate() == venta.getFechaVenta())
                         detalleVenta.setVenta(venta);
                 }
                 
@@ -66,9 +62,60 @@ public class DetalleVentaData {
             
         }catch(SQLException ex){
             
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de detalles de venta " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la "
+                    + "tabla de detalles de venta " + ex.getMessage());
         }
         
         return listaDetalleVenta;
+    }
+    
+    public void guardarDetalleVenta(DetalleVenta detaVenta){
+        
+        String sql = "INSERT idDetalleVenta, cantidad, idVenta, precioVenta, idProducto VALUES (?,?,?,?,?)";
+        
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, detaVenta.getIdDetalleVenta());
+            ps.setInt(2, detaVenta.getCantidad());
+            ps.setInt(3, detaVenta.getVenta().getIdVenta());
+            ps.setDouble(4, detaVenta.getPrecioVenta());
+            ps.setInt(5, detaVenta.getProducto().getIdProducto());
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next()){
+                
+                detaVenta.setIdDetalleVenta(rs.getInt(1));
+                
+                JOptionPane.showMessageDialog(null, "Detalles de venta guardados");
+            }
+            
+        }catch(SQLException ex){
+            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la "
+                    + "tabla de detalles de venta " + ex.getMessage());
+        }
+    }
+    
+    public void modificarDetalleVenta(DetalleVenta detaVenta){
+            
+        String sql = "UPDATE detalleventa SET cantidad = ?, precioVenta = ? WHERE idDetalleVenta = ?";
+            
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, detaVenta.getCantidad());
+            ps.setDouble(2, detaVenta.getPrecioVenta());
+            
+            int exito=ps.executeUpdate();
+            if(1==exito){
+                
+                 JOptionPane.showMessageDialog(null,"Detalles de venta modificados");
+            }
+            
+        }catch(SQLException ex){
+            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la "
+                    + "tabla de detalles de venta " + ex.getMessage());
+        }
     }
 }
