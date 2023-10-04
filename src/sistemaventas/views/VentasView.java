@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import sistemaventas.accesoDatos.*;
 import sistemaventas.entidades.*;
 
@@ -24,6 +25,8 @@ public class VentasView extends javax.swing.JInternalFrame {
         initComponents();
         llenarClientes();
         llenarProductos();
+        jtStock.setEditable(false);
+        jtPrecio.setEditable(false);
     }
 
     private void llenarClientes() {
@@ -69,6 +72,8 @@ public class VentasView extends javax.swing.JInternalFrame {
         jrDebito = new javax.swing.JRadioButton();
         jrCredito = new javax.swing.JRadioButton();
         jtPrecio = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jtStock = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(700, 600));
         setPreferredSize(new java.awt.Dimension(700, 600));
@@ -130,11 +135,21 @@ public class VentasView extends javax.swing.JInternalFrame {
         getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, 100, 40));
 
         jcomboProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jcomboProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcomboProductoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jcomboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 340, -1));
         getContentPane().add(jFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 340, -1));
 
         jtCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 340, -1));
+        jtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCantidadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 180, -1));
 
         buttonGroup1.add(jrEfectivo);
         jrEfectivo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -160,6 +175,11 @@ public class VentasView extends javax.swing.JInternalFrame {
         jrCredito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jrCredito.setText("Crédito (+5% Recarga)");
         jrCredito.setToolTipText("");
+        jrCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrCreditoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jrCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
 
         jtPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -170,6 +190,18 @@ public class VentasView extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 340, -1));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Stock");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
+
+        jtStock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtStockActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 80, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,14 +211,46 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+        if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+        this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jrEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEfectivoActionPerformed
         // TODO add your handling code here:
+        Producto producto = (Producto) jcomboProducto.getSelectedItem();
+         int cantidad;
+        double precio=producto.getPrecioActual();
+        
+        if (jtCantidad.getText().isEmpty()) {
+            
+            jtPrecio.setText("$" + precio);
+        } else {
+            cantidad = Integer.parseInt(jtCantidad.getText());
+            precio*=cantidad;
+            jtPrecio.setText("$" + precio);
+        }
+        jtPrecio.setText("$" + precio* .95);
     }//GEN-LAST:event_jrEfectivoActionPerformed
 
     private void jrDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrDebitoActionPerformed
         // TODO add your handling code here:
+        Producto producto = (Producto) jcomboProducto.getSelectedItem();
+        int cantidad;
+        double precio=producto.getPrecioActual();
+        
+        if (jtCantidad.getText().isEmpty()) {
+            
+            jtPrecio.setText("$" + precio);
+        } else {
+            cantidad = Integer.parseInt(jtCantidad.getText());
+            precio*=cantidad;
+            jtPrecio.setText("$" + precio);
+        }
+        jtPrecio.setText("$" + precio);
     }//GEN-LAST:event_jrDebitoActionPerformed
 
     private void jtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecioActionPerformed
@@ -198,18 +262,56 @@ public class VentasView extends javax.swing.JInternalFrame {
         LocalDate fechaVenta = null;
         Venta venta = null;
         DetalleVenta detalleVenta = null;
-        VentaData ventaD
+        VentaData ventaData = new VentaData();
+        DetalleVentaData detalleVentaData = new DetalleVentaData();
+        int idCliente, idProducto, cantidad, stockProd;
+
+        double precio;
+
         try {
 
             Cliente cliente = (Cliente) jcomboCliente.getSelectedItem();
-            int idCliente = cliente.getIdCliente();
+            idCliente = cliente.getIdCliente();
             if (jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(LocalDate.now())) {
                 fechaVenta = jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "El campo fecha no puede ser posterior al día de hoy.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
-            venta=new Venta(cliente, fechaVenta);
-            
+            venta = new Venta(cliente, fechaVenta);
+
+            Producto producto = (Producto) jcomboProducto.getSelectedItem();
+            idProducto = producto.getIdProducto();
+            stockProd = producto.getStock();
+            if (!jtCantidad.getText().isEmpty()) {
+                cantidad = Integer.parseInt(jtCantidad.getText());
+                if (cantidad < 1) {
+                    JOptionPane.showMessageDialog(this, "El campo cantidad no debe ser menor a 1", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                } else if (cantidad > stockProd) {
+                    JOptionPane.showMessageDialog(this, "El campo cantidad no debe ser mayor al stock", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El campo cantidad no debe estar vacio", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+
+            }
+            precio = producto.getPrecioActual();
+            if (jrEfectivo.isSelected()) {
+                jtPrecio.setText("$" + precio * .95);
+            } else if (jrCredito.isSelected()) {
+                jtPrecio.setText("$" + precio * 1.05);
+            } else {
+                jtPrecio.setText("$" + precio);
+            }
+
+            /// fijarse que este todo bien antes de guardar la venta
+            // y hacerlo antes 
+            //ventaData.guardarVenta(venta); //////
+            //detalleVenta=new DetalleVenta(cantidad, venta, precio, producto);
+            //detalleVentaData.
+        } catch (NumberFormatException e) {
+            if (!jtCantidad.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El campo cantidad debe ser de formato numerico entero y sin puntos", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                jtCantidad.setText("");
+            }
 
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "El campo fecha es incorrecto, elija una fecha desde el boton del calendario", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
@@ -217,6 +319,55 @@ public class VentasView extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jbPagoActionPerformed
+
+    private void jtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtStockActionPerformed
+
+    private void jcomboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboProductoActionPerformed
+        // TODO add your handling code here:
+        Producto producto = (Producto) jcomboProducto.getSelectedItem();
+        int cantidad;
+        double precio=producto.getPrecioActual();
+        jtStock.setText("" + producto.getStock());
+        if (jtCantidad.getText().isEmpty()) {
+            
+            jtPrecio.setText("$" + precio);
+        } else {
+            cantidad = Integer.parseInt(jtCantidad.getText());
+            precio*=cantidad;
+            jtPrecio.setText("$" + precio);
+        }
+        if (jrEfectivo.isSelected()) {
+            jtPrecio.setText("$" + precio* .95);
+        } else if (jrCredito.isSelected()) {
+            jtPrecio.setText("$" + precio * 1.05);
+        } else {
+            jtPrecio.setText("$" +precio);
+        }
+
+    }//GEN-LAST:event_jcomboProductoActionPerformed
+
+    private void jrCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCreditoActionPerformed
+        // TODO add your handling code here:
+        Producto producto = (Producto) jcomboProducto.getSelectedItem();
+        int cantidad;
+        double precio=producto.getPrecioActual();
+        
+        if (jtCantidad.getText().isEmpty()) {
+            
+            jtPrecio.setText("$" + precio);
+        } else {
+            cantidad = Integer.parseInt(jtCantidad.getText());
+            precio*=cantidad;
+            jtPrecio.setText("$" + precio);
+        }
+        jtPrecio.setText("$" + precio* 1.05);
+    }//GEN-LAST:event_jrCreditoActionPerformed
+
+    private void jtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtCantidadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -228,6 +379,7 @@ public class VentasView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbPago;
     private javax.swing.JButton jbSalir;
@@ -238,5 +390,6 @@ public class VentasView extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jrEfectivo;
     private javax.swing.JTextField jtCantidad;
     private javax.swing.JTextField jtPrecio;
+    private javax.swing.JTextField jtStock;
     // End of variables declaration//GEN-END:variables
 }

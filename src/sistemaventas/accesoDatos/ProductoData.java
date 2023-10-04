@@ -104,7 +104,7 @@ public class ProductoData {
     }
     
     public ArrayList<Producto> listarProducto (){
-        String sql="select idProducto, nombreProducto, descripcion, precioActual, stock from alumno where estado=1";
+        String sql="select idProducto, nombreProducto, descripcion, precioActual, stock from producto where estado=1";
         ArrayList<Producto> listaProducto=new ArrayList<>();
         try {
             PreparedStatement ps=cx.prepareStatement(sql);
@@ -122,7 +122,7 @@ public class ProductoData {
             ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla alumno "+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage());
         }
         return listaProducto;
     }
