@@ -21,7 +21,7 @@ public class VentaData {
     }
     
     public void guardarVenta(Venta venta){
-        String sql = "Insert into venta ( idCliente, fechaVenta) Values (?,?)";
+        String sql = "Insert into venta (idCliente, fechaVenta) Values (?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -33,7 +33,7 @@ public class VentaData {
             if (rs.next()) {
                 venta.setIdVenta(rs.getInt(1));
 
-                JOptionPane.showMessageDialog(null, "Inscripcion guardada.");
+                JOptionPane.showMessageDialog(null, "Venta guardada.");
             }
             ps.close();
         } catch (SQLException ex) {

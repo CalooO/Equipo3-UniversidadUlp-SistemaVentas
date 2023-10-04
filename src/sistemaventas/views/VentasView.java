@@ -222,32 +222,32 @@ public class VentasView extends javax.swing.JInternalFrame {
     private void jrEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEfectivoActionPerformed
         // TODO add your handling code here:
         Producto producto = (Producto) jcomboProducto.getSelectedItem();
-         int cantidad;
-        double precio=producto.getPrecioActual();
-        
+        int cantidad;
+        double precio = producto.getPrecioActual();
+
         if (jtCantidad.getText().isEmpty()) {
-            
+
             jtPrecio.setText("$" + precio);
         } else {
             cantidad = Integer.parseInt(jtCantidad.getText());
-            precio*=cantidad;
+            precio *= cantidad;
             jtPrecio.setText("$" + precio);
         }
-        jtPrecio.setText("$" + precio* .95);
+        jtPrecio.setText("$" + precio * .95);
     }//GEN-LAST:event_jrEfectivoActionPerformed
 
     private void jrDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrDebitoActionPerformed
         // TODO add your handling code here:
         Producto producto = (Producto) jcomboProducto.getSelectedItem();
         int cantidad;
-        double precio=producto.getPrecioActual();
-        
+        double precio = producto.getPrecioActual();
+
         if (jtCantidad.getText().isEmpty()) {
-            
+
             jtPrecio.setText("$" + precio);
         } else {
             cantidad = Integer.parseInt(jtCantidad.getText());
-            precio*=cantidad;
+            precio *= cantidad;
             jtPrecio.setText("$" + precio);
         }
         jtPrecio.setText("$" + precio);
@@ -264,7 +264,8 @@ public class VentasView extends javax.swing.JInternalFrame {
         DetalleVenta detalleVenta = null;
         VentaData ventaData = new VentaData();
         DetalleVentaData detalleVentaData = new DetalleVentaData();
-        int idCliente, idProducto, cantidad, stockProd;
+        ProductoData productoData = new ProductoData();
+        int idCliente, idProducto, stockProd;
 
         double precio;
 
@@ -282,6 +283,7 @@ public class VentasView extends javax.swing.JInternalFrame {
             Producto producto = (Producto) jcomboProducto.getSelectedItem();
             idProducto = producto.getIdProducto();
             stockProd = producto.getStock();
+            int cantidad = 0;
             if (!jtCantidad.getText().isEmpty()) {
                 cantidad = Integer.parseInt(jtCantidad.getText());
                 if (cantidad < 1) {
@@ -293,29 +295,25 @@ public class VentasView extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "El campo cantidad no debe estar vacio", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 
             }
-            precio = producto.getPrecioActual();
-            if (jrEfectivo.isSelected()) {
-                jtPrecio.setText("$" + precio * .95);
-            } else if (jrCredito.isSelected()) {
-                jtPrecio.setText("$" + precio * 1.05);
-            } else {
-                jtPrecio.setText("$" + precio);
-            }
+            precio = Double.parseDouble(jtPrecio.getText().substring(1));
 
             /// fijarse que este todo bien antes de guardar la venta
             // y hacerlo antes 
-            //ventaData.guardarVenta(venta); //////
-            //detalleVenta=new DetalleVenta(cantidad, venta, precio, producto);
-            //detalleVentaData.
-        } catch (NumberFormatException e) {
-            if (!jtCantidad.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El campo cantidad debe ser de formato numerico entero y sin puntos", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-                jtCantidad.setText("");
+            ventaData.guardarVenta(venta);
+            detalleVenta = new DetalleVenta(cantidad, venta, precio, producto);
+            detalleVentaData.guardarDetalleVenta(detalleVenta);
+            stockProd -= cantidad;
+            producto.setStock(stockProd);
+            
+            productoData.modificarProducto(producto);
+            if (stockProd == 0) {
+               productoData.borrarProducto(producto.getIdProducto());
             }
-
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "El campo fecha es incorrecto, elija una fecha desde el boton del calendario", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-            jFecha.setDate(null);
+        } catch (NumberFormatException e) {
+           JOptionPane.showMessageDialog(this, "El campo cantidad debe ser de formato numerico entero y sin puntos", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//        } catch (NullPointerException e) {
+//            JOptionPane.showMessageDialog(this, "El campo fecha es incorrecto, elija una fecha desde el boton del calendario", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//            jFecha.setDate(null);
         }
 
     }//GEN-LAST:event_jbPagoActionPerformed
@@ -328,22 +326,22 @@ public class VentasView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Producto producto = (Producto) jcomboProducto.getSelectedItem();
         int cantidad;
-        double precio=producto.getPrecioActual();
+        double precio = producto.getPrecioActual();
         jtStock.setText("" + producto.getStock());
         if (jtCantidad.getText().isEmpty()) {
-            
+
             jtPrecio.setText("$" + precio);
         } else {
             cantidad = Integer.parseInt(jtCantidad.getText());
-            precio*=cantidad;
+            precio *= cantidad;
             jtPrecio.setText("$" + precio);
         }
         if (jrEfectivo.isSelected()) {
-            jtPrecio.setText("$" + precio* .95);
+            jtPrecio.setText("$" + precio * .95);
         } else if (jrCredito.isSelected()) {
             jtPrecio.setText("$" + precio * 1.05);
         } else {
-            jtPrecio.setText("$" +precio);
+            jtPrecio.setText("$" + precio);
         }
 
     }//GEN-LAST:event_jcomboProductoActionPerformed
@@ -352,17 +350,17 @@ public class VentasView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Producto producto = (Producto) jcomboProducto.getSelectedItem();
         int cantidad;
-        double precio=producto.getPrecioActual();
-        
+        double precio = producto.getPrecioActual();
+
         if (jtCantidad.getText().isEmpty()) {
-            
+
             jtPrecio.setText("$" + precio);
         } else {
             cantidad = Integer.parseInt(jtCantidad.getText());
-            precio*=cantidad;
+            precio *= cantidad;
             jtPrecio.setText("$" + precio);
         }
-        jtPrecio.setText("$" + precio* 1.05);
+        jtPrecio.setText("$" + precio * 1.05);
     }//GEN-LAST:event_jrCreditoActionPerformed
 
     private void jtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCantidadActionPerformed

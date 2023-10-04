@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -71,15 +72,15 @@ public class DetalleVentaData {
     
     public void guardarDetalleVenta(DetalleVenta detaVenta){
         
-        String sql = "INSERT idDetalleVenta, cantidad, idVenta, precioVenta, idProducto VALUES (?,?,?,?,?)";
+        String sql = "INSERT into detalleventa (cantidad, idVenta, precioVenta, idProducto) VALUES (?,?,?,?)";
         
         try{
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, detaVenta.getIdDetalleVenta());
-            ps.setInt(2, detaVenta.getCantidad());
-            ps.setInt(3, detaVenta.getVenta().getIdVenta());
-            ps.setDouble(4, detaVenta.getPrecioVenta());
-            ps.setInt(5, detaVenta.getProducto().getIdProducto());
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            
+            ps.setInt(1, detaVenta.getCantidad());
+            ps.setInt(2, detaVenta.getVenta().getIdVenta());
+            ps.setDouble(3, detaVenta.getPrecioVenta());
+            ps.setInt(4, detaVenta.getProducto().getIdProducto());
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
