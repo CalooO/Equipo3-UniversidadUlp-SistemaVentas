@@ -82,5 +82,5 @@ public class Producto {
         return descripcion + " "+nombreProducto+" $"+precioActual;
     }
    
-   
+    
 }
