@@ -4,6 +4,8 @@
  */
 package sistemaventas.views;
 
+import java.awt.Color;
+
 /**
  *
  * @author Kaniory
@@ -33,8 +35,8 @@ public class Principal extends javax.swing.JFrame {
         btCliente = new javax.swing.JButton();
         btDetalle = new javax.swing.JButton();
         btVentas = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jSalir = new javax.swing.JLabel();
+        jpSalir = new javax.swing.JPanel();
+        jlSalir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,53 +93,57 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(btVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 210, 180, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-        jPanel2.setPreferredSize(new java.awt.Dimension(34, 34));
+        jpSalir.setBackground(new java.awt.Color(0, 51, 153));
+        jpSalir.setPreferredSize(new java.awt.Dimension(34, 34));
 
-        jSalir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jSalir.setForeground(new java.awt.Color(255, 255, 255));
-        jSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jSalir.setText("x");
-        jSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jSalir.setPreferredSize(new java.awt.Dimension(34, 34));
-        jSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSalir.setText("x");
+        jlSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlSalir.setPreferredSize(new java.awt.Dimension(34, 34));
+        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSalirMouseClicked(evt);
+                jlSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlSalirMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout jpSalirLayout = new javax.swing.GroupLayout(jpSalir);
+        jpSalir.setLayout(jpSalirLayout);
+        jpSalirLayout.setHorizontalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        jpSalirLayout.setVerticalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 36, 20));
+
+        panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 173, 700));
 
         jdpMain.setLayer(panel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdpMain.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpMainLayout = new javax.swing.GroupLayout(jdpMain);
         jdpMain.setLayout(jdpMainLayout);
         jdpMainLayout.setHorizontalGroup(
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpMainLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
+            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         jdpMainLayout.setVerticalGroup(
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -184,16 +190,32 @@ public class Principal extends javax.swing.JFrame {
 
     private void btDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDetalleActionPerformed
         
-        panel.setVisible(false);
-        DetalleVentasView detaVentas = new DetalleVentasView();
+//        panel.setVisible(false);
+        DetalleVentaView detaVentas = new DetalleVentaView();
         detaVentas.setVisible(true);
         jdpMain.add(detaVentas);
         jdpMain.moveToFront(detaVentas);
     }//GEN-LAST:event_btDetalleActionPerformed
 
-    private void jSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSalirMouseClicked
+    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
         this.dispose();
-    }//GEN-LAST:event_jSalirMouseClicked
+    }//GEN-LAST:event_jlSalirMouseClicked
+
+    private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
+        
+    }//GEN-LAST:event_jlSalirMousePressed
+
+    private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
+        
+        jpSalir.setBackground(new Color(0, 51, 153));
+        jlSalir.setForeground(Color.white);
+    }//GEN-LAST:event_jlSalirMouseExited
+
+    private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
+        
+        jpSalir.setBackground(Color.red);
+        jlSalir.setForeground(Color.black);
+    }//GEN-LAST:event_jlSalirMouseEntered
 
     /**
      * @param args the command line arguments
@@ -240,9 +262,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btProducto;
     private javax.swing.JButton btVentas;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel jSalir;
     private javax.swing.JDesktopPane jdpMain;
+    private javax.swing.JLabel jlSalir;
+    private javax.swing.JPanel jpSalir;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }
