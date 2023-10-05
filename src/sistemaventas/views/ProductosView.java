@@ -4,14 +4,17 @@
  */
 package sistemaventas.views;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import sistemaventas.accesoDatos.ProductoData;
+import sistemaventas.entidades.Producto;
 
 /**
  *
  * @author Kaniory
  */
 public class ProductosView extends javax.swing.JInternalFrame {
-
+    ProductoData pd = new ProductoData();
     /**
      * Creates new form ProductosView
      */
@@ -41,12 +44,12 @@ public class ProductosView extends javax.swing.JInternalFrame {
         lbl = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jrbEstado = new javax.swing.JRadioButton();
-        btAgregar = new javax.swing.JButton();
         btBorrar = new javax.swing.JButton();
         btLimpiar = new javax.swing.JButton();
         btBuscar = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
         jtDesc = new javax.swing.JTextField();
+        btAgregar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 600));
 
@@ -79,10 +82,12 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
         jPanel1.add(jrbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
 
-        btAgregar.setText("Agregar / Modificar");
-        jPanel1.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
-
         btBorrar.setText("Dar de baja");
+        btBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
 
         btLimpiar.setText("Limpiar");
@@ -94,6 +99,11 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, -1));
 
         btSalir.setText("Salir");
@@ -104,6 +114,14 @@ public class ProductosView extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, -1));
         jPanel1.add(jtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 240, -1));
+
+        btAgregar.setText("Agregar / Modificar");
+        btAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,6 +157,119 @@ public class ProductosView extends javax.swing.JInternalFrame {
           this.dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        // TODO add your handling code here:
+        try {
+            jtNombre.setText("");
+            jtDesc.setText("");
+            jtPrecio.setText("");
+            jtStock.setText("");
+            jrbEstado.setSelected(false);
+            if (!jtId.getText().isEmpty()) {
+                if ((Integer.parseInt(jtId.getText())) > 0) {
+                    Producto prod = new Producto();
+                    prod = pd.obtenerProductoPorid(Integer.parseInt(jtId.getText()));
+                    jtNombre.setText(prod.getNombreProducto());
+                    jtDesc.setText(prod.getDescripcion());
+                    jtPrecio.setText(prod.getPrecioActual()+"");
+                    jtStock.setText(prod.getStock() + "");
+                    if (prod.isEstado()) {
+                        jrbEstado.setSelected(true);
+                    } else {
+                        jrbEstado.setSelected(false);
+                    }
+                    if(jtNombre.getText().isEmpty()){
+                        jtNombre.setText("");
+                        jtDesc.setText("");
+                        jtPrecio.setText("");
+                        jtStock.setText("");
+                        jrbEstado.setSelected(false);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El codigo debe ser mayor a 0(cero)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                    jtId.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Debes ingresar un codigo", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El codigo debe ser en formato numerico", "ERROR", JOptionPane.ERROR_MESSAGE);
+            jtId.setText("");
+        } catch (NullPointerException e) {
+
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (!jtId.getText().isEmpty()) {
+                if ((Integer.parseInt(jtId.getText())) > 0) {
+                    if (jtNombre.getText().isEmpty()) {
+                        btBuscarActionPerformed(evt);
+                        if (!jtNombre.getText().isEmpty()) {
+                            int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
+                                    "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+                            if (x == 0) {
+                                pd.borrarProducto(Integer.parseInt(jtId.getText()));
+                                jrbEstado.setSelected(false);
+                            }
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El codigo debe ser mayor a 0(cero)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                    jtId.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Debes ingresar un codigo", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El codigo debe ser en formato numerico", "ERROR", JOptionPane.ERROR_MESSAGE);
+            jtId.setText("");
+        }
+    }//GEN-LAST:event_btBorrarActionPerformed
+
+    private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(!jtId.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDesc.getText().isEmpty() &&
+                    !jtPrecio.getText().isEmpty() && !jtStock.getText().isEmpty()){
+                if ((Integer.parseInt(jtId.getText())) > 0) {
+                    int i = Integer.parseInt(jtId.getText());
+                    String n = jtNombre.getText();
+                    String d = jtDesc.getText();
+                    double p = Double.parseDouble(jtPrecio.getText());
+                    int s = Integer.parseInt(jtStock.getText());
+                    if(!jrbEstado.isSelected()){
+                        int x = JOptionPane.showConfirmDialog(this, "El estado esta desactivado ¿Deseas activarlo?", "", 
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if(x==0){
+                            jrbEstado.setSelected(true);
+                        }
+                    }
+                    boolean e = jrbEstado.isSelected();
+                    Producto prod = new Producto(i, n, d, p, s, e);
+                    if(pd.obtenerProducto(i)==null){
+                        pd.guardarProducto(prod);
+                    }else{
+                        int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que quieres modificar el producto?", "", 
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if(x==0){
+                            pd.modificarProducto(prod);
+                        }
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(this, "El codigo debe ser mayor a 0(cero)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                    jtId.setText("");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Quedan campos sin llenar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Los campos codigo, precio y stock deben ser numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
@@ -161,4 +292,33 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtStock;
     private javax.swing.JLabel lbl;
     // End of variables declaration//GEN-END:variables
+
+    public String formatoPrecio(double x) {
+        int aux;
+        String numf = null;
+        while (x > 1000) {
+            aux = (int) (x % 1000);
+            x = (x - aux) / 1000;
+            if (numf == null) {
+                numf = aux + "";
+            } else {
+                numf = aux + "." + numf;
+            }
+        }
+        if (x != 0) {
+            return "$ " + (int) x + "." + numf;
+        } else {
+            return "$ " + numf;
+        }
+    }
+    
+    public double descomponerPrecio(String x){
+        String d = null;
+        for (int i = 2; i < x.length(); i++) {
+            if(x.charAt(i)>=0){
+                d = d + x.charAt(i);
+            }
+        }
+        return Double.parseDouble(d);
+    }
 }

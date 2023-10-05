@@ -14,22 +14,25 @@ public class ProductoData {
     }
     
     public void guardarProducto(Producto prod){
-        String sql="Insert into producto (nombreProducto, descripcion, precioActual, stock, estado) "
-                + "Values (?,?,?,?,?)";
+        String sql="Insert into producto (idProducto, nombreProducto, descripcion, precioActual, stock, estado) "
+                + "Values (?,?,?,?,?,?)";
         try {
             PreparedStatement ps=cx.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,prod.getNombreProducto());
-            ps.setString(2, prod.getDescripcion());
-            ps.setDouble(3, prod.getPrecioActual());
-            ps.setInt(4, prod.getStock());
-            ps.setBoolean(5, prod.isEstado());
-            ps.executeUpdate();
-            
-            ResultSet rs=ps.getGeneratedKeys();
+            ps.setInt(1, prod.getIdProducto());
+            ps.setString(2,prod.getNombreProducto());
+            ps.setString(3, prod.getDescripcion());
+            ps.setDouble(4, prod.getPrecioActual());
+            ps.setInt(5, prod.getStock());
+            ps.setBoolean(6, prod.isEstado());
+            int exito=ps.executeUpdate();
+            if(1==exito){
+                 JOptionPane.showMessageDialog(null,"Producto agregado.");
+            }
+            /*ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
                 prod.setIdProducto(rs.getInt(1));
                  JOptionPane.showMessageDialog(null,"Producto agregado.");
-            }
+            }*/
             ps.close();
             
         } catch (SQLException ex) {
@@ -66,7 +69,7 @@ public class ProductoData {
             ps.setInt(1, id);
             int exito=ps.executeUpdate();
             if(1==exito){
-                 JOptionPane.showMessageDialog(null,"Producto dado de baja.");
+                 JOptionPane.showMessageDialog(null,"Producto dado de baja.","",JOptionPane.PLAIN_MESSAGE);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage());
@@ -75,13 +78,12 @@ public class ProductoData {
     
     public Producto obtenerProductoPorid(int id){
         String sql="select idProducto, nombreProducto, descripcion, precioActual, stock, estado from producto where idProducto=?";
-        Producto prod=null;
+        Producto prod= new Producto();
         try {
             PreparedStatement ps=cx.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
-                prod = new Producto();
                 prod.setIdProducto(id);
                 prod.setNombreProducto(rs.getString("nombreProducto"));
                 prod.setDescripcion(rs.getString("descripcion"));
@@ -89,11 +91,11 @@ public class ProductoData {
                 prod.setStock(rs.getInt("stock"));
                 prod.setEstado(rs.getBoolean("estado"));
             }else{
-                JOptionPane.showMessageDialog(null,"No existe el producto con id= "+id);         
+                JOptionPane.showMessageDialog(null, "No se encuentran productos asociados al codigo: " + id, "ERROR", JOptionPane.ERROR_MESSAGE);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch(NullPointerException e){
         }
         return prod;
@@ -125,5 +127,29 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage());
         }
         return listaProducto;
+    }
+    
+    public Producto obtenerProducto(int id){
+        String sql="select idProducto, nombreProducto, descripcion, precioActual, stock, estado from producto where idProducto=?";
+        Producto prod = null;
+        try {
+            PreparedStatement ps=cx.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                prod= new Producto();
+                prod.setIdProducto(id);
+                prod.setNombreProducto(rs.getString("nombreProducto"));
+                prod.setDescripcion(rs.getString("descripcion"));
+                prod.setPrecioActual(rs.getDouble("precioActual"));
+                prod.setStock(rs.getInt("stock"));
+                prod.setEstado(rs.getBoolean("estado"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch(NullPointerException e){
+        }
+        return prod;
     }
 }
