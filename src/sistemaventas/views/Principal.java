@@ -34,7 +34,7 @@ public class Principal extends javax.swing.JFrame {
         btDetalle = new javax.swing.JButton();
         btVentas = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jSalir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btProducto.setBackground(new java.awt.Color(255, 255, 255));
         btProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -55,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
                 btProductoActionPerformed(evt);
             }
         });
+        jPanel1.add(btProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 180, -1));
 
         btCliente.setBackground(new java.awt.Color(255, 255, 255));
         btCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -65,6 +67,7 @@ public class Principal extends javax.swing.JFrame {
                 btClienteActionPerformed(evt);
             }
         });
+        jPanel1.add(btCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 130, 180, -1));
 
         btDetalle.setBackground(new java.awt.Color(255, 255, 255));
         btDetalle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -75,6 +78,7 @@ public class Principal extends javax.swing.JFrame {
                 btDetalleActionPerformed(evt);
             }
         });
+        jPanel1.add(btDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 170, 180, -1));
 
         btVentas.setBackground(new java.awt.Color(255, 255, 255));
         btVentas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -85,16 +89,22 @@ public class Principal extends javax.swing.JFrame {
                 btVentasActionPerformed(evt);
             }
         });
+        jPanel1.add(btVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 210, 180, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(34, 34));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("x");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel1.setPreferredSize(new java.awt.Dimension(34, 34));
+        jSalir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jSalir.setText("x");
+        jSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jSalir.setPreferredSize(new java.awt.Dimension(34, 34));
+        jSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSalirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -102,42 +112,16 @@ public class Principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(btProducto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btDetalle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btVentas)
-                .addContainerGap())
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jdpMain.setLayer(panel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpMain.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -147,9 +131,9 @@ public class Principal extends javax.swing.JFrame {
         jdpMainLayout.setHorizontalGroup(
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpMainLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
         );
         jdpMainLayout.setVerticalGroup(
             jdpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,6 +191,10 @@ public class Principal extends javax.swing.JFrame {
         jdpMain.moveToFront(detaVentas);
     }//GEN-LAST:event_btDetalleActionPerformed
 
+    private void jSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSalirMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jSalirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -251,9 +239,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btDetalle;
     private javax.swing.JButton btProducto;
     private javax.swing.JButton btVentas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jSalir;
     private javax.swing.JDesktopPane jdpMain;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables

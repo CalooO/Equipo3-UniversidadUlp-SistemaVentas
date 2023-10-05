@@ -23,7 +23,7 @@ public class DetalleVentaData {
     
     public List<DetalleVenta> detalleDeVentas(){
         
-        String sql = "SELECT idDetalleVenta,idVenta,idProducto, nombreProducto, cantidad, precioVenta, fechaVenta"
+        String sql = "SELECT idDetalleVenta,cantidad, fechaVenta, precioVenta, nombreProducto"
                 + " FROM producto p join detalleventa d ON(p.idProducto = d.idProducto) "
                 + "JOIN venta v ON(d.idVenta = v.idVenta) "
                 + "WHERE idDetalleVenta = ?";
