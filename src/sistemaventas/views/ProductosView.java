@@ -70,6 +70,12 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Descripcion");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+
+        jtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIdKeyTyped(evt);
+            }
+        });
         jPanel1.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 240, -1));
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 240, -1));
         jPanel1.add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 240, -1));
@@ -207,13 +213,13 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 if ((Integer.parseInt(jtId.getText())) > 0) {
                     if (jtNombre.getText().isEmpty()) {
                         btBuscarActionPerformed(evt);
-                        if (!jtNombre.getText().isEmpty()) {
-                            int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
-                                    "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-                            if (x == 0) {
-                                pd.borrarProducto(Integer.parseInt(jtId.getText()));
-                                jrbEstado.setSelected(false);
-                            }
+                    }
+                    if (!jtNombre.getText().isEmpty()) {
+                        int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
+                                "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        if (x == 0) {
+                            pd.borrarProducto(Integer.parseInt(jtId.getText()));
+                            jrbEstado.setSelected(false);
                         }
                     }
                 } else {
@@ -269,6 +275,10 @@ public class ProductosView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Los campos codigo, precio y stock deben ser numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btAgregarActionPerformed
+
+    private void jtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIdKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtIdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
