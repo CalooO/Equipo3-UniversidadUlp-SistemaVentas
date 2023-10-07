@@ -2,8 +2,13 @@
 package sistemaventas.views;
 
 import java.awt.Color;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import sistemaventas.accesoDatos.ClienteData;
 import sistemaventas.accesoDatos.DetalleVentaData;
@@ -13,7 +18,9 @@ import sistemaventas.entidades.DetalleVenta;
 import sistemaventas.entidades.Producto;
 
 public class DetalleVentaView extends javax.swing.JInternalFrame {
-
+    
+    DetalleVenta dv = new DetalleVenta();
+    
     private DefaultTableModel modelo = new DefaultTableModel(){
         
         public boolean isCellEditable(int f, int c){
@@ -23,11 +30,12 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     };
     
     private void armarCabecera() {
-        modelo.addColumn("Detalles de venta N°");
+        modelo.addColumn("Detalles N°");
+        modelo.addColumn("Fecha de venta");
         modelo.addColumn("ID venta");
         modelo.addColumn("ID producto");
-        modelo.addColumn("Cantidad");
         modelo.addColumn("Precio de venta");
+        modelo.addColumn("Cantidad");
         jtLista.setModel(modelo);
     }
     
@@ -78,7 +86,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jtLista = new javax.swing.JTable();
         jcbProductos = new javax.swing.JComboBox<>();
         jcbClientes = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jdFecha = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -115,6 +123,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jlSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlSalirMousePressed(evt);
             }
         });
 
@@ -172,8 +183,13 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 140, 40));
 
+        jcbClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbClientesActionPerformed(evt);
+            }
+        });
         jPanel1.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 140, 40));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
+        jPanel1.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Elija el producto:");
@@ -201,11 +217,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jlSalirMouseClicked
-
-    private void jcbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProductosActionPerformed
+    public void listarPorClientesYProductos(){
         
         DetalleVentaData dvd = new DetalleVentaData();
         
@@ -215,24 +227,96 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
         
         modelo.setRowCount(0);
-        int id = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
-//        List<DetalleVenta> listaDvd = dvd.listarDetalleVentasPorProducto(id);
-        for(DetalleVenta detaVenta:dvd.listarDetalleVentasPorProducto(id)){
+        int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
+        int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
+        for(DetalleVenta detaVenta:dvd.listarDetaVentasPorClienteYProducto(idC, idP)){
             
             modelo.addRow(new Object[]{
                 
                 detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getIdVenta(),
                 detaVenta.getProducto().getIdProducto(),
-                detaVenta.getCantidad(),
                 detaVenta.getPrecioVenta(),
-                detaVenta.getVenta().getIdVenta()
+                detaVenta.getCantidad()
             });
+        }
+    }
+    
+    public void listarPorClienteProductoYFecha(){
+        
+//        DetalleVentaData dvd = new DetalleVentaData();
+//        
+//        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+//            
+//            modelo.removeRow(fila);
+//        }
+//        
+//        modelo.setRowCount(0);
+//        int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
+//        int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
+//        LocalDate fecha;
+//        for(DetalleVenta detaVenta:dvd.listarDetalleVentaPorClienteProductoYFecha(idC, idP, fecha)){
+//            
+//            modelo.addRow(new Object[]{
+//                
+//                detaVenta.getIdDetalleVenta(),
+//                detaVenta.getVenta().getFechaVenta(),
+//                detaVenta.getVenta().getIdVenta(),
+//                detaVenta.getProducto().getIdProducto(),
+//                detaVenta.getPrecioVenta(),
+//                detaVenta.getCantidad()
+//            });
+//        }
+    }
+    
+    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
+        
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+        if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_jlSalirMouseClicked
+
+    private void jcbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProductosActionPerformed
+        
+//        DetalleVentaData dvd = new DetalleVentaData();
+//        
+//        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+//            
+//            modelo.removeRow(fila);
+//        }
+//        
+//        modelo.setRowCount(0);
+//        int id = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
+//        for(DetalleVenta detaVenta:dvd.listarDetalleVentasPorProducto(id)){
+//            
+//            modelo.addRow(new Object[]{
+//                
+//                detaVenta.getIdDetalleVenta(),
+//                detaVenta.getVenta().getFechaVenta(),
+//                detaVenta.getVenta().getIdVenta(),
+//                detaVenta.getProducto().getIdProducto(),
+//                detaVenta.getPrecioVenta(),
+//                detaVenta.getCantidad()
+//            });
+//        }
+        
+        try{
+            listarPorClientesYProductos();
+        
+        }catch(NullPointerException ex){
+            
+            JOptionPane.showMessageDialog(this,"Error "+ ex);
         }
     }//GEN-LAST:event_jcbProductosActionPerformed
 
     private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
-        jpSalir.setBackground(Color.red);
-        jlSalir.setForeground(Color.black);
+        jpSalir.setBackground(new Color(204,0,0));
+        jlSalir.setForeground(new Color(204,204,204));
     }//GEN-LAST:event_jlSalirMouseEntered
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
@@ -240,9 +324,47 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jlSalir.setForeground(Color.white);
     }//GEN-LAST:event_jlSalirMouseExited
 
+    private void jcbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientesActionPerformed
+        
+//        DetalleVentaData dvd = new DetalleVentaData();
+//        
+//        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+//            
+//            modelo.removeRow(fila);
+//        }
+//        
+//        modelo.setRowCount(0);
+//        int id = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
+//        for(DetalleVenta detaVenta:dvd.listarDetalleVentaPorIdCliente(id)){
+//            
+//            modelo.addRow(new Object[]{
+//                
+//                detaVenta.getIdDetalleVenta(),
+//                detaVenta.getVenta().getFechaVenta(),
+//                detaVenta.getVenta().getIdVenta(),
+//                detaVenta.getProducto().getIdProducto(),
+//                detaVenta.getPrecioVenta(),
+//                detaVenta.getCantidad()
+//            });
+//        }
+        
+//        try{
+//            listarPorClientesYProductos();
+//        
+//        }catch(NullPointerException ex){
+//            
+//            JOptionPane.showMessageDialog(this,"Error "+ ex);
+//        }
+        
+    }//GEN-LAST:event_jcbClientesActionPerformed
+
+    private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
+        jpSalir.setBackground(new Color(255,51,51));
+        jlSalir.setForeground(Color.black);
+    }//GEN-LAST:event_jlSalirMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -253,6 +375,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Cliente> jcbClientes;
     private javax.swing.JComboBox<Producto> jcbProductos;
+    private com.toedter.calendar.JDateChooser jdFecha;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JPanel jpSalir;
     private javax.swing.JTable jtLista;
