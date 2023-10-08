@@ -296,6 +296,98 @@ public class DetalleVentaData {
         return listaDetalleVenta;
     }
     
+    public List<DetalleVenta> listarDetalleVentaPorClienteYFecha(int idC, LocalDate fecha){
+        
+        String sql = "SELECT idDetalleVenta, cantidad,d.idVenta, precioVenta, idProducto "
+                + "FROM detalleventa d JOIN venta v ON(d.idVenta = v.idVenta) "
+                + "WHERE v.idCliente = ? AND v.fechaVenta = ?";
+        
+        ArrayList<DetalleVenta> listaDetalleVenta = new ArrayList<>();
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idC);
+            ps.setDate(2, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                DetalleVenta detalleVenta = new DetalleVenta();
+                
+                detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
+                detalleVenta.setCantidad(rs.getInt("cantidad"));
+                detalleVenta.setPrecioVenta(rs.getDouble("precioVenta"));
+                for(Producto producto:prodData.listarProducto()){
+                    
+                    if(rs.getInt("idProducto") == producto.getIdProducto())
+                        detalleVenta.setProducto(producto);
+                }
+                for(Venta venta:ventaData.listarVentas()){
+                    
+                    if(rs.getInt("idVenta") == venta.getIdVenta())
+                        detalleVenta.setVenta(venta);
+                }
+                
+                listaDetalleVenta.add(detalleVenta);
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la "
+                    + "tabla de detalles de venta " + ex.getMessage());
+        }
+        
+        return listaDetalleVenta;
+    }
+    
+    public List<DetalleVenta> listarDetalleVentaPorProductoYFecha(int idP, LocalDate fecha){
+        
+        String sql = "SELECT idDetalleVenta, cantidad,d.idVenta, precioVenta, idProducto "
+                + "FROM detalleventa d JOIN venta v ON(d.idVenta = v.idVenta) "
+                + "WHERE idProducto = ? AND v.fechaVenta = ?";
+        
+        ArrayList<DetalleVenta> listaDetalleVenta = new ArrayList<>();
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idP);
+            ps.setDate(2, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                DetalleVenta detalleVenta = new DetalleVenta();
+                
+                detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
+                detalleVenta.setCantidad(rs.getInt("cantidad"));
+                detalleVenta.setPrecioVenta(rs.getDouble("precioVenta"));
+                for(Producto producto:prodData.listarProducto()){
+                    
+                    if(rs.getInt("idProducto") == producto.getIdProducto())
+                        detalleVenta.setProducto(producto);
+                }
+                for(Venta venta:ventaData.listarVentas()){
+                    
+                    if(rs.getInt("idVenta") == venta.getIdVenta())
+                        detalleVenta.setVenta(venta);
+                }
+                
+                listaDetalleVenta.add(detalleVenta);
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la "
+                    + "tabla de detalles de venta " + ex.getMessage());
+        }
+        
+        return listaDetalleVenta;
+    }
+    
     public void guardarDetalleVenta(DetalleVenta detaVenta){
         
         String sql = "INSERT into detalleventa (cantidad, idVenta, precioVenta, idProducto) VALUES (?,?,?,?)";

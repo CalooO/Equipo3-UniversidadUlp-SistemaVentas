@@ -2,6 +2,7 @@
 package sistemaventas.views;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -193,6 +194,29 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 140, 40));
+
+        jdFecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jdFechaMouseClicked(evt);
+            }
+        });
+        jdFecha.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jdFechaInputMethodTextChanged(evt);
+            }
+        });
+        jdFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdFechaPropertyChange(evt);
+            }
+        });
+        jdFecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jdFechaKeyPressed(evt);
+            }
+        });
         jPanel1.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -237,6 +261,56 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             
             modelo.addRow(new Object[]{
                 
+                detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getIdVenta(),
+                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getPrecioVenta(),
+                detaVenta.getCantidad()
+            });
+        }
+    }
+    
+    public void listarPorProductos(){
+        
+        DetalleVentaData dvd = new DetalleVentaData();
+
+        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+
+            modelo.removeRow(fila);
+        }
+
+        modelo.setRowCount(0);
+        int id = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
+        for(DetalleVenta detaVenta:dvd.listarDetalleVentasPorProducto(id)){
+
+            modelo.addRow(new Object[]{
+
+                detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getIdVenta(),
+                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getPrecioVenta(),
+                detaVenta.getCantidad()
+            });
+        }
+    }
+    
+    public void listarPorClientes(){
+        
+        DetalleVentaData dvd = new DetalleVentaData();
+
+        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+
+            modelo.removeRow(fila);
+        }
+
+        modelo.setRowCount(0);
+        int id = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
+        for(DetalleVenta detaVenta:dvd.listarDetalleVentaPorIdCliente(id)){
+
+            modelo.addRow(new Object[]{
+
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
                 detaVenta.getVenta().getIdVenta(),
@@ -299,6 +373,58 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }
     
+    public void listarPorClienteYFecha(){
+        
+        DetalleVentaData dvd = new DetalleVentaData();
+        
+        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+            
+            modelo.removeRow(fila);
+        }
+        
+        modelo.setRowCount(0);
+        int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
+        LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        for(DetalleVenta detaVenta:dvd.listarDetalleVentaPorClienteYFecha(idC, fecha)){
+            
+            modelo.addRow(new Object[]{
+                
+                detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getIdVenta(),
+                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getPrecioVenta(),
+                detaVenta.getCantidad()
+            });
+        }
+    }
+    
+    public void listarPorProductoYFecha(){
+        
+        DetalleVentaData dvd = new DetalleVentaData();
+        
+        for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+            
+            modelo.removeRow(fila);
+        }
+        
+        modelo.setRowCount(0);
+        int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
+        LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        for(DetalleVenta detaVenta:dvd.listarDetalleVentaPorProductoYFecha(idP, fecha)){
+            
+            modelo.addRow(new Object[]{
+                
+                detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getIdVenta(),
+                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getPrecioVenta(),
+                detaVenta.getCantidad()
+            });
+        }
+    }
+    
     private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
         
         Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
@@ -313,42 +439,28 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private void jcbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProductosActionPerformed
         
         try{
-            if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null && jcbProductos.getSelectedItem() == null){
+            if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() == null){
                 
                 listarPorFecha();
                 
-            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null && jcbProductos.getSelectedItem() != null){
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() != null){
         
-                DetalleVentaData dvd = new DetalleVentaData();
-
-                for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
-
-                    modelo.removeRow(fila);
-                }
-
-                modelo.setRowCount(0);
-                int id = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
-                for(DetalleVenta detaVenta:dvd.listarDetalleVentasPorProducto(id)){
-
-                    modelo.addRow(new Object[]{
-
-                        detaVenta.getIdDetalleVenta(),
-                        detaVenta.getVenta().getFechaVenta(),
-                        detaVenta.getVenta().getIdVenta(),
-                        detaVenta.getProducto().getIdProducto(),
-                        detaVenta.getPrecioVenta(),
-                        detaVenta.getCantidad()
-                    });
-                }
+                listarPorProductos();
         
-            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null && jcbProductos.getSelectedItem() != null){
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null 
+                    && jcbProductos.getSelectedItem() != null){
                 
                 listarPorClientesYProductos();
-            }else if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null && jcbProductos.getSelectedItem() != null){
+                
+            }else if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null 
+                    && jcbProductos.getSelectedItem() != null){
                 
                 listarPorClienteProductoYFecha();
                 
-            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null && jcbProductos.getSelectedItem() == null){
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() == null){
                 
                 for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
 
@@ -356,6 +468,21 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 }
                 
                 modelo.setRowCount(0);
+                
+            }else if(jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null 
+                    && jcbClientes.getSelectedItem() != null){
+                
+                listarPorClientes();
+                
+            }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null 
+                    && jcbClientes.getSelectedItem() == null){
+                
+                listarPorProductoYFecha();
+                
+            }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null 
+                    && jcbClientes.getSelectedItem() != null){
+                
+                listarPorClienteYFecha();
             }
         
         }catch(NullPointerException ex){
@@ -377,42 +504,28 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private void jcbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientesActionPerformed
         
         try{
-            if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null && jcbProductos.getSelectedItem() == null){
+            if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() == null){
                 
                 listarPorFecha();
                 
-            }else if(jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null && jcbClientes.getSelectedItem() != null){
+            }else if(jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null 
+                    && jcbClientes.getSelectedItem() != null){
         
-                DetalleVentaData dvd = new DetalleVentaData();
-
-                for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
-
-                    modelo.removeRow(fila);
-                }
-
-                modelo.setRowCount(0);
-                int id = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
-                for(DetalleVenta detaVenta:dvd.listarDetalleVentaPorIdCliente(id)){
-
-                    modelo.addRow(new Object[]{
-
-                        detaVenta.getIdDetalleVenta(),
-                        detaVenta.getVenta().getFechaVenta(),
-                        detaVenta.getVenta().getIdVenta(),
-                        detaVenta.getProducto().getIdProducto(),
-                        detaVenta.getPrecioVenta(),
-                        detaVenta.getCantidad()
-                    });
-                }
+                listarPorClientes();
         
-            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null && jcbProductos.getSelectedItem() != null){
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null 
+                    && jcbProductos.getSelectedItem() != null){
                 
                 listarPorClientesYProductos();
-            }else if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null && jcbProductos.getSelectedItem() != null){
+                
+            }else if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null 
+                    && jcbProductos.getSelectedItem() != null){
                 
                 listarPorClienteProductoYFecha();
                 
-            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null && jcbProductos.getSelectedItem() == null){
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() == null){
                 
                 for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
 
@@ -420,19 +533,154 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 }
                 
                 modelo.setRowCount(0);
+                
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() != null){
+                
+                listarPorProductos();
+                
+            }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null 
+                    && jcbClientes.getSelectedItem() == null){
+                
+                listarPorProductoYFecha();
+                
+            }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null 
+                    && jcbClientes.getSelectedItem() != null){
+                
+                listarPorClienteYFecha();
             }
 
         }catch(NullPointerException ex){
             
             JOptionPane.showMessageDialog(this,"Error "+ ex);
         }
-        
     }//GEN-LAST:event_jcbClientesActionPerformed
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
         jpSalir.setBackground(new Color(255,51,51));
         jlSalir.setForeground(Color.black);
     }//GEN-LAST:event_jlSalirMousePressed
+
+    private void jdFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdFechaMouseClicked
+        
+    }//GEN-LAST:event_jdFechaMouseClicked
+
+    private void jdFechaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jdFechaInputMethodTextChanged
+        
+    }//GEN-LAST:event_jdFechaInputMethodTextChanged
+
+    private void jdFechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdFechaKeyPressed
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            
+            try{
+                if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null 
+                        && jcbProductos.getSelectedItem() == null){
+
+                    listarPorFecha();
+
+                }else if(jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null 
+                        && jcbClientes.getSelectedItem() != null){
+
+                    listarPorClientes();
+
+                }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null 
+                        && jcbProductos.getSelectedItem() != null){
+
+                    listarPorClientesYProductos();
+
+                }else if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null 
+                        && jcbProductos.getSelectedItem() != null){
+
+                    listarPorClienteProductoYFecha();
+
+                }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                        && jcbProductos.getSelectedItem() == null){
+
+                    for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+
+                        modelo.removeRow(fila);
+                    }
+
+                    modelo.setRowCount(0);
+
+                }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                        && jcbProductos.getSelectedItem() != null){
+
+                    listarPorProductos();
+
+                }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null 
+                        && jcbClientes.getSelectedItem() == null){
+
+                    listarPorProductoYFecha();
+
+                }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null 
+                        && jcbClientes.getSelectedItem() != null){
+
+                    listarPorClienteYFecha();
+                }
+
+            }catch(NullPointerException ex){
+
+                JOptionPane.showMessageDialog(this,"Error "+ ex);
+            }
+        }
+    }//GEN-LAST:event_jdFechaKeyPressed
+
+    private void jdFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFechaPropertyChange
+        
+        try{
+            if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() == null){
+                
+                listarPorFecha();
+                
+            }else if(jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null 
+                    && jcbClientes.getSelectedItem() != null){
+        
+                listarPorClientes();
+        
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null 
+                    && jcbProductos.getSelectedItem() != null){
+                
+                listarPorClientesYProductos();
+                
+            }else if(jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null 
+                    && jcbProductos.getSelectedItem() != null){
+                
+                listarPorClienteProductoYFecha();
+                
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() == null){
+                
+                for(int fila = jtLista.getRowCount() - 1; fila >= 0; fila--){
+
+                    modelo.removeRow(fila);
+                }
+                
+                modelo.setRowCount(0);
+                
+            }else if(jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null 
+                    && jcbProductos.getSelectedItem() != null){
+                
+                listarPorProductos();
+                
+            }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null 
+                    && jcbClientes.getSelectedItem() == null){
+                
+                listarPorProductoYFecha();
+                
+            }else if(jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null 
+                    && jcbClientes.getSelectedItem() != null){
+                
+                listarPorClienteYFecha();
+            }
+
+        }catch(NullPointerException ex){
+            
+            JOptionPane.showMessageDialog(this,"Error "+ ex);
+        }
+    }//GEN-LAST:event_jdFechaPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
