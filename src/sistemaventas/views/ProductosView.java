@@ -70,9 +70,33 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Descripcion");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+
+        jtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIdKeyTyped(evt);
+            }
+        });
         jPanel1.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 240, -1));
+
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 240, -1));
+
+        jtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtPrecioKeyTyped(evt);
+            }
+        });
         jPanel1.add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 240, -1));
+
+        jtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtStockKeyTyped(evt);
+            }
+        });
         jPanel1.add(jtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 240, -1));
 
         lbl.setText("Precio");
@@ -113,6 +137,12 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, -1));
+
+        jtDesc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDescKeyTyped(evt);
+            }
+        });
         jPanel1.add(jtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 240, -1));
 
         btAgregar.setText("Agregar / Modificar");
@@ -207,13 +237,13 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 if ((Integer.parseInt(jtId.getText())) > 0) {
                     if (jtNombre.getText().isEmpty()) {
                         btBuscarActionPerformed(evt);
-                        if (!jtNombre.getText().isEmpty()) {
-                            int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
-                                    "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-                            if (x == 0) {
-                                pd.borrarProducto(Integer.parseInt(jtId.getText()));
-                                jrbEstado.setSelected(false);
-                            }
+                    }
+                    if (!jtNombre.getText().isEmpty()) {
+                        int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
+                                "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        if (x == 0) {
+                            pd.borrarProducto(Integer.parseInt(jtId.getText()));
+                            jrbEstado.setSelected(false);
                         }
                     }
                 } else {
@@ -269,6 +299,46 @@ public class ProductosView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Los campos codigo, precio y stock deben ser numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btAgregarActionPerformed
+
+    private void jtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIdKeyTyped
+        // validar numeros en textfield
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIdKeyTyped
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // Validar letras en textfield
+        /*char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')){
+            evt.consume();
+        }*/
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtDescKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDescKeyTyped
+        // TODO add your handling code here:
+        /*char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')){
+            evt.consume();
+        }*/
+    }//GEN-LAST:event_jtDescKeyTyped
+
+    private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtPrecioKeyTyped
+
+    private void jtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtStockKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtStockKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
