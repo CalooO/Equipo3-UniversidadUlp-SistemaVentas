@@ -117,7 +117,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jpBarraSuperior.setBackground(new java.awt.Color(0, 0, 153));
         jpBarraSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpSalir.setBackground(new java.awt.Color(0, 51, 204));
+        jpSalir.setBackground(new java.awt.Color(0, 51, 153));
 
         jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,7 +156,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         jpBarraSuperior.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
-        jpModoOscuro.setBackground(new java.awt.Color(0, 51, 204));
+        jpModoOscuro.setBackground(new java.awt.Color(0, 51, 153));
 
         jlModoOscuro.setBackground(new java.awt.Color(204, 204, 204));
         jlModoOscuro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

@@ -46,6 +46,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jdpMain.setBackground(new java.awt.Color(255, 255, 255));
         jdpMain.setPreferredSize(new java.awt.Dimension(800, 700));
