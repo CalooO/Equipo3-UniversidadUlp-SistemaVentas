@@ -31,8 +31,6 @@ public class Principal extends javax.swing.JFrame {
         jdpMain = new javax.swing.JDesktopPane();
         panel = new javax.swing.JPanel();
         jPanelMenu = new javax.swing.JPanel();
-        jpSalir = new javax.swing.JPanel();
-        jlSalir = new javax.swing.JLabel();
         jpProducto = new javax.swing.JPanel();
         jlProducto = new javax.swing.JLabel();
         jpCliente = new javax.swing.JPanel();
@@ -42,6 +40,8 @@ public class Principal extends javax.swing.JFrame {
         jpDetalleVentas = new javax.swing.JPanel();
         jlDetalleVentas = new javax.swing.JLabel();
         jpHeader = new javax.swing.JPanel();
+        jpSalir = new javax.swing.JPanel();
+        jlSalir = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,46 +54,6 @@ public class Principal extends javax.swing.JFrame {
 
         jPanelMenu.setBackground(new java.awt.Color(0, 0, 153));
         jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jpSalir.setBackground(new java.awt.Color(0, 51, 153));
-        jpSalir.setPreferredSize(new java.awt.Dimension(34, 34));
-
-        jlSalir.setBackground(new java.awt.Color(204, 0, 0));
-        jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlSalir.setForeground(new java.awt.Color(255, 255, 255));
-        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlSalir.setText("x");
-        jlSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jlSalir.setPreferredSize(new java.awt.Dimension(34, 34));
-        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlSalirMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jlSalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jlSalirMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jlSalirMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpSalirLayout = new javax.swing.GroupLayout(jpSalir);
-        jpSalir.setLayout(jpSalirLayout);
-        jpSalirLayout.setHorizontalGroup(
-            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-        );
-        jpSalirLayout.setVerticalGroup(
-            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanelMenu.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 36, 20));
 
         jpProducto.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -136,10 +96,10 @@ public class Principal extends javax.swing.JFrame {
 
         jpCliente.setBackground(new java.awt.Color(0, 0, 153));
         jpCliente.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 jpClienteCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -251,6 +211,47 @@ public class Principal extends javax.swing.JFrame {
 
         jpHeader.setBackground(new java.awt.Color(255, 255, 255));
         jpHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpSalir.setBackground(new java.awt.Color(255, 255, 255));
+        jpSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jpSalir.setPreferredSize(new java.awt.Dimension(34, 34));
+
+        jlSalir.setBackground(new java.awt.Color(204, 0, 0));
+        jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSalir.setText("x");
+        jlSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlSalir.setPreferredSize(new java.awt.Dimension(34, 34));
+        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlSalirMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpSalirLayout = new javax.swing.GroupLayout(jpSalir);
+        jpSalir.setLayout(jpSalirLayout);
+        jpSalirLayout.setHorizontalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        );
+        jpSalirLayout.setVerticalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jpHeader.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 36, 20));
+
         panel.add(jpHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo fravemax azul.png"))); // NOI18N
@@ -294,8 +295,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
         
-        jpSalir.setBackground(new Color(0, 51, 153));
-        jlSalir.setForeground(Color.white);
+        jpSalir.setBackground(Color.white);
+        jlSalir.setForeground(Color.black);
     }//GEN-LAST:event_jlSalirMouseExited
 
     private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
