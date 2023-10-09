@@ -761,7 +761,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             jpCuerpo.setBackground(Color.white);
             jpCabecera.setBackground(new Color(0,0,153));
             jpBarraSuperior.setBackground(new Color(0,0,153));
-            jpSalir.setBackground(new Color(0,51,204));
+            jpSalir.setBackground(new Color(0, 51, 153));
             jpModoOscuro.setBackground(new Color(0,51,204));
             jlElegirProducto.setForeground(Color.black);
             jlElegirFecha.setForeground(Color.black);
