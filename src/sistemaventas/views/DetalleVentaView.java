@@ -73,6 +73,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     public DetalleVentaView() {
         initComponents();
         armarCabecera();
+        
         llenarClientes();
         llenarProductos();
     }
