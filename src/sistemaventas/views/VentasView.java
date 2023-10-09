@@ -332,7 +332,8 @@ public class VentasView extends javax.swing.JInternalFrame {
             if (jcomboProducto.getSelectedItem() != null && jcomboCliente.getSelectedItem() != null && !jtCantidad.getText().isEmpty() && jFecha.getDate() != null) {
                 Cliente cliente = (Cliente) jcomboCliente.getSelectedItem();
                 idCliente = cliente.getIdCliente();
-                if (jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(LocalDate.now())) {
+                if (jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(LocalDate.now())||
+                        jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isEqual(LocalDate.now())) {
                     fechaVenta = jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 } else {
                     JOptionPane.showMessageDialog(this, "El campo fecha no puede ser posterior al día de hoy.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
