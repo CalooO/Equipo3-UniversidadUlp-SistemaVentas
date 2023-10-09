@@ -788,7 +788,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
         if(jlModoOscuro.getText() == "Modo Oscuro"){
             
-            jpModoOscuro.setBackground(new Color(0,51,204));
+            jpModoOscuro.setBackground(new Color(0, 51, 153));
             jlModoOscuro.setForeground(Color.white);
             
         }else {
