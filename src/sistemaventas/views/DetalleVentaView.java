@@ -21,7 +21,7 @@ import sistemaventas.entidades.Producto;
 
 public class DetalleVentaView extends javax.swing.JInternalFrame {
     
-    DetalleVenta dv = new DetalleVenta();
+//    DetalleVenta dv = new DetalleVenta();
     
     private DefaultTableModel modelo = new DefaultTableModel(){
         
@@ -81,33 +81,36 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jpCuerpo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
+        jpModoOscuro = new javax.swing.JPanel();
+        jlModoOscuro = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLista = new javax.swing.JTable();
         jcbProductos = new javax.swing.JComboBox<>();
         jcbClientes = new javax.swing.JComboBox<>();
         jdFecha = new com.toedter.calendar.JDateChooser();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jlElegirProducto = new javax.swing.JLabel();
+        jlElegirFecha = new javax.swing.JLabel();
+        jlElegirCliente = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(700, 600));
         setMinimumSize(new java.awt.Dimension(700, 600));
         setPreferredSize(new java.awt.Dimension(700, 600));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpCuerpo.setBackground(new java.awt.Color(255, 255, 255));
+        jpCuerpo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Detalles de ventas");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 530, 100));
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 250, 100));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 153));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,18 +141,54 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jpSalir.setLayout(jpSalirLayout);
         jpSalirLayout.setHorizontalGroup(
             jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpSalirLayout.setVerticalGroup(
             jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpSalirLayout.createSequentialGroup()
-                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel3.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, -1, -1));
+        jPanel3.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
+        jpModoOscuro.setBackground(new java.awt.Color(0, 51, 204));
+
+        jlModoOscuro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlModoOscuro.setForeground(new java.awt.Color(255, 255, 255));
+        jlModoOscuro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlModoOscuro.setText("Modo Oscuro");
+        jlModoOscuro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlModoOscuroMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlModoOscuroMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlModoOscuroMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlModoOscuroMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpModoOscuroLayout = new javax.swing.GroupLayout(jpModoOscuro);
+        jpModoOscuro.setLayout(jpModoOscuroLayout);
+        jpModoOscuroLayout.setHorizontalGroup(
+            jpModoOscuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlModoOscuro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpModoOscuroLayout.setVerticalGroup(
+            jpModoOscuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlModoOscuro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 0, 80, 20));
+
+        jpCuerpo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -164,7 +203,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             .addGap(0, 70, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 690, 70));
+        jpCuerpo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 690, 70));
 
         jtLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,21 +218,21 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtLista);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 630, 320));
+        jpCuerpo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 630, 320));
 
         jcbProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbProductosActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 140, 40));
+        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 140, 40));
 
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 140, 40));
+        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 140, 40));
 
         jdFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -217,29 +256,29 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jdFechaKeyPressed(evt);
             }
         });
-        jPanel1.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
+        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Elija el producto:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 134, -1, 20));
+        jlElegirProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlElegirProducto.setText("Elija el producto:");
+        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 134, -1, 20));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Elija la fecha:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
+        jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlElegirFecha.setText("Elija la fecha:");
+        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Elija el cliente:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
+        jlElegirCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlElegirCliente.setText("Elija el cliente:");
+        jpCuerpo.add(jlElegirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
 
         pack();
@@ -682,20 +721,63 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jdFechaPropertyChange
 
+    boolean modoOsc = false;
+    private void jlModoOscuroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseClicked
+        
+        if(!modoOsc){
+            
+            jpCuerpo.setBackground(Color.black);
+            jlElegirProducto.setForeground(Color.white);
+            jlElegirFecha.setForeground(Color.white);
+            jlElegirCliente.setForeground(Color.white);
+            jlModoOscuro.setText("Modo Claro");
+            modoOsc = true;
+            
+        }else {
+            
+            jpCuerpo.setBackground(Color.white);
+            jlElegirProducto.setForeground(Color.black);
+            jlElegirFecha.setForeground(Color.black);
+            jlElegirCliente.setForeground(Color.black);
+            jlModoOscuro.setText("Modo Oscuro");
+            modoOsc = false;
+        }
+    }//GEN-LAST:event_jlModoOscuroMouseClicked
+
+    private void jlModoOscuroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseEntered
+        
+        jpModoOscuro.setBackground(Color.black);
+        jlModoOscuro.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_jlModoOscuroMouseEntered
+
+    private void jlModoOscuroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseExited
+        
+        jpModoOscuro.setBackground(new Color(0,51,204));
+        jlModoOscuro.setForeground(Color.white);
+    }//GEN-LAST:event_jlModoOscuroMouseExited
+
+    private void jlModoOscuroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMousePressed
+        
+        jpModoOscuro.setBackground(Color.white);
+        jlModoOscuro.setForeground(Color.black);
+    }//GEN-LAST:event_jlModoOscuroMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Cliente> jcbClientes;
     private javax.swing.JComboBox<Producto> jcbProductos;
     private com.toedter.calendar.JDateChooser jdFecha;
+    private javax.swing.JLabel jlElegirCliente;
+    private javax.swing.JLabel jlElegirFecha;
+    private javax.swing.JLabel jlElegirProducto;
+    private javax.swing.JLabel jlModoOscuro;
     private javax.swing.JLabel jlSalir;
+    private javax.swing.JPanel jpCuerpo;
+    private javax.swing.JPanel jpModoOscuro;
     private javax.swing.JPanel jpSalir;
     private javax.swing.JTable jtLista;
     // End of variables declaration//GEN-END:variables
