@@ -21,7 +21,7 @@ import sistemaventas.entidades.Producto;
 
 public class DetalleVentaView extends javax.swing.JInternalFrame {
     
-//    DetalleVenta dv = new DetalleVenta();
+    boolean modoOsc = false;
     
     private DefaultTableModel modelo = new DefaultTableModel(){
         
@@ -34,8 +34,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private void armarCabecera() {
         modelo.addColumn("Detalles N°");
         modelo.addColumn("Fecha de venta");
-        modelo.addColumn("ID venta");
-        modelo.addColumn("ID producto");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Producto");
+        modelo.addColumn("Descripción");
         modelo.addColumn("Precio de venta");
         modelo.addColumn("Cantidad");
         jtLista.setModel(modelo);
@@ -84,12 +85,12 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         jpCuerpo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jpBarraSuperior = new javax.swing.JPanel();
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
         jpModoOscuro = new javax.swing.JPanel();
         jlModoOscuro = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jpCabecera = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLista = new javax.swing.JTable();
         jcbProductos = new javax.swing.JComboBox<>();
@@ -113,8 +114,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 250, 100));
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 153));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpBarraSuperior.setBackground(new java.awt.Color(0, 0, 153));
+        jpBarraSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpSalir.setBackground(new java.awt.Color(0, 51, 204));
 
@@ -153,10 +154,11 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel3.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
+        jpBarraSuperior.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
         jpModoOscuro.setBackground(new java.awt.Color(0, 51, 204));
 
+        jlModoOscuro.setBackground(new java.awt.Color(204, 204, 204));
         jlModoOscuro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlModoOscuro.setForeground(new java.awt.Color(255, 255, 255));
         jlModoOscuro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -187,24 +189,24 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             .addComponent(jlModoOscuro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel3.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 0, 80, 20));
+        jpBarraSuperior.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 0, 80, 20));
 
-        jpCuerpo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
+        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
 
-        jPanel4.setBackground(new java.awt.Color(0, 0, 153));
+        jpCabecera.setBackground(new java.awt.Color(0, 0, 153));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpCabeceraLayout = new javax.swing.GroupLayout(jpCabecera);
+        jpCabecera.setLayout(jpCabeceraLayout);
+        jpCabeceraLayout.setHorizontalGroup(
+            jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 690, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpCabeceraLayout.setVerticalGroup(
+            jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 70, Short.MAX_VALUE)
         );
 
-        jpCuerpo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 690, 70));
+        jpCuerpo.add(jpCabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 690, 70));
 
         jtLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -241,10 +243,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             }
         });
         jdFecha.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jdFechaInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jdFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -303,8 +305,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -328,8 +331,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -353,8 +357,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -378,8 +383,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -405,8 +411,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -431,8 +438,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -457,8 +465,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getIdVenta(),
-                detaVenta.getProducto().getIdProducto(),
+                detaVenta.getVenta().getCliente().getApellido()+" "+detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
                 detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
@@ -532,13 +541,24 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbProductosActionPerformed
 
     private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
-        jpSalir.setBackground(new Color(204,0,0));
-        jlSalir.setForeground(new Color(204,204,204));
+        
+            jpSalir.setBackground(new Color(204,0,0));
+            jlSalir.setForeground(new Color(204,204,204));
     }//GEN-LAST:event_jlSalirMouseEntered
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
-        jpSalir.setBackground(new Color(0, 51, 153));
-        jlSalir.setForeground(Color.white);
+        
+        if(jlModoOscuro.getText() == "Modo Oscuro"){
+            
+            
+            jpSalir.setBackground(new Color(0, 51, 153));
+            jlSalir.setForeground(Color.white);
+            
+        }else {
+        
+            jpSalir.setBackground(new Color(102,102,102));
+            jlSalir.setForeground(Color.white);
+        }
     }//GEN-LAST:event_jlSalirMouseExited
 
     private void jcbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientesActionPerformed
@@ -722,39 +742,60 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jdFechaPropertyChange
 
-    boolean modoOsc = false;
     private void jlModoOscuroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseClicked
         
-        if(!modoOsc){
+        if(jlModoOscuro.getText() == "Modo Oscuro"){
             
-            jpCuerpo.setBackground(Color.black);
+            jpCuerpo.setBackground(new Color(102,102,102));
+            jpCabecera.setBackground(new Color(51,51,51));
+            jpBarraSuperior.setBackground(new Color(51,51,51));
+            jpSalir.setBackground(new Color(102,102,102));
+            jpModoOscuro.setBackground(new Color(102,102,102));
             jlElegirProducto.setForeground(Color.white);
             jlElegirFecha.setForeground(Color.white);
             jlElegirCliente.setForeground(Color.white);
             jlModoOscuro.setText("Modo Claro");
-            modoOsc = true;
             
         }else {
             
             jpCuerpo.setBackground(Color.white);
+            jpCabecera.setBackground(new Color(0,0,153));
+            jpBarraSuperior.setBackground(new Color(0,0,153));
+            jpSalir.setBackground(new Color(0,51,204));
+            jpModoOscuro.setBackground(new Color(0,51,204));
             jlElegirProducto.setForeground(Color.black);
             jlElegirFecha.setForeground(Color.black);
             jlElegirCliente.setForeground(Color.black);
             jlModoOscuro.setText("Modo Oscuro");
-            modoOsc = false;
         }
     }//GEN-LAST:event_jlModoOscuroMouseClicked
 
     private void jlModoOscuroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseEntered
         
-        jpModoOscuro.setBackground(Color.black);
-        jlModoOscuro.setForeground(new Color(204,204,204));
+        if(jlModoOscuro.getText() == "Modo Oscuro"){
+            
+            jpModoOscuro.setBackground(Color.white);
+            jlModoOscuro.setForeground(Color.black);
+            
+        }else {
+        
+            jpModoOscuro.setBackground(Color.black);
+            jlModoOscuro.setForeground(new Color(204,204,204));
+        }
     }//GEN-LAST:event_jlModoOscuroMouseEntered
 
     private void jlModoOscuroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseExited
         
-        jpModoOscuro.setBackground(new Color(0,51,204));
-        jlModoOscuro.setForeground(Color.white);
+        if(jlModoOscuro.getText() == "Modo Oscuro"){
+            
+            jpModoOscuro.setBackground(new Color(0,51,204));
+            jlModoOscuro.setForeground(Color.white);
+            
+        }else {
+        
+            jpModoOscuro.setBackground(new Color(102,102,102));
+            jlModoOscuro.setForeground(Color.white);
+        }
     }//GEN-LAST:event_jlModoOscuroMouseExited
 
     private void jlModoOscuroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMousePressed
@@ -766,8 +807,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Cliente> jcbClientes;
     private javax.swing.JComboBox<Producto> jcbProductos;
@@ -777,6 +816,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlElegirProducto;
     private javax.swing.JLabel jlModoOscuro;
     private javax.swing.JLabel jlSalir;
+    private javax.swing.JPanel jpBarraSuperior;
+    private javax.swing.JPanel jpCabecera;
     private javax.swing.JPanel jpCuerpo;
     private javax.swing.JPanel jpModoOscuro;
     private javax.swing.JPanel jpSalir;
