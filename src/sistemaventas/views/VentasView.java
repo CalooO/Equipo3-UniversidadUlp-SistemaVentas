@@ -4,13 +4,18 @@
  */
 package sistemaventas.views;
 
+import java.awt.Image;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import sistemaventas.accesoDatos.*;
 import sistemaventas.entidades.*;
+
 
 /**
  *
@@ -23,19 +28,22 @@ public class VentasView extends javax.swing.JInternalFrame {
      */
     public VentasView() {
         initComponents();
+        
         llenarClientes();
         llenarProductos();
+        setearIcono(jLabel10, "src/Imagenes/logo fravemax azul.png");
         jtStock.setEditable(false);
         jtPrecio.setEditable(false);
         jrDebito.setSelected(true);
-//        if (jcomboProducto.getSelectedItem() == null) {
-//            JOptionPane.showMessageDialog(this, "No hay productos, reestocke URGENTE", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-//            
-//        } else if (jcomboCliente.getSelectedItem() == null) {
-//            JOptionPane.showMessageDialog(this, "No ha cargado al cliente, salga y vuelva a intentarlo", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-//            
-//        }
 
+
+    }
+    
+    private void setearIcono(JLabel jLabelName, String root){
+        ImageIcon image=new ImageIcon(root);
+        Icon icon=new ImageIcon(image.getImage().getScaledInstance(120,120,Image.SCALE_DEFAULT)) ;
+        jLabelName.setIcon(icon);
+        this.repaint();
     }
     private void limpiarTXT() {
         jtCantidad.setText("");
@@ -93,10 +101,10 @@ public class VentasView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel8 = new javax.swing.JLabel();
         jpCuerpo = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jcomboCliente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -120,64 +128,74 @@ public class VentasView extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Ventas");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
-
         jpCuerpo.setBackground(new java.awt.Color(255, 255, 255));
         jpCuerpo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 153));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jpCuerpo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
-
         jPanel4.setBackground(new java.awt.Color(0, 0, 153));
+
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setMaximumSize(new java.awt.Dimension(100, 100));
+        jLabel10.setMinimumSize(new java.awt.Dimension(100, 100));
+        jLabel10.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Ventas");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122)
+                .addComponent(jLabel8)
+                .addContainerGap(299, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpCuerpo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 690, 70));
+        jpCuerpo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 120));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cliente");
-        jpCuerpo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        jpCuerpo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
         jcomboCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpCuerpo.add(jcomboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 340, -1));
+        jpCuerpo.add(jcomboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 340, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha");
-        jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
+        jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Producto");
-        jpCuerpo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
+        jpCuerpo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Cantidad");
-        jpCuerpo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+        jpCuerpo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Formas de pago");
-        jpCuerpo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 20));
+        jpCuerpo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Precio");
-        jpCuerpo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
+        jpCuerpo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
         jbPago.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbPago.setText("Pago");
@@ -186,7 +204,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jbPagoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 100, 40));
+        jpCuerpo.add(jbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 100, 40));
 
         jbSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbSalir.setText("Salir");
@@ -195,7 +213,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jbSalirActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 100, 40));
+        jpCuerpo.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 100, 40));
 
         jcomboProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcomboProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -203,8 +221,8 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jcomboProductoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcomboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 340, -1));
-        jpCuerpo.add(jFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 340, -1));
+        jpCuerpo.add(jcomboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 340, -1));
+        jpCuerpo.add(jFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 340, -1));
 
         jtCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtCantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +230,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jtCantidadActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 180, -1));
+        jpCuerpo.add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 180, -1));
 
         buttonGroup1.add(jrEfectivo);
         jrEfectivo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -223,7 +241,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jrEfectivoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jrEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+        jpCuerpo.add(jrEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, -1, -1));
 
         buttonGroup1.add(jrDebito);
         jrDebito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -234,7 +252,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jrDebitoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jrDebito, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
+        jpCuerpo.add(jrDebito, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, -1));
 
         buttonGroup1.add(jrCredito);
         jrCredito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -246,7 +264,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jrCreditoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jrCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, -1, -1));
+        jpCuerpo.add(jrCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
 
         jtPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtPrecio.addActionListener(new java.awt.event.ActionListener() {
@@ -254,12 +272,12 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jtPrecioActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 340, -1));
+        jpCuerpo.add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 340, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Stock");
-        jpCuerpo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+        jpCuerpo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
 
         jtStock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtStock.addActionListener(new java.awt.event.ActionListener() {
@@ -267,7 +285,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jtStockActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 80, -1));
+        jpCuerpo.add(jtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 80, -1));
 
         getContentPane().add(jpCuerpo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 570));
 
@@ -395,6 +413,7 @@ public class VentasView extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser jFecha;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -402,7 +421,6 @@ public class VentasView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jbPago;
     private javax.swing.JButton jbSalir;
