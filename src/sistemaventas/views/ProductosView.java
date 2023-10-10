@@ -4,6 +4,10 @@
  */
 package sistemaventas.views;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import sistemaventas.accesoDatos.ProductoData;
@@ -20,6 +24,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
      */
     public ProductosView() {
         initComponents();
+        setearIcono(jLabel6, "src/Imagenes/logo fravemax azul.png");
     }
 
     /**
@@ -32,7 +37,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -43,21 +47,21 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jtStock = new javax.swing.JTextField();
         lbl = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jrbEstado = new javax.swing.JRadioButton();
         btBorrar = new javax.swing.JButton();
-        btLimpiar = new javax.swing.JButton();
-        btBuscar = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
         jtDesc = new javax.swing.JTextField();
         btAgregar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jrbEstado = new javax.swing.JRadioButton();
+        btLimpiar = new javax.swing.JButton();
+        btBuscar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 600));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("PRODUCTOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         jLabel2.setText("Estado");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
@@ -104,7 +108,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Stock");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
-        jPanel1.add(jrbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
 
         btBorrar.setText("Dar de baja");
         btBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,22 +116,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
-
-        btLimpiar.setText("Limpiar");
-        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimpiarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
-
-        btBuscar.setText("Buscar");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, -1));
 
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +139,85 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel2.setPreferredSize(new java.awt.Dimension(690, 120));
+
+        jLabel6.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("PRODUCTOS");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(jLabel1)
+                .addContainerGap(277, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 110));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        btLimpiar.setText("Limpiar");
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
+
+        btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jrbEstado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(btLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
+                .addComponent(btBuscar)
+                .addGap(93, 93, 93))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btLimpiar)
+                    .addComponent(btBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addComponent(jrbEstado)
+                .addGap(124, 124, 124))
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 460));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -352,8 +418,11 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JTextField jtDesc;
     private javax.swing.JTextField jtId;
@@ -390,5 +459,12 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         }
         return Double.parseDouble(d);
+    }
+    
+    private void setearIcono(JLabel jLabelName, String root){
+        ImageIcon image=new ImageIcon(root);
+        Icon icon=new ImageIcon(image.getImage().getScaledInstance(120,120,Image.SCALE_DEFAULT)) ;
+        jLabelName.setIcon(icon);
+        this.repaint();
     }
 }
