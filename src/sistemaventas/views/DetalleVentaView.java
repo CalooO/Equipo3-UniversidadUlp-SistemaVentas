@@ -746,9 +746,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
         if(jlModoOscuro.getText() == "Modo Oscuro"){
             
-            jpCuerpo.setBackground(new Color(102,102,102));
-            jpCabecera.setBackground(new Color(51,51,51));
-            jpBarraSuperior.setBackground(new Color(51,51,51));
+            jpCuerpo.setBackground(new Color(51,51,51));
+            jpCabecera.setBackground(Color.black);
+            jpBarraSuperior.setBackground(Color.black);
             jpSalir.setBackground(new Color(102,102,102));
             jpModoOscuro.setBackground(new Color(102,102,102));
             jlElegirProducto.setForeground(Color.white);
@@ -774,13 +774,13 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
         if(jlModoOscuro.getText() == "Modo Oscuro"){
             
-            jpModoOscuro.setBackground(Color.white);
-            jlModoOscuro.setForeground(Color.black);
+            jpModoOscuro.setBackground(Color.black);
+            jlModoOscuro.setForeground(Color.white);
             
         }else {
         
-            jpModoOscuro.setBackground(Color.black);
-            jlModoOscuro.setForeground(new Color(204,204,204));
+            jpModoOscuro.setBackground(Color.white);
+            jlModoOscuro.setForeground(Color.black);
         }
     }//GEN-LAST:event_jlModoOscuroMouseEntered
 
@@ -788,20 +788,20 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
         if(jlModoOscuro.getText() == "Modo Oscuro"){
             
-            jpModoOscuro.setBackground(new Color(0, 51, 153));
+            jpModoOscuro.setBackground(new Color(0,51,153));
             jlModoOscuro.setForeground(Color.white);
             
         }else {
         
-            jpModoOscuro.setBackground(new Color(102,102,102));
+            jpModoOscuro.setBackground(new Color(51,51,51));
             jlModoOscuro.setForeground(Color.white);
         }
     }//GEN-LAST:event_jlModoOscuroMouseExited
 
     private void jlModoOscuroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMousePressed
         
-        jpModoOscuro.setBackground(Color.white);
-        jlModoOscuro.setForeground(Color.black);
+        jpModoOscuro.setBackground(new Color(0,0,153));
+        jlModoOscuro.setForeground(Color.white);
     }//GEN-LAST:event_jlModoOscuroMousePressed
 
 
