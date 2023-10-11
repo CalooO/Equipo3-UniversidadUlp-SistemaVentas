@@ -40,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
         jlVentas = new javax.swing.JLabel();
         jpDetalleVentas = new javax.swing.JPanel();
         jlDetalleVentas = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jpHeader = new javax.swing.JPanel();
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
@@ -94,14 +95,14 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jlProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanelMenu.add(jpProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 173, 30));
+        jPanelMenu.add(jpProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 173, 30));
 
         jpCliente.setBackground(new java.awt.Color(0, 0, 153));
         jpCliente.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 jpClienteCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -139,7 +140,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanelMenu.add(jpCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 173, 30));
+        jPanelMenu.add(jpCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 173, 30));
 
         jpVentas.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -173,7 +174,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jlVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanelMenu.add(jpVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 173, 30));
+        jPanelMenu.add(jpVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 173, 30));
 
         jpDetalleVentas.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -207,7 +208,11 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jlDetalleVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanelMenu.add(jpDetalleVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 173, 30));
+        jPanelMenu.add(jpDetalleVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 173, 30));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText(" Todos los Derechos Reservados");
+        jPanelMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 680, -1, 20));
 
         panel.add(jPanelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 173, 700));
 
@@ -445,6 +450,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JDesktopPane jdpMain;
     private javax.swing.JLabel jlCliente;
