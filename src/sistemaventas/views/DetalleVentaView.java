@@ -2,12 +2,16 @@
 package sistemaventas.views;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -70,11 +74,16 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                     cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()));
         }
     }
-    
+    private void setearIcono(JLabel jLabelName, String root){
+        ImageIcon image=new ImageIcon(root);
+        Icon icon=new ImageIcon(image.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)) ;
+        jLabelName.setIcon(icon);
+        this.repaint();
+    }
     public DetalleVentaView() {
         initComponents();
         armarCabecera();
-        
+        setearIcono(jIcono, "src/Imagenes/logo fravemax azul.png");
         llenarClientes();
         llenarProductos();
     }
@@ -90,7 +99,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jlSalir = new javax.swing.JLabel();
         jpModoOscuro = new javax.swing.JPanel();
         jlModoOscuro = new javax.swing.JLabel();
-        jpCabecera = new javax.swing.JPanel();
+        jIcono = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLista = new javax.swing.JTable();
         jcbProductos = new javax.swing.JComboBox<>();
@@ -105,6 +114,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(700, 600));
 
         jpCuerpo.setBackground(new java.awt.Color(255, 255, 255));
+        jpCuerpo.setPreferredSize(new java.awt.Dimension(700, 600));
         jpCuerpo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -112,9 +122,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Detalles de ventas");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 250, 100));
+        jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 25, 200, 50));
 
         jpBarraSuperior.setBackground(new java.awt.Color(0, 0, 153));
+        jpBarraSuperior.setPreferredSize(new java.awt.Dimension(700, 100));
         jpBarraSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpSalir.setBackground(new java.awt.Color(0, 51, 153));
@@ -154,7 +165,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpBarraSuperior.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
+        jpBarraSuperior.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, -1, -1));
 
         jpModoOscuro.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -189,24 +200,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             .addComponent(jlModoOscuro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jpBarraSuperior.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 0, 80, 20));
+        jpBarraSuperior.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, -1));
 
-        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 30));
+        jIcono.setToolTipText("");
+        jIcono.setMinimumSize(new java.awt.Dimension(100, 100));
+        jIcono.setPreferredSize(new java.awt.Dimension(100, 100));
+        jpBarraSuperior.add(jIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 110, 100));
 
-        jpCabecera.setBackground(new java.awt.Color(0, 0, 153));
-
-        javax.swing.GroupLayout jpCabeceraLayout = new javax.swing.GroupLayout(jpCabecera);
-        jpCabecera.setLayout(jpCabeceraLayout);
-        jpCabeceraLayout.setHorizontalGroup(
-            jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
-        );
-        jpCabeceraLayout.setVerticalGroup(
-            jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
-        );
-
-        jpCuerpo.add(jpCabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 690, 70));
+        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 100));
 
         jtLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,7 +282,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
         );
 
         pack();
@@ -747,7 +748,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         if(jlModoOscuro.getText() == "Modo Oscuro"){
             
             jpCuerpo.setBackground(new Color(51,51,51));
-            jpCabecera.setBackground(Color.black);
+            
             jpBarraSuperior.setBackground(Color.black);
             jpSalir.setBackground(new Color(102,102,102));
             jpModoOscuro.setBackground(new Color(102,102,102));
@@ -759,7 +760,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }else {
             
             jpCuerpo.setBackground(Color.white);
-            jpCabecera.setBackground(new Color(0,0,153));
+            
             jpBarraSuperior.setBackground(new Color(0,0,153));
             jpSalir.setBackground(new Color(0, 51, 153));
             jpModoOscuro.setBackground(new Color(0,51,204));
@@ -806,6 +807,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jIcono;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Cliente> jcbClientes;
@@ -817,7 +819,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlModoOscuro;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JPanel jpBarraSuperior;
-    private javax.swing.JPanel jpCabecera;
     private javax.swing.JPanel jpCuerpo;
     private javax.swing.JPanel jpModoOscuro;
     private javax.swing.JPanel jpSalir;
