@@ -109,6 +109,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jlElegirFecha = new javax.swing.JLabel();
         jlElegirCliente = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setMaximumSize(new java.awt.Dimension(700, 600));
         setMinimumSize(new java.awt.Dimension(700, 600));
         setPreferredSize(new java.awt.Dimension(700, 600));
@@ -200,15 +202,16 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             .addComponent(jlModoOscuro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jpBarraSuperior.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 80, -1));
+        jpBarraSuperior.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, -1));
 
         jIcono.setToolTipText("");
         jIcono.setMinimumSize(new java.awt.Dimension(100, 100));
         jIcono.setPreferredSize(new java.awt.Dimension(100, 100));
         jpBarraSuperior.add(jIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 110, 100));
 
-        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 100));
+        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 100));
 
+        jtLista.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true)));
         jtLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -282,7 +285,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -557,7 +560,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             
         }else {
         
-            jpSalir.setBackground(new Color(102,102,102));
+            jpSalir.setBackground(new Color(51,51,51));
             jlSalir.setForeground(Color.white);
         }
     }//GEN-LAST:event_jlSalirMouseExited
@@ -750,8 +753,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             jpCuerpo.setBackground(new Color(51,51,51));
             
             jpBarraSuperior.setBackground(Color.black);
-            jpSalir.setBackground(new Color(102,102,102));
-            jpModoOscuro.setBackground(new Color(102,102,102));
+            jpSalir.setBackground(new Color(51,51,51));
+            jpModoOscuro.setBackground(new Color(51,51,51));
             jlElegirProducto.setForeground(Color.white);
             jlElegirFecha.setForeground(Color.white);
             jlElegirCliente.setForeground(Color.white);
