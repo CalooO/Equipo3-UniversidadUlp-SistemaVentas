@@ -49,6 +49,9 @@ public class VentasView extends javax.swing.JInternalFrame {
     private void limpiarTXT() {
         jtCantidad.setText("");
         jFecha.setDate(null);
+        jcomboCliente.setSelectedIndex(0);
+        jcomboProducto.setSelectedIndex(0);
+        jrDebito.setSelected(true);
     }
 
     private void llenarClientes() {

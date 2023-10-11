@@ -393,7 +393,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
+        if((c<'0' || c>'9') && (c<'.' || c>'.')){
             evt.consume();
         }
     }//GEN-LAST:event_jtPrecioKeyTyped
