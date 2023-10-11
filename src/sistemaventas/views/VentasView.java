@@ -4,6 +4,7 @@
  */
 package sistemaventas.views;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -105,6 +106,8 @@ public class VentasView extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jpSalir = new javax.swing.JPanel();
+        jlSalir = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jcomboCliente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -113,7 +116,6 @@ public class VentasView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jbPago = new javax.swing.JButton();
-        jbSalir = new javax.swing.JButton();
         jcomboProducto = new javax.swing.JComboBox<>();
         jFecha = new com.toedter.calendar.JDateChooser();
         jtCantidad = new javax.swing.JTextField();
@@ -142,6 +144,43 @@ public class VentasView extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Ventas");
 
+        jpSalir.setBackground(new java.awt.Color(0, 51, 153));
+
+        jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSalir.setText("x");
+        jlSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlSalirMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpSalirLayout = new javax.swing.GroupLayout(jpSalir);
+        jpSalir.setLayout(jpSalirLayout);
+        jpSalirLayout.setHorizontalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpSalirLayout.setVerticalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -149,15 +188,21 @@ public class VentasView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122)
-                .addComponent(jLabel8)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel8)
+                        .addGap(0, 324, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addComponent(jpSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -204,16 +249,7 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jbPagoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 100, 40));
-
-        jbSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
-            }
-        });
-        jpCuerpo.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 100, 40));
+        jpCuerpo.add(jbPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 100, 40));
 
         jcomboProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcomboProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -291,16 +327,6 @@ public class VentasView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
-        if (mainFrame != null) {
-            // Llama al método en MainFrame
-            mainFrame.mostrarMenu();
-        }
-        this.dispose();
-    }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jrEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEfectivoActionPerformed
         // TODO add your handling code here:
@@ -409,6 +435,35 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jtCantidadActionPerformed
 
+    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
+
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+        if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+
+        this.dispose();
+    }//GEN-LAST:event_jlSalirMouseClicked
+
+    private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
+
+        jpSalir.setBackground(new Color(204,0,0));
+        jlSalir.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_jlSalirMouseEntered
+
+    private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
+
+            jpSalir.setBackground(new Color(102,102,102));
+            jlSalir.setForeground(Color.white);
+        
+    }//GEN-LAST:event_jlSalirMouseExited
+
+    private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
+        jpSalir.setBackground(new Color(255,51,51));
+        jlSalir.setForeground(Color.black);
+    }//GEN-LAST:event_jlSalirMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -424,10 +479,11 @@ public class VentasView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jbPago;
-    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Cliente> jcomboCliente;
     private javax.swing.JComboBox<Producto> jcomboProducto;
+    private javax.swing.JLabel jlSalir;
     private javax.swing.JPanel jpCuerpo;
+    private javax.swing.JPanel jpSalir;
     private javax.swing.JRadioButton jrCredito;
     private javax.swing.JRadioButton jrDebito;
     private javax.swing.JRadioButton jrEfectivo;

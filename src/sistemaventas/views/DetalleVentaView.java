@@ -243,10 +243,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             }
         });
         jdFecha.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jdFechaInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jdFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
