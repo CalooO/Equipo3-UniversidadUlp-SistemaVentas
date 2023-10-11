@@ -143,7 +143,7 @@ public class VentasView extends javax.swing.JInternalFrame {
         jLabel10.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel10.setMinimumSize(new java.awt.Dimension(100, 100));
         jLabel10.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, -1, -1));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,7 +193,6 @@ public class VentasView extends javax.swing.JInternalFrame {
         jpCuerpo.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 100));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cliente");
         jpCuerpo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
@@ -201,27 +200,22 @@ public class VentasView extends javax.swing.JInternalFrame {
         jpCuerpo.add(jcomboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 340, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha");
         jpCuerpo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Producto");
         jpCuerpo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Cantidad");
         jpCuerpo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Formas de pago");
         jpCuerpo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Precio");
         jpCuerpo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
@@ -253,7 +247,6 @@ public class VentasView extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jrEfectivo);
         jrEfectivo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jrEfectivo.setForeground(new java.awt.Color(0, 0, 0));
         jrEfectivo.setText("Efectivo (-5% descuento)");
         jrEfectivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +257,6 @@ public class VentasView extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jrDebito);
         jrDebito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jrDebito.setForeground(new java.awt.Color(0, 0, 0));
         jrDebito.setText("Débito");
         jrDebito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,7 +267,6 @@ public class VentasView extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jrCredito);
         jrCredito.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jrCredito.setForeground(new java.awt.Color(0, 0, 0));
         jrCredito.setText("Crédito (+5% Recarga)");
         jrCredito.setToolTipText("");
         jrCredito.addActionListener(new java.awt.event.ActionListener() {
@@ -294,7 +285,6 @@ public class VentasView extends javax.swing.JInternalFrame {
         jpCuerpo.add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 340, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Stock");
         jpCuerpo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
 
