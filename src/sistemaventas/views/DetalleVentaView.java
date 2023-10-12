@@ -316,6 +316,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
 
         modelo.setRowCount(0);
+        
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         for (DetalleVenta detaVenta : dvd.listarDetaVentasPorClienteYProducto(idC, idP)) {
