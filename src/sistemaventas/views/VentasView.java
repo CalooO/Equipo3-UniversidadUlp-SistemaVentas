@@ -36,7 +36,7 @@ public class VentasView extends javax.swing.JInternalFrame {
         jtStock.setEditable(false);
         jtPrecio.setEditable(false);
         jrDebito.setSelected(true);
-
+        
 
     }
     
