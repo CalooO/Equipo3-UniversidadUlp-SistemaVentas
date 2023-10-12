@@ -15,9 +15,10 @@ import sistemaventas.entidades.Cliente;
  * @author calo_
  */
 public class ClientesView extends javax.swing.JInternalFrame {
-    
+
     ClienteData cd = new ClienteData();
     int resp;
+
     /**
      * Creates new form ClientesView
      */
@@ -81,12 +82,38 @@ public class ClientesView extends javax.swing.JInternalFrame {
         });
 
         jtApellido.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
 
         jtNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
 
         jtDomicilio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDomicilioKeyTyped(evt);
+            }
+        });
 
         jtTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyTyped(evt);
+            }
+        });
 
         jtBotonGuardar.setText("Guardar");
         jtBotonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,35 +247,35 @@ public class ClientesView extends javax.swing.JInternalFrame {
                     jtDomicilio.setText(cliente.getDireccion());
                     jtTelefono.setText(cliente.getTelefono());
                 }
-            
+
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese un numero al campo ID", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (NullPointerException e) {
 
-        } catch (java.lang.NumberFormatException e){
+        } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El campo ID debe ser un numero");
         }
-        
+
     }//GEN-LAST:event_jtBotonBuscarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
-       if (mainFrame != null) {
+        if (mainFrame != null) {
             // Llama al método en MainFrame
             mainFrame.mostrarMenu();
         }
-          this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jtBotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonGuardarActionPerformed
         // TODO add your handling code here:
-        
-        try{
-            if(jtId.getText().isEmpty()){
-                if(!jtApellido.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDomicilio.getText().isEmpty() && !jtTelefono.getText().isEmpty()){
+
+        try {
+            if (jtId.getText().isEmpty()) {
+                if (!jtApellido.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDomicilio.getText().isEmpty() && !jtTelefono.getText().isEmpty()) {
                     String apellido = jtApellido.getText();
                     String nombre = jtNombre.getText();
                     String domicilio = jtDomicilio.getText();
@@ -258,53 +285,52 @@ public class ClientesView extends javax.swing.JInternalFrame {
                     cliente.setNombre(nombre);
                     cliente.setDireccion(domicilio);
                     cliente.setTelefono(telefono);
-                    
+
                     cd.guardarCliente(cliente);
-                } else if (jtId.getText() == null){
+                } else if (jtId.getText() == null) {
                     JOptionPane.showMessageDialog(this, "El id se genera automaticamente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                     jtId.setText("");
                 } else {
-                        JOptionPane.showMessageDialog(this, "Quedan campos vacios, llene todos excepto el Id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Quedan campos vacios, llene todos excepto el Id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                 }
-                
+
             } else {
                 JOptionPane.showMessageDialog(this, "El campo ID debe estar vacio");
-            } 
-            
-        } catch (java.lang.RuntimeException e){
+            }
+
+        } catch (java.lang.RuntimeException e) {
             JOptionPane.showMessageDialog(this, "??", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jtBotonGuardarActionPerformed
 
     private void jtBotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonModificarActionPerformed
         // TODO add your handling code here:
-        
-        try{
-         
-                if(!jtId.getText().isEmpty() && !jtApellido.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDomicilio.getText().isEmpty() && !jtTelefono.getText().isEmpty()){
-                    int id = Integer.parseInt(jtId.getText());
-                    String apellido = jtApellido.getText();
-                    String nombre = jtNombre.getText();
-                    String domicilio = jtDomicilio.getText();
-                    String telefono = jtTelefono.getText();
-                    Cliente cliente = new Cliente();
-                    cliente.setIdCliente(id);
-                    cliente.setApellido(apellido);
-                    cliente.setNombre(nombre);
-                    cliente.setDireccion(domicilio);
-                    cliente.setTelefono(telefono);
-                    
-                    cd.modificarCliente(cliente);
-                } else if (jtId.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(this, "Ingrese un ID para modificar un cliente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-                    jtId.setText("");
-                } else {
-                        JOptionPane.showMessageDialog(this, "Quedan campos vacios, llene todos excepto el Id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-                }
 
-            
-        } catch (java.lang.RuntimeException e){
+        try {
+
+            if (!jtId.getText().isEmpty() && !jtApellido.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDomicilio.getText().isEmpty() && !jtTelefono.getText().isEmpty()) {
+                int id = Integer.parseInt(jtId.getText());
+                String apellido = jtApellido.getText();
+                String nombre = jtNombre.getText();
+                String domicilio = jtDomicilio.getText();
+                String telefono = jtTelefono.getText();
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(id);
+                cliente.setApellido(apellido);
+                cliente.setNombre(nombre);
+                cliente.setDireccion(domicilio);
+                cliente.setTelefono(telefono);
+
+                cd.modificarCliente(cliente);
+            } else if (jtId.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese un ID para modificar un cliente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                jtId.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "Quedan campos vacios, llene todos excepto el Id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (java.lang.RuntimeException e) {
             JOptionPane.showMessageDialog(this, "??", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtBotonModificarActionPerformed
@@ -312,23 +338,75 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private void jtBotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonEliminarActionPerformed
         // TODO add your handling code here:
         if (!jtId.getText().isEmpty()) {
-        resp = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas eliminar a este usuario?", "", 
-                         JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-                    if(resp==0){
-                        
-                            Cliente cliente = new Cliente();
-                            cliente = cd.buscarClientePorId(Integer.parseInt(jtId.getText()));
-                                if (cliente.getNombre() != null) {
-                                    cd.eliminarInfoCliente(cliente);
-                                    JOptionPane.showMessageDialog(this, "Se ha eliminado el cliente exitosamente");
-                                }
-                        
-                        }
+            resp = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas eliminar a este usuario?", "",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+            if (resp == 0) {
+
+                Cliente cliente = new Cliente();
+                cliente = cd.buscarClientePorId(Integer.parseInt(jtId.getText()));
+                if (cliente.getNombre() != null) {
+                    cd.eliminarInfoCliente(cliente);
+                    JOptionPane.showMessageDialog(this, "Se ha eliminado el cliente exitosamente");
+                }
+
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Ingrese un ID para eliminar un cliente");
         }
-        
+
     }//GEN-LAST:event_jtBotonEliminarActionPerformed
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        // TODO add your handling code here:
+//        char c = evt.getKeyChar();
+//        if((c<'A' || c>'Z') && (c<'a' || c>'z') && (c!='ñ' || c!='Ñ')){
+//            evt.consume();
+//        }
+        int num = evt.getKeyChar();
+        if (num>=33 && num<=64 || num>=91 && num<=96 
+                || num>=123 && num<=208 || num>=210 && num<=240 
+                || num>=242 && num<=255) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtApellidoKeyReleased
+
+    private void jtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtApellidoKeyPressed
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // TODO add your handling code here:
+        int num = evt.getKeyChar();
+        if (num>=33 && num<=64 || num>=91 && num<=96 
+                || num>=123 && num<=208 || num>=210 && num<=240 
+                || num>=242 && num<=255) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDomicilioKeyTyped
+        // TODO add your handling code here:
+        int num = evt.getKeyChar();
+        if (num>=33 && num<=47 || num>=58 && num<=64 || num>=91 && num<=96 
+                || num>=123 && num<=208 || num>=210 && num<=240 
+                || num>=242 && num<=255) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDomicilioKeyTyped
+
+    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtTelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

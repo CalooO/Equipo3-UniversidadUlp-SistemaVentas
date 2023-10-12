@@ -44,7 +44,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         columnModel.getColumn(4).setPreferredWidth(110);
         columnModel.getColumn(5).setPreferredWidth(100);
         columnModel.getColumn(6).setPreferredWidth(50);
-        
+
     }
 
     private void armarCabecera() {
@@ -324,9 +324,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getIdDetalleVenta(),
                 detaVenta.getVenta().getFechaVenta(),
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
-               detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -351,7 +351,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
                 detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -376,7 +376,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
                 detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -401,7 +401,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
                 detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -428,7 +428,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
                 detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -454,7 +454,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
                 detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -480,7 +480,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
                 detaVenta.getProducto().getNombreProducto(),
                 detaVenta.getProducto().getDescripcion(),
-                 "$"+detaVenta.getPrecioVenta(),
+                "$" + detaVenta.getPrecioVenta(),
                 detaVenta.getCantidad()
             });
         }
@@ -623,7 +623,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         } catch (NullPointerException ex) {
 
-            JOptionPane.showMessageDialog(this, "Error " + ex);
+//            JOptionPane.showMessageDialog(this, "Error " + ex);
         }
     }//GEN-LAST:event_jcbClientesActionPerformed
 
