@@ -106,7 +106,7 @@ public class ProductoData {
     }
     
     public ArrayList<Producto> listarProducto (){
-        String sql="select idProducto, nombreProducto, descripcion, precioActual, stock from producto where estado=1";
+        String sql="select * from producto";
         ArrayList<Producto> listaProducto=new ArrayList<>();
         try {
             PreparedStatement ps=cx.prepareStatement(sql);
@@ -118,7 +118,7 @@ public class ProductoData {
                 prod.setDescripcion(rs.getString("descripcion"));
                 prod.setPrecioActual(rs.getDouble("precioActual"));
                 prod.setStock(rs.getInt("stock"));
-                prod.setEstado(true);
+                prod.setEstado(rs.getBoolean("estado"));
                 listaProducto.add(prod);
            }
             ps.close();
