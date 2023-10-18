@@ -562,16 +562,11 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jdFechaPropertyChange
 
     private void jdFechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdFechaKeyReleased
-        if(!jdFecha.getDateFormatString().isEmpty())
-            llamarMetodos();
+        
     }//GEN-LAST:event_jdFechaKeyReleased
 
     private void jdFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdFechaKeyTyped
         
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
-            evt.consume();
-        }
     }//GEN-LAST:event_jdFechaKeyTyped
 
 
