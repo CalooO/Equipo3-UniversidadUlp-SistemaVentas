@@ -551,7 +551,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         
         if(!jtId.getText().isEmpty() && jtNombre.getText().isEmpty() && jtDesc.getText().isEmpty()){
             tabla.setRowCount(0);
-            for (Producto a : pd.listarProductoPorId(Integer.parseInt(jtId.getText()))) {
+            for (Producto a : pd.listarProductoPorId(jtId.getText())) {
             tabla.addRow(new Object[]{a.getIdProducto(), a.getNombreProducto(), a.getDescripcion(), 
                 a.getPrecioActual(), a.getStock(), a.isEstado()});
         }
