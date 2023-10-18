@@ -113,23 +113,26 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
         jIcono = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtLista = new javax.swing.JTable();
         jcbProductos = new javax.swing.JComboBox<>();
         jcbClientes = new javax.swing.JComboBox<>();
         jdFecha = new com.toedter.calendar.JDateChooser();
         jlElegirProducto = new javax.swing.JLabel();
         jlElegirFecha = new javax.swing.JLabel();
         jlElegirCliente = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtLista = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        setMaximumSize(new java.awt.Dimension(700, 600));
-        setMinimumSize(new java.awt.Dimension(700, 600));
+        setMaximumSize(null);
+        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(700, 600));
 
         jpCuerpo.setBackground(new java.awt.Color(255, 255, 255));
-        jpCuerpo.setPreferredSize(new java.awt.Dimension(700, 600));
+        jpCuerpo.setMaximumSize(null);
+        jpCuerpo.setMinimumSize(null);
+        jpCuerpo.setPreferredSize(null);
         jpCuerpo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -187,37 +190,21 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jIcono.setPreferredSize(new java.awt.Dimension(100, 100));
         jpBarraSuperior.add(jIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 110, 100));
 
-        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 100));
-
-        jtLista.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true)));
-        jtLista.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jtLista);
-
-        jpCuerpo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 630, 320));
+        jpCuerpo.add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 100));
 
         jcbProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbProductosActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 200, 40));
+        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 370, 30));
 
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 190, 40));
+        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 370, 30));
 
         jdFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -247,29 +234,64 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jdFechaKeyTyped(evt);
             }
         });
-        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 200, 40));
+        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 200, 30));
 
         jlElegirProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirProducto.setText("Elija el producto:");
-        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
+        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
         jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirFecha.setText("Elija la fecha:");
-        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
+        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
 
         jlElegirCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirCliente.setText("Elija el cliente:");
-        jpCuerpo.add(jlElegirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
+        jpCuerpo.add(jlElegirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        jPanel1.setMaximumSize(null);
+        jPanel1.setMinimumSize(null);
+
+        jtLista.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true)));
+        jtLista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtLista.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtLista.setGridColor(new java.awt.Color(0, 0, 0));
+        jtLista.setMaximumSize(new java.awt.Dimension(696, 64));
+        jtLista.setMinimumSize(new java.awt.Dimension(696, 64));
+        jtLista.setPreferredSize(new java.awt.Dimension(696, 0));
+        jScrollPane1.setViewportView(jtLista);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+
+        jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 695, 320));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, 698, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpCuerpo, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
         );
 
         pack();
@@ -573,6 +595,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jIcono;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<Cliente> jcbClientes;
     private javax.swing.JComboBox<Producto> jcbProductos;
