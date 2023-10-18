@@ -112,8 +112,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jpBarraSuperior = new javax.swing.JPanel();
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
-        jpModoOscuro = new javax.swing.JPanel();
-        jlModoOscuro = new javax.swing.JLabel();
         jIcono = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLista = new javax.swing.JTable();
@@ -184,41 +182,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         jpBarraSuperior.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, -1, -1));
 
-        jpModoOscuro.setBackground(new java.awt.Color(0, 51, 153));
-
-        jlModoOscuro.setBackground(new java.awt.Color(204, 204, 204));
-        jlModoOscuro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jlModoOscuro.setForeground(new java.awt.Color(255, 255, 255));
-        jlModoOscuro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlModoOscuro.setText("Modo Oscuro");
-        jlModoOscuro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlModoOscuroMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jlModoOscuroMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jlModoOscuroMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jlModoOscuroMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpModoOscuroLayout = new javax.swing.GroupLayout(jpModoOscuro);
-        jpModoOscuro.setLayout(jpModoOscuroLayout);
-        jpModoOscuroLayout.setHorizontalGroup(
-            jpModoOscuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlModoOscuro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jpModoOscuroLayout.setVerticalGroup(
-            jpModoOscuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlModoOscuro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-        );
-
-        jpBarraSuperior.add(jpModoOscuro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, -1));
-
         jIcono.setToolTipText("");
         jIcono.setMinimumSize(new java.awt.Dimension(100, 100));
         jIcono.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -277,6 +240,12 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jdFechaKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jdFechaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jdFechaKeyTyped(evt);
+            }
         });
         jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 200, 40));
 
@@ -314,8 +283,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
             modelo.removeRow(fila);
         }
-
-        modelo.setRowCount(0);
         
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
@@ -341,8 +308,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
             modelo.removeRow(fila);
         }
-
-        modelo.setRowCount(0);
+        
         int id = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentasPorProducto(id)) {
 
@@ -367,7 +333,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             modelo.removeRow(fila);
         }
 
-        modelo.setRowCount(0);
         int id = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorIdCliente(id)) {
 
@@ -392,7 +357,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             modelo.removeRow(fila);
         }
 
-        modelo.setRowCount(0);
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorFecha(fecha)) {
 
@@ -417,7 +381,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             modelo.removeRow(fila);
         }
 
-        modelo.setRowCount(0);
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -444,7 +407,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             modelo.removeRow(fila);
         }
 
-        modelo.setRowCount(0);
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorClienteYFecha(idC, fecha)) {
@@ -470,7 +432,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             modelo.removeRow(fila);
         }
 
-        modelo.setRowCount(0);
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorProductoYFecha(idP, fecha)) {
@@ -486,20 +447,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             });
         }
     }
-
-    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
-
-        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
-        if (mainFrame != null) {
-            // Llama al método en MainFrame
-            mainFrame.mostrarMenu();
-        }
-
-        this.dispose();
-    }//GEN-LAST:event_jlSalirMouseClicked
-
-    private void jcbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProductosActionPerformed
-
+    
+    public void llamarMetodos(){
+        
         try {
             if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
                     && jcbProductos.getSelectedItem() == null) {
@@ -528,8 +478,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
                     modelo.removeRow(fila);
                 }
-
-                modelo.setRowCount(0);
 
             } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
                     && jcbClientes.getSelectedItem() != null) {
@@ -551,6 +499,22 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(this, "Error " + ex);
         }
+    }
+
+    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
+
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+        if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+
+        this.dispose();
+    }//GEN-LAST:event_jlSalirMouseClicked
+
+    private void jcbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProductosActionPerformed
+
+        llamarMetodos();
     }//GEN-LAST:event_jcbProductosActionPerformed
 
     private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
@@ -561,71 +525,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
 
-        if (jlModoOscuro.getText() == "Modo Oscuro") {
+        jpSalir.setBackground(new Color(0, 51, 153));
+        jlSalir.setForeground(Color.white);
 
-            jpSalir.setBackground(new Color(0, 51, 153));
-            jlSalir.setForeground(Color.white);
-
-        } else {
-
-            jpSalir.setBackground(new Color(51, 51, 51));
-            jlSalir.setForeground(Color.white);
-        }
     }//GEN-LAST:event_jlSalirMouseExited
 
     private void jcbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClientesActionPerformed
 
-        try {
-            if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
-
-                listarPorFecha();
-
-            } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null) {
-
-                listarPorClientes();
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null) {
-
-                listarPorClientesYProductos();
-
-            } else if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null) {
-
-                listarPorClienteProductoYFecha();
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
-
-                for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-                    modelo.removeRow(fila);
-                }
-
-                modelo.setRowCount(0);
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() != null) {
-
-                listarPorProductos();
-
-            } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null
-                    && jcbClientes.getSelectedItem() == null) {
-
-                listarPorProductoYFecha();
-
-            } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null) {
-
-                listarPorClienteYFecha();
-            }
-
-        } catch (NullPointerException ex) {
-
-//            JOptionPane.showMessageDialog(this, "Error " + ex);
-        }
+        llamarMetodos();
     }//GEN-LAST:event_jcbClientesActionPerformed
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
@@ -645,176 +552,27 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-            try {
-                if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
-                        && jcbProductos.getSelectedItem() == null) {
-
-                    listarPorFecha();
-
-                } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
-                        && jcbClientes.getSelectedItem() != null) {
-
-                    listarPorClientes();
-
-                } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null
-                        && jcbProductos.getSelectedItem() != null) {
-
-                    listarPorClientesYProductos();
-
-                } else if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null
-                        && jcbProductos.getSelectedItem() != null) {
-
-                    listarPorClienteProductoYFecha();
-
-                } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                        && jcbProductos.getSelectedItem() == null) {
-
-                    for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-                        modelo.removeRow(fila);
-                    }
-
-                    modelo.setRowCount(0);
-
-                } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                        && jcbProductos.getSelectedItem() != null) {
-
-                    listarPorProductos();
-
-                } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null
-                        && jcbClientes.getSelectedItem() == null) {
-
-                    listarPorProductoYFecha();
-
-                } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null
-                        && jcbClientes.getSelectedItem() != null) {
-
-                    listarPorClienteYFecha();
-                }
-
-            } catch (NullPointerException ex) {
-
-                JOptionPane.showMessageDialog(this, "Error " + ex);
-            }
+            llamarMetodos();
         }
     }//GEN-LAST:event_jdFechaKeyPressed
 
     private void jdFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFechaPropertyChange
 
-        try {
-            if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
-
-                listarPorFecha();
-
-            } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null) {
-
-                listarPorClientes();
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null) {
-
-                listarPorClientesYProductos();
-
-            } else if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null) {
-
-                listarPorClienteProductoYFecha();
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
-
-                for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-                    modelo.removeRow(fila);
-                }
-
-                modelo.setRowCount(0);
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() != null) {
-
-                listarPorProductos();
-
-            } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null
-                    && jcbClientes.getSelectedItem() == null) {
-
-                listarPorProductoYFecha();
-
-            } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null) {
-
-                listarPorClienteYFecha();
-            }
-
-        } catch (NullPointerException ex) {
-
-            JOptionPane.showMessageDialog(this, "Error " + ex);
-        }
+        llamarMetodos();
     }//GEN-LAST:event_jdFechaPropertyChange
 
-    private void jlModoOscuroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseClicked
+    private void jdFechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdFechaKeyReleased
+        if(!jdFecha.getDateFormatString().isEmpty())
+            llamarMetodos();
+    }//GEN-LAST:event_jdFechaKeyReleased
 
-        if (jlModoOscuro.getText() == "Modo Oscuro") {
-
-            jpCuerpo.setBackground(new Color(51, 51, 51));
-
-            jpBarraSuperior.setBackground(Color.black);
-            jpSalir.setBackground(new Color(51, 51, 51));
-            jpModoOscuro.setBackground(new Color(51, 51, 51));
-            jlElegirProducto.setForeground(Color.white);
-            jlElegirFecha.setForeground(Color.white);
-            jlElegirCliente.setForeground(Color.white);
-            jlModoOscuro.setText("Modo Claro");
-
-        } else {
-
-            jpCuerpo.setBackground(Color.white);
-
-            jpBarraSuperior.setBackground(new Color(0, 0, 153));
-            jpSalir.setBackground(new Color(0, 51, 153));
-            jpModoOscuro.setBackground(new Color(0, 51, 204));
-            jlElegirProducto.setForeground(Color.black);
-            jlElegirFecha.setForeground(Color.black);
-            jlElegirCliente.setForeground(Color.black);
-            jlModoOscuro.setText("Modo Oscuro");
+    private void jdFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdFechaKeyTyped
+        
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
         }
-    }//GEN-LAST:event_jlModoOscuroMouseClicked
-
-    private void jlModoOscuroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseEntered
-
-        if (jlModoOscuro.getText() == "Modo Oscuro") {
-
-            jpModoOscuro.setBackground(Color.black);
-            jlModoOscuro.setForeground(Color.white);
-
-        } else {
-
-            jpModoOscuro.setBackground(Color.white);
-            jlModoOscuro.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_jlModoOscuroMouseEntered
-
-    private void jlModoOscuroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMouseExited
-
-        if (jlModoOscuro.getText() == "Modo Oscuro") {
-
-            jpModoOscuro.setBackground(new Color(0, 51, 153));
-            jlModoOscuro.setForeground(Color.white);
-
-        } else {
-
-            jpModoOscuro.setBackground(new Color(51, 51, 51));
-            jlModoOscuro.setForeground(Color.white);
-        }
-    }//GEN-LAST:event_jlModoOscuroMouseExited
-
-    private void jlModoOscuroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlModoOscuroMousePressed
-
-        jpModoOscuro.setBackground(new Color(0, 0, 153));
-        jlModoOscuro.setForeground(Color.white);
-    }//GEN-LAST:event_jlModoOscuroMousePressed
+    }//GEN-LAST:event_jdFechaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -827,11 +585,9 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlElegirCliente;
     private javax.swing.JLabel jlElegirFecha;
     private javax.swing.JLabel jlElegirProducto;
-    private javax.swing.JLabel jlModoOscuro;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JPanel jpBarraSuperior;
     private javax.swing.JPanel jpCuerpo;
-    private javax.swing.JPanel jpModoOscuro;
     private javax.swing.JPanel jpSalir;
     private javax.swing.JTable jtLista;
     // End of variables declaration//GEN-END:variables
