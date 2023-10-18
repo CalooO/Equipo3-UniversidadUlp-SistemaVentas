@@ -247,14 +247,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jcbProductosActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 140, 40));
+        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 200, 40));
 
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 140, 40));
+        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 160, 190, 40));
 
         jdFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,11 +278,11 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jdFechaKeyPressed(evt);
             }
         });
-        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
+        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 200, 40));
 
         jlElegirProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirProducto.setText("Elija el producto:");
-        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 134, -1, 20));
+        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
 
         jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirFecha.setText("Elija la fecha:");
