@@ -154,11 +154,11 @@ public class ProductoData {
     }
     
     public ArrayList<Producto> listarProductoPorId (String id){
-        String sql="select * from producto where idProducto LIKE '?'";
+        String sql="select * from producto where idProducto LIKE ?";
         ArrayList<Producto> listaProducto=new ArrayList<>();
-        int cont = 1;
+//        int cont = 1;
         try {
-            String valorParam=id+"%";
+            id=id+"%";
             PreparedStatement ps=cx.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs=ps.executeQuery();
@@ -171,7 +171,7 @@ public class ProductoData {
                 prod.setStock(rs.getInt("stock"));
                 prod.setEstado(rs.getBoolean("estado"));
                 listaProducto.add(prod);
-                JOptionPane.showMessageDialog(null, "EXITO "+cont++);
+//                JOptionPane.showMessageDialog(null, "EXITO "+cont++);
            }
 //            while(rs.next()){
 //                
