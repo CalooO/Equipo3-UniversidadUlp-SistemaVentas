@@ -25,8 +25,6 @@ import sistemaventas.entidades.Producto;
 
 public class DetalleVentaView extends javax.swing.JInternalFrame {
 
-    boolean modoOsc = false;
-
     private DefaultTableModel modelo = new DefaultTableModel() {
 
         public boolean isCellEditable(int f, int c) {
@@ -120,8 +118,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jlElegirFecha = new javax.swing.JLabel();
         jlElegirCliente = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jtLista = new javax.swing.JTable();
+        jbLimpiarTodo = new javax.swing.JButton();
+        jbLimpiarFecha = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -130,9 +130,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(700, 600));
 
         jpCuerpo.setBackground(new java.awt.Color(255, 255, 255));
-        jpCuerpo.setMaximumSize(null);
-        jpCuerpo.setMinimumSize(null);
-        jpCuerpo.setPreferredSize(null);
         jpCuerpo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -197,14 +194,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jcbProductosActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 370, 30));
+        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 410, 30));
 
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 370, 30));
+        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 410, 30));
 
         jdFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,10 +209,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             }
         });
         jdFecha.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jdFechaInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jdFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -234,24 +231,22 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jdFechaKeyTyped(evt);
             }
         });
-        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 200, 30));
+        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 170, 30));
 
         jlElegirProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jlElegirProducto.setText("Elija el producto:");
+        jlElegirProducto.setText("Elegir producto:");
         jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
         jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jlElegirFecha.setText("Elija la fecha:");
-        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
+        jlElegirFecha.setText(" Elegir fecha:");
+        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, -1, -1));
 
         jlElegirCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jlElegirCliente.setText("Elija el cliente:");
+        jlElegirCliente.setText("Elegir cliente:");
         jpCuerpo.add(jlElegirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jPanel1.setMaximumSize(null);
-        jPanel1.setMinimumSize(null);
 
-        jtLista.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true)));
         jtLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -263,25 +258,41 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtLista.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jtLista.setGridColor(new java.awt.Color(0, 0, 0));
-        jtLista.setMaximumSize(new java.awt.Dimension(696, 64));
-        jtLista.setMinimumSize(new java.awt.Dimension(696, 64));
-        jtLista.setPreferredSize(new java.awt.Dimension(696, 0));
-        jScrollPane1.setViewportView(jtLista);
+        jtLista.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jtListaPropertyChange(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jtLista);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
 
         jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 695, 320));
+
+        jbLimpiarTodo.setText("LIMPIAR TODO");
+        jbLimpiarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarTodoActionPerformed(evt);
+            }
+        });
+        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 120, -1));
+
+        jbLimpiarFecha.setText("LIMPIAR FECHA");
+        jbLimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarFechaActionPerformed(evt);
+            }
+        });
+        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,11 +312,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         DetalleVentaData dvd = new DetalleVentaData();
 
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
-        
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         for (DetalleVenta detaVenta : dvd.listarDetaVentasPorClienteYProducto(idC, idP)) {
@@ -326,11 +332,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         DetalleVentaData dvd = new DetalleVentaData();
 
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
-        
         int id = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentasPorProducto(id)) {
 
@@ -349,11 +350,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     public void listarPorClientes() {
 
         DetalleVentaData dvd = new DetalleVentaData();
-
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
 
         int id = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorIdCliente(id)) {
@@ -374,11 +370,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         DetalleVentaData dvd = new DetalleVentaData();
 
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
-
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorFecha(fecha)) {
 
@@ -397,11 +388,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     public void listarPorClienteProductoYFecha() {
 
         DetalleVentaData dvd = new DetalleVentaData();
-
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
 
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
@@ -424,11 +410,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         DetalleVentaData dvd = new DetalleVentaData();
 
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
-
         int idC = jcbClientes.getItemAt(jcbClientes.getSelectedIndex()).getIdCliente();
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorClienteYFecha(idC, fecha)) {
@@ -449,11 +430,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         DetalleVentaData dvd = new DetalleVentaData();
 
-        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-            modelo.removeRow(fila);
-        }
-
         int idP = jcbProductos.getItemAt(jcbProductos.getSelectedIndex()).getIdProducto();
         LocalDate fecha = jdFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorProductoYFecha(idP, fecha)) {
@@ -470,51 +446,65 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }
     
+    public void borrarFilas(){
+        
+        for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
+
+            modelo.removeRow(fila);
+        }
+    }
+    
     public void llamarMetodos(){
         
         try {
             if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
                     && jcbProductos.getSelectedItem() == null) {
 
+                borrarFilas();
                 listarPorFecha();
 
             } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
                     && jcbProductos.getSelectedItem() != null) {
 
+                borrarFilas();
                 listarPorProductos();
 
             } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null
                     && jcbProductos.getSelectedItem() != null) {
 
+                borrarFilas();
                 listarPorClientesYProductos();
 
             } else if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null
                     && jcbProductos.getSelectedItem() != null) {
 
+                borrarFilas();
                 listarPorClienteProductoYFecha();
-
-            } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
-
-                for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
-
-                    modelo.removeRow(fila);
-                }
 
             } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
                     && jcbClientes.getSelectedItem() != null) {
 
+                borrarFilas();
                 listarPorClientes();
 
             } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null
                     && jcbClientes.getSelectedItem() == null) {
 
+                borrarFilas();
                 listarPorProductoYFecha();
 
             } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null
                     && jcbClientes.getSelectedItem() != null) {
 
+                borrarFilas();
                 listarPorClienteYFecha();
+            }
+            
+            if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
+                    && jcbProductos.getSelectedItem() == null) {
+
+                borrarFilas();
+
             }
 
         } catch (NullPointerException ex) {
@@ -574,12 +564,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+            borrarFilas();
             llamarMetodos();
         }
     }//GEN-LAST:event_jdFechaKeyPressed
 
     private void jdFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFechaPropertyChange
 
+        borrarFilas();
         llamarMetodos();
     }//GEN-LAST:event_jdFechaPropertyChange
 
@@ -591,12 +583,32 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jdFechaKeyTyped
 
+    private void jbLimpiarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarFechaActionPerformed
+        
+        jdFecha.setDate(null);
+        llamarMetodos();
+    }//GEN-LAST:event_jbLimpiarFechaActionPerformed
+
+    private void jtListaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtListaPropertyChange
+        
+    }//GEN-LAST:event_jtListaPropertyChange
+
+    private void jbLimpiarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarTodoActionPerformed
+        
+        jcbClientes.setSelectedItem(null);
+        jcbProductos.setSelectedItem(null);
+        jdFecha.setDate(null);
+        llamarMetodos();
+    }//GEN-LAST:event_jbLimpiarTodoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jIcono;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbLimpiarFecha;
+    private javax.swing.JButton jbLimpiarTodo;
     private javax.swing.JComboBox<Cliente> jcbClientes;
     private javax.swing.JComboBox<Producto> jcbProductos;
     private com.toedter.calendar.JDateChooser jdFecha;
