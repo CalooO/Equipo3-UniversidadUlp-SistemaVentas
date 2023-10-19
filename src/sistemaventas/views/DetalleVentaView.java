@@ -273,10 +273,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
         );
 
-        jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 695, 320));
+        jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 695, 260));
 
         jbLimpiarTodo.setText("LIMPIAR TODO");
         jbLimpiarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -284,7 +284,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jbLimpiarTodoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 120, -1));
+        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 120, 40));
 
         jbLimpiarFecha.setText("LIMPIAR FECHA");
         jbLimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +292,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jbLimpiarFechaActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
+        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,6 +308,24 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void listarTodo(){
+        
+        DetalleVentaData dvd = new DetalleVentaData();
+        
+        for (DetalleVenta detaVenta : dvd.listarDetalleVentas()) {
+
+            modelo.addRow(new Object[]{
+                detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
+                "$" + detaVenta.getPrecioVenta(),
+                detaVenta.getCantidad()
+            });
+        }
+    }
+    
     public void listarPorClientesYProductos() {
 
         DetalleVentaData dvd = new DetalleVentaData();
@@ -498,13 +516,12 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
                 borrarFilas();
                 listarPorClienteYFecha();
-            }
-            
-            if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
+                
+            }else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
                     && jcbProductos.getSelectedItem() == null) {
 
                 borrarFilas();
-
+                listarTodo();
             }
 
         } catch (NullPointerException ex) {
