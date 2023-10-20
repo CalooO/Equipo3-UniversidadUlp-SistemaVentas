@@ -238,8 +238,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
         jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jlElegirFecha.setText(" Elegir fecha:");
-        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, -1, -1));
+        jlElegirFecha.setText("Elegir fecha:");
+        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
 
         jlElegirCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirCliente.setText("Elegir cliente:");
@@ -278,7 +278,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 695, 260));
 
-        jbLimpiarTodo.setText("LIMPIAR TODO");
+        jbLimpiarTodo.setText("LIMPIAR CAMPOS");
         jbLimpiarTodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarTodoActionPerformed(evt);
