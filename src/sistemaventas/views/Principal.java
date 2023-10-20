@@ -5,6 +5,7 @@
 package sistemaventas.views;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,11 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jlProducto.setVisible(false);
+        jlCliente.setVisible(false);
+        jlDetalleVentas.setVisible(false);
+        jlVentas.setVisible(false);
+        jlEstado.setVisible(false);
     }
 
     /**
@@ -44,7 +50,12 @@ public class Principal extends javax.swing.JFrame {
         jpHeader = new javax.swing.JPanel();
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
+        jifLogin = new javax.swing.JInternalFrame();
+        jtUsuario = new javax.swing.JTextField();
+        jtPassword = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jlEstado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -84,7 +95,7 @@ public class Principal extends javax.swing.JFrame {
         jpProducto.setLayout(jpProductoLayout);
         jpProductoLayout.setHorizontalGroup(
             jpProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProductoLayout.createSequentialGroup()
+            .addGroup(jpProductoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jlProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -92,7 +103,8 @@ public class Principal extends javax.swing.JFrame {
             jpProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProductoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
         );
 
         jPanelMenu.add(jpProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 173, 30));
@@ -129,7 +141,7 @@ public class Principal extends javax.swing.JFrame {
         jpCliente.setLayout(jpClienteLayout);
         jpClienteLayout.setHorizontalGroup(
             jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpClienteLayout.createSequentialGroup()
+            .addGroup(jpClienteLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -137,7 +149,8 @@ public class Principal extends javax.swing.JFrame {
             jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpClienteLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
         );
 
         jPanelMenu.add(jpCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 173, 30));
@@ -261,8 +274,75 @@ public class Principal extends javax.swing.JFrame {
 
         panel.add(jpHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
+        jifLogin.setVisible(true);
+
+        jtUsuario.setText("Usuario");
+        jtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtUsuarioMousePressed(evt);
+            }
+        });
+        jtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtUsuarioActionPerformed(evt);
+            }
+        });
+
+        jtPassword.setText("jPasswordField1");
+        jtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtPasswordMousePressed(evt);
+            }
+        });
+        jtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtPasswordActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("INGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jifLoginLayout = new javax.swing.GroupLayout(jifLogin.getContentPane());
+        jifLogin.getContentPane().setLayout(jifLoginLayout);
+        jifLoginLayout.setHorizontalGroup(
+            jifLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jifLoginLayout.createSequentialGroup()
+                .addGroup(jifLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jifLoginLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(jifLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jifLoginLayout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jButton1)))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jifLoginLayout.setVerticalGroup(
+            jifLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jifLoginLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        panel.add(jifLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 260, 230));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo fravemax azul.png"))); // NOI18N
         panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
+
+        jlEstado.setForeground(new java.awt.Color(0, 255, 51));
+        jlEstado.setText("CONECTADO");
+        panel.add(jlEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, -1, -1));
 
         jdpMain.setLayer(panel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -331,11 +411,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jlProductoMouseExited
 
     private void jlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlClienteMouseClicked
-        panel.setVisible(false);
-        ClientesView c = new ClientesView();
-        c.setVisible(true);
-        jdpMain.add(c);
-        jdpMain.moveToFront(c);
+            panel.setVisible(false);
+            ClientesView c = new ClientesView();
+            c.setVisible(true);
+            jdpMain.add(c);
+            jdpMain.moveToFront(c);
     }//GEN-LAST:event_jlClienteMouseClicked
 
     private void jpClienteCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jpClienteCaretPositionChanged
@@ -395,8 +475,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jlDetalleVentasMousePressed
 
     private void jlProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlProductoMousePressed
-        jpProducto.setBackground(Color.white);
-        jlProducto.setForeground(Color.black);
+            jpProducto.setBackground(Color.white);
+            jlProducto.setForeground(Color.black);
     }//GEN-LAST:event_jlProductoMousePressed
 
     private void jlClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlClienteMousePressed
@@ -408,6 +488,51 @@ public class Principal extends javax.swing.JFrame {
         jpVentas.setBackground(Color.white);
         jlVentas.setForeground(Color.black);
     }//GEN-LAST:event_jlVentasMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(jtUsuario.getText().equals("admin") && jtPassword.getText().equals("12345")){
+            jlProducto.setVisible(true);
+            jlCliente.setVisible(true);
+            jlDetalleVentas.setVisible(true);
+            jlVentas.setVisible(true);
+            jlEstado.setVisible(true);
+            jifLogin.setVisible(false);
+            jtUsuario.setText("");
+            jtPassword.setText("");
+        }else{
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "ERROR DE INGRESO", JOptionPane.ERROR_MESSAGE);
+            jtUsuario.setText("");
+            jtPassword.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtUsuarioActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jtUsuarioActionPerformed
+
+    private void jtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPasswordActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jtPasswordActionPerformed
+
+    private void jtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtUsuarioMousePressed
+        // TODO add your handling code here:
+        jtUsuario.setText("");
+        if(jtPassword.getText().isEmpty()){
+            jtPassword.setText("**********");
+        }
+    }//GEN-LAST:event_jtUsuarioMousePressed
+
+    private void jtPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPasswordMousePressed
+        // TODO add your handling code here:
+        jtPassword.setText("");
+        if(jtUsuario.getText().isEmpty()){
+            jtUsuario.setText("Usuario");
+        }else{  
+        }
+    }//GEN-LAST:event_jtPasswordMousePressed
 
     /**
      * @param args the command line arguments
@@ -449,12 +574,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JDesktopPane jdpMain;
+    private javax.swing.JInternalFrame jifLogin;
     private javax.swing.JLabel jlCliente;
     private javax.swing.JLabel jlDetalleVentas;
+    private javax.swing.JLabel jlEstado;
     private javax.swing.JLabel jlProducto;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jlVentas;
@@ -464,6 +592,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jpProducto;
     private javax.swing.JPanel jpSalir;
     private javax.swing.JPanel jpVentas;
+    private javax.swing.JPasswordField jtPassword;
+    private javax.swing.JTextField jtUsuario;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }
