@@ -60,6 +60,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jpIngresar = new javax.swing.JPanel();
         jlIngresar = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jlEstado = new javax.swing.JLabel();
         jpDesconectar = new javax.swing.JPanel();
@@ -325,6 +327,12 @@ public class Principal extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtUsuarioKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtUsuarioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtUsuarioKeyTyped(evt);
+            }
         });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
@@ -383,13 +391,21 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jlIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
+        jLabel4.setText("Usuario");
+
+        jLabel5.setText("Contraseña");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -402,9 +418,13 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -640,25 +660,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtPasswordMousePressed
 
     private void jlIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlIngresarMouseClicked
-        
-        if(jtUsuario.getText().equals("admin") && jtPassword.getText().equals("12345")){
-            jlProducto.setVisible(true);
-            jlCliente.setVisible(true);
-            jlDetalleVentas.setVisible(true);
-            jlVentas.setVisible(true);
-            jlDesconectar.setVisible(true);
-            jpDesconectar.setVisible(true);
-            jlEstado.setVisible(true);
-            jlEstado.setText("CONECTADO");
-            jlEstado.setForeground(new Color(0,255,51));
-            jifLogin.setVisible(false);
-            jtUsuario.setText("");
-            jtPassword.setText("");
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "ERROR DE INGRESO", JOptionPane.ERROR_MESSAGE);
-            jtUsuario.setText("");
-            jtPassword.setText("");
-        }
+        login();
     }//GEN-LAST:event_jlIngresarMouseClicked
 
     private void jlIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlIngresarMouseEntered
@@ -727,52 +729,29 @@ public class Principal extends javax.swing.JFrame {
 
     private void jtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPasswordKeyPressed
         
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(jtUsuario.getText().equals("admin") && jtPassword.getText().equals("12345")){
-                jlProducto.setVisible(true);
-                jlCliente.setVisible(true);
-                jlDetalleVentas.setVisible(true);
-                jlVentas.setVisible(true);
-                jlDesconectar.setVisible(true);
-                jpDesconectar.setVisible(true);
-                jlEstado.setVisible(true);
-                jlEstado.setText("CONECTADO");
-                jlEstado.setForeground(new Color(0,255,51));
-                jifLogin.setVisible(false);
-                jtUsuario.setText("");
-                jtPassword.setText("");
-            }else{
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "ERROR DE INGRESO", JOptionPane.ERROR_MESSAGE);
-                jtUsuario.setText("");
-                jtPassword.setText("");
-            }
+        if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jtPassword.setText("");
+        }else if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            login();
         }
     }//GEN-LAST:event_jtPasswordKeyPressed
 
     private void jtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtUsuarioKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(jtUsuario.getText().equals("admin") && jtPassword.getText().equals("12345")){
-                jlProducto.setVisible(true);
-                jlCliente.setVisible(true);
-                jlDetalleVentas.setVisible(true);
-                jlVentas.setVisible(true);
-                jlDesconectar.setVisible(true);
-                jpDesconectar.setVisible(true);
-                jlEstado.setVisible(true);
-                jlEstado.setText("CONECTADO");
-                jlEstado.setForeground(new Color(0,255,51));
-                jifLogin.setVisible(false);
-                jtUsuario.setText("");
-                jtPassword.setText("");
-            }else{
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "ERROR DE INGRESO", JOptionPane.ERROR_MESSAGE);
-                jtUsuario.setText("");
-                jtPassword.setText("");
-            }
+        if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jtPassword.setText("");
+        }else if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            login();
         }
+        
     }//GEN-LAST:event_jtUsuarioKeyPressed
+
+    private void jtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtUsuarioKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtUsuarioKeyReleased
+
+    private void jtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtUsuarioKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtUsuarioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -817,6 +796,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelMenu;
@@ -842,4 +823,25 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsuario;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
+
+public void login(){
+    if(jtUsuario.getText().equals("admin") && jtPassword.getText().equals("12345")){
+                jlProducto.setVisible(true);
+                jlCliente.setVisible(true);
+                jlDetalleVentas.setVisible(true);
+                jlVentas.setVisible(true);
+                jlDesconectar.setVisible(true);
+                jpDesconectar.setVisible(true);
+                jlEstado.setVisible(true);
+                jlEstado.setText("CONECTADO");
+                jlEstado.setForeground(new Color(0,255,51));
+                jifLogin.setVisible(false);
+                jtUsuario.setText("");
+                jtPassword.setText("");
+            }else{
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "ERROR DE INGRESO", JOptionPane.ERROR_MESSAGE);
+                jtUsuario.setText("");
+                jtPassword.setText("**********");
+            }
+}
 }
