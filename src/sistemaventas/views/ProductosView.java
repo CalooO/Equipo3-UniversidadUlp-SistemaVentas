@@ -4,6 +4,7 @@
  */
 package sistemaventas.views;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -65,7 +66,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btSalir = new javax.swing.JButton();
+        jpSalir = new javax.swing.JPanel();
+        jlSalir = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jrbEstado = new javax.swing.JRadioButton();
         btBuscar = new javax.swing.JButton();
@@ -92,46 +94,55 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
         jPanel2.setPreferredSize(new java.awt.Dimension(690, 120));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setPreferredSize(new java.awt.Dimension(100, 100));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 0, 120, 120));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PRODUCTOS");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 32, -1, -1));
 
-        btSalir.setText("Salir");
-        btSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalirActionPerformed(evt);
+        jpSalir.setBackground(new java.awt.Color(0, 51, 153));
+
+        jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSalir.setText("x");
+        jlSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlSalirMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                .addComponent(btSalir)
-                .addGap(34, 34, 34))
+        javax.swing.GroupLayout jpSalirLayout = new javax.swing.GroupLayout(jpSalir);
+        jpSalir.setLayout(jpSalirLayout);
+        jpSalirLayout.setHorizontalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(btSalir))))
-                .addGap(0, 0, Short.MAX_VALUE))
+        jpSalirLayout.setVerticalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel2.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 110));
 
@@ -336,16 +347,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        // TODO add your handling code here:
-        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
-       if (mainFrame != null) {
-            // Llama al método en MainFrame
-            mainFrame.mostrarMenu();
-        }
-          this.dispose();
-    }//GEN-LAST:event_btSalirActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
@@ -562,13 +563,40 @@ public class ProductosView extends javax.swing.JInternalFrame {
         listarProductos();
     }//GEN-LAST:event_btLimpiarActionPerformed
 
+    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
+
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+        if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+
+        this.dispose();
+    }//GEN-LAST:event_jlSalirMouseClicked
+
+    private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
+
+        jpSalir.setBackground(new Color(204, 0, 0));
+        jlSalir.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_jlSalirMouseEntered
+
+    private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
+
+        jpSalir.setBackground(new Color(0, 51, 153));
+        jlSalir.setForeground(Color.white);
+    }//GEN-LAST:event_jlSalirMouseExited
+
+    private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
+        jpSalir.setBackground(new Color(255, 51, 51));
+        jlSalir.setForeground(Color.black);
+    }//GEN-LAST:event_jlSalirMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBorrar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btLimpiar;
-    private javax.swing.JButton btSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -580,6 +608,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlSalir;
+    private javax.swing.JPanel jpSalir;
     private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JTextField jtDesc;
     private javax.swing.JTextField jtId;
