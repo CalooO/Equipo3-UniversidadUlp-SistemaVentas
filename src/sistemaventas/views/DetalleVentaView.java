@@ -209,10 +209,10 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             }
         });
         jdFecha.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jdFechaInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jdFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -279,12 +279,13 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 695, 260));
 
         jbLimpiarTodo.setText("LIMPIAR CAMPOS");
+        jbLimpiarTodo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbLimpiarTodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarTodoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 120, 40));
+        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, 20));
 
         jbLimpiarFecha.setText("LIMPIAR FECHA");
         jbLimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +293,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jbLimpiarFechaActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
+        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
