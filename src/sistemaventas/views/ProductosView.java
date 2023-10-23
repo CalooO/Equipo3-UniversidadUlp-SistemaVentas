@@ -66,7 +66,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btSalir = new javax.swing.JButton();
         jpSalir = new javax.swing.JPanel();
         jlSalir = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -105,14 +104,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PRODUCTOS");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 32, -1, -1));
-
-        btSalir.setText("Salir");
-        btSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalirActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 62, -1, -1));
 
         jpSalir.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -356,16 +347,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        // TODO add your handling code here:
-        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
-       if (mainFrame != null) {
-            // Llama al método en MainFrame
-            mainFrame.mostrarMenu();
-        }
-          this.dispose();
-    }//GEN-LAST:event_btSalirActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
@@ -616,7 +597,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btBorrar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btLimpiar;
-    private javax.swing.JButton btSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
