@@ -696,11 +696,15 @@ public class Principal extends javax.swing.JFrame {
     private void jlDesconectarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDesconectarMouseEntered
         jpDesconectar.setBackground(new Color(204,0,0));
         jlDesconectar.setForeground(new Color(204,204,204));
+        jlEstado.setText("DESCONECTAR");
+        jlEstado.setForeground(new Color(204,0,0));
     }//GEN-LAST:event_jlDesconectarMouseEntered
 
     private void jlDesconectarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDesconectarMouseExited
         jpDesconectar.setBackground(Color.white);
         jlDesconectar.setForeground(Color.black);
+        jlEstado.setText("CONECTADO");
+        jlEstado.setForeground(new Color(0,255,51));
     }//GEN-LAST:event_jlDesconectarMouseExited
 
     private void jlDesconectarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDesconectarMousePressed
