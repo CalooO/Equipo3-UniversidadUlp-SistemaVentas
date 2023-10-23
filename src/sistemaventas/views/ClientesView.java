@@ -5,6 +5,7 @@
  */
 package sistemaventas.views;
 
+import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -32,6 +33,7 @@ public class ClientesView extends javax.swing.JInternalFrame {
         setearIcono(jLabel7, "src/Imagenes/logo fravemax azul.png");
         modelo();
         listarClientes();
+        panel2.setBackground(new Color(255, 255, 255));
     }
 
     private DefaultTableModel tabla = new DefaultTableModel(){
@@ -470,7 +472,7 @@ public class ClientesView extends javax.swing.JInternalFrame {
         jtTelefono.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
+                  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
