@@ -7,11 +7,14 @@ package sistemaventas.views;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import sistemaventas.accesoDatos.ClienteData;
 import sistemaventas.entidades.Cliente;
@@ -31,28 +34,32 @@ public class ClientesView extends javax.swing.JInternalFrame {
     public ClientesView() {
         initComponents();
         setearIcono(jLabel7, "src/Imagenes/logo fravemax azul.png");
-        modelo();
-        listarClientes();
         panel2.setBackground(new Color(255, 255, 255));
+        modelo();
+        jtTable.clearSelection();
+        listarClientes();
+
+        borrado();
     }
 
-    private DefaultTableModel tabla = new DefaultTableModel(){
-        
-        public boolean isCellEditable(int f, int c){
-            
+    private DefaultTableModel tabla = new DefaultTableModel() {
+
+        public boolean isCellEditable(int f, int c) {
+
             return false;
         }
     };
-    
+
     private void modelo() {
         tabla.addColumn("Codigo");
         tabla.addColumn("Apellido");
         tabla.addColumn("Nombre");
         tabla.addColumn("Domicilio");
         tabla.addColumn("Telefono");
-        
+
         jtTable.setModel(tabla);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -170,6 +177,14 @@ public class ClientesView extends javax.swing.JInternalFrame {
         jtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtIdActionPerformed(evt);
+            }
+        });
+        jtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIdKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIdKeyTyped(evt);
             }
         });
         panel2.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 147, 62, -1));
@@ -403,15 +418,19 @@ public class ClientesView extends javax.swing.JInternalFrame {
 //            evt.consume();
 //        }
         int num = evt.getKeyChar();
-        if (num>=33 && num<=64 || num>=91 && num<=96 
-                || num>=123 && num<=208 || num>=210 && num<=240 
-                || num>=242 && num<=255) {
+        if (num >= 33 && num <= 64 || num >= 91 && num <= 96
+                || num >= 123 && num <= 208 || num >= 210 && num <= 240
+                || num >= 242 && num <= 255) {
             evt.consume();
         }
     }//GEN-LAST:event_jtApellidoKeyTyped
 
     private void jtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyReleased
         // TODO add your handling code here:
+        if (!jtApellido.getText().isEmpty()) {
+            jtTable.clearSelection();
+            listarClientes();
+        }
 
     }//GEN-LAST:event_jtApellidoKeyReleased
 
@@ -423,9 +442,9 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
         // TODO add your handling code here:
         int num = evt.getKeyChar();
-        if (num>=33 && num<=64 || num>=91 && num<=96 
-                || num>=123 && num<=208 || num>=210 && num<=240 
-                || num>=242 && num<=255) {
+        if (num >= 33 && num <= 64 || num >= 91 && num <= 96
+                || num >= 123 && num <= 208 || num >= 210 && num <= 240
+                || num >= 242 && num <= 255) {
             evt.consume();
         }
     }//GEN-LAST:event_jtNombreKeyTyped
@@ -433,9 +452,9 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private void jtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDomicilioKeyTyped
         // TODO add your handling code here:
         int num = evt.getKeyChar();
-        if (num>=33 && num<=47 || num>=58 && num<=64 || num>=91 && num<=96 
-                || num>=123 && num<=208 || num>=210 && num<=240 
-                || num>=242 && num<=255) {
+        if (num >= 33 && num <= 47 || num >= 58 && num <= 64 || num >= 91 && num <= 96
+                || num >= 123 && num <= 208 || num >= 210 && num <= 240
+                || num >= 242 && num <= 255) {
             evt.consume();
         }
     }//GEN-LAST:event_jtDomicilioKeyTyped
@@ -443,33 +462,35 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
+        if (c < '0' || c > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_jtTelefonoKeyTyped
 
     private void jtTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTableMouseClicked
         // TODO add your handling code here:
-        if(jtTable.getSelectedRow()!=-1){
-           int fila=jtTable.getSelectedRow();
-        jtId.setText(jtTable.getValueAt(fila, 0)+"");
-        jtApellido.setText(jtTable.getValueAt(fila, 1)+"");
-        jtNombre.setText(jtTable.getValueAt(fila, 2)+"");
-        jtDomicilio.setText(jtTable.getValueAt(fila, 3)+"");
-        jtTelefono.setText(jtTable.getValueAt(fila, 4)+"");
-        
-        //listarProductos();
+        if (jtTable.getSelectedRow() != -1) {
+            int fila = jtTable.getSelectedRow();
+            jtId.setText(jtTable.getValueAt(fila, 0) + "");
+            jtApellido.setText(jtTable.getValueAt(fila, 1) + "");
+            jtNombre.setText(jtTable.getValueAt(fila, 2) + "");
+            jtDomicilio.setText(jtTable.getValueAt(fila, 3) + "");
+            jtTelefono.setText(jtTable.getValueAt(fila, 4) + "");
+
+            //listarProductos();
         }
     }//GEN-LAST:event_jtTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         jtId.setText("");
         jtApellido.setText("");
         jtNombre.setText("");
         jtDomicilio.setText("");
         jtTelefono.setText("");
+        jtTable.clearSelection();
+        listarClientes();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
@@ -500,7 +521,23 @@ public class ClientesView extends javax.swing.JInternalFrame {
         jlSalir.setForeground(Color.black);
     }//GEN-LAST:event_jlSalirMousePressed
 
-                  
+    private void jtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIdKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIdKeyTyped
+
+    private void jtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIdKeyReleased
+        // TODO add your handling code here:
+        if (!jtId.getText().isEmpty()) {
+            jtTable.clearSelection();
+            listarClientes();
+        }
+    }//GEN-LAST:event_jtIdKeyReleased
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -528,18 +565,64 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
     // End of variables declaration//GEN-END:variables
-  
-    public void listarClientes(){
-        ClienteData cd = new ClienteData();
-        
-        for(Cliente cliente: cd.listarCliente()){
-            tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
+
+    public void listarClientes() {
+//        ClienteData cd = new ClienteData();
+        if (jtTable.getSelectedRow() == -1) {
+            if (!jtId.getText().equalsIgnoreCase("") || !jtApellido.getText().isEmpty()) {
+                tabla.setRowCount(0);
+                for (Cliente cliente : cd.listarClientePorApellidoYId(jtId.getText(), jtApellido.getText())) {
+                    tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(),
+                        cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
+                }
+            }
+        } else {
+            tabla.setRowCount(0);
+            for (Cliente cliente : cd.listarCliente()) {
+                tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
+            }
         }
+
     }
-    
-private void setearIcono(JLabel jLabelName, String root){
-        ImageIcon image=new ImageIcon(root);
-        Icon icon=new ImageIcon(image.getImage().getScaledInstance(120,120,Image.SCALE_DEFAULT)) ;
+
+    public void borrado() {
+        jtId.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                listarClientes();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+
+        });
+
+        jtApellido.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                listarClientes();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+
+        });
+
+    }
+
+    private void setearIcono(JLabel jLabelName, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT));
         jLabelName.setIcon(icon);
         this.repaint();
     }

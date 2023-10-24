@@ -167,6 +167,58 @@ public class ClienteData {
         }
         return listaClientes;
     }
-      
+     
+     public ArrayList<Cliente> listarClientePorApellidoYId (String id, String ape){
+        PreparedStatement ps=null;
+        String sql=null;
+        ArrayList<Cliente> listaCliente=new ArrayList<>();
+        int opc =0;
+        
+        if(!id.isEmpty() && !ape.isEmpty()){
+            opc=3;                                                                                                        // 3 id apellido
+        }else if(!ape.isEmpty()){
+            opc=2;                                                                                                          // 2 apellido
+        }else if(!id.isEmpty()){
+            opc=1;                                                                                                          // 1 id
+        }
+        try {
+        switch(opc){
+            case 1:
+                sql="select * from cliente where idCliente LIKE ?";
+                id=id+"%";
+                ps=con.prepareStatement(sql);
+                ps.setString(1, id);break;
+            case 2:
+                sql="select * from cliente where apellido LIKE ?";
+                ape+="%";
+                ps=con.prepareStatement(sql);
+                ps.setString(1, ape);break;
+            case 3:
+                sql="select * from cliente where idCliente LIKE ? and apellido LIKE ?";
+                id+="%";
+                ape+="%";
+                ps=con.prepareStatement(sql);
+                ps.setString(1, id);
+                ps.setString(2, ape);
+                break;
+        }
+        
+            ResultSet rs=ps.executeQuery();
+           while(rs.next()){
+               Cliente prod=new Cliente();
+                prod.setIdCliente(rs.getInt("idCliente"));
+                prod.setApellido(rs.getString("apellido"));
+                prod.setNombre(rs.getString("nombre"));
+                prod.setDireccion(rs.getString("domicilio"));
+                prod.setTelefono(rs.getString("telefono"));
+                listaCliente.add(prod);
+           }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto "+ex.getMessage());
+        }
+        return listaCliente;
+    }
     
 }

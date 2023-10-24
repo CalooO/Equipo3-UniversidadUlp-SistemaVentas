@@ -23,7 +23,9 @@ import sistemaventas.entidades.Producto;
  * @author Kaniory
  */
 public class ProductosView extends javax.swing.JInternalFrame {
+
     ProductoData pd = new ProductoData();
+
     /**
      * Creates new form ProductosView
      */
@@ -33,16 +35,16 @@ public class ProductosView extends javax.swing.JInternalFrame {
         modelo();
         listarProductos();
         borrado();
-        }
-    
-    private DefaultTableModel tabla = new DefaultTableModel(){
-        
-        public boolean isCellEditable(int f, int c){
-            
+    }
+
+    private DefaultTableModel tabla = new DefaultTableModel() {
+
+        public boolean isCellEditable(int f, int c) {
+
             return false;
         }
     };
-    
+
     private void modelo() {
         tabla.addColumn("Codigo");
         tabla.addColumn("Producto");
@@ -267,10 +269,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(btLimpiar)
-                                    .addGap(86, 86, 86))))
+                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbEstado)
                             .addComponent(jtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -282,23 +281,29 @@ public class ProductosView extends javax.swing.JInternalFrame {
                             .addComponent(lbl)
                             .addComponent(jLabel5)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btAgregar)
-                            .addComponent(btBuscar)
-                            .addComponent(btBorrar))))
+                        .addGap(70, 70, 70)
+                        .addComponent(btBuscar))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(btLimpiar))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btAgregar))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(btBorrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -323,13 +328,14 @@ public class ProductosView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jrbEstado))
                         .addGap(18, 18, 18)
+                        .addComponent(btLimpiar)
+                        .addGap(18, 18, 18)
                         .addComponent(btBuscar)
                         .addGap(18, 18, 18)
                         .addComponent(btAgregar)
                         .addGap(18, 18, 18)
-                        .addComponent(btBorrar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(btBorrar)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 460));
@@ -362,14 +368,14 @@ public class ProductosView extends javax.swing.JInternalFrame {
                     prod = pd.obtenerProductoPorid(Integer.parseInt(jtId.getText()));
                     jtNombre.setText(prod.getNombreProducto());
                     jtDesc.setText(prod.getDescripcion());
-                    jtPrecio.setText(prod.getPrecioActual()+"");
+                    jtPrecio.setText(prod.getPrecioActual() + "");
                     jtStock.setText(prod.getStock() + "");
                     if (prod.isEstado()) {
                         jrbEstado.setSelected(true);
                     } else {
                         jrbEstado.setSelected(false);
                     }
-                    if(jtNombre.getText().isEmpty()){
+                    if (jtNombre.getText().isEmpty()) {
                         jtNombre.setText("");
                         jtDesc.setText("");
                         jtPrecio.setText("");
@@ -424,43 +430,43 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         // TODO add your handling code here:
-        try{
-            if(!jtId.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDesc.getText().isEmpty() &&
-                    !jtPrecio.getText().isEmpty() && !jtStock.getText().isEmpty()){
+        try {
+            if (!jtId.getText().isEmpty() && !jtNombre.getText().isEmpty() && !jtDesc.getText().isEmpty()
+                    && !jtPrecio.getText().isEmpty() && !jtStock.getText().isEmpty()) {
                 if ((Integer.parseInt(jtId.getText())) > 0) {
                     int i = Integer.parseInt(jtId.getText());
                     String n = jtNombre.getText();
                     String d = jtDesc.getText();
                     double p = Double.parseDouble(jtPrecio.getText());
                     int s = Integer.parseInt(jtStock.getText());
-                    if(!jrbEstado.isSelected()){
-                        int x = JOptionPane.showConfirmDialog(this, "El estado esta desactivado ¿Deseas activarlo?", "", 
+                    if (!jrbEstado.isSelected()) {
+                        int x = JOptionPane.showConfirmDialog(this, "El estado esta desactivado ¿Deseas activarlo?", "",
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                        if(x==0){
+                        if (x == 0) {
                             jrbEstado.setSelected(true);
                         }
                     }
                     boolean e = jrbEstado.isSelected();
                     Producto prod = new Producto(i, n, d, p, s, e);
-                    if(pd.obtenerProducto(i)==null){
+                    if (pd.obtenerProducto(i) == null) {
                         pd.guardarProducto(prod);
-                    }else{
-                        int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que quieres modificar el producto?", "", 
+                    } else {
+                        int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que quieres modificar el producto?", "",
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                        if(x==0){
+                        if (x == 0) {
                             pd.modificarProducto(prod);
                         }
                     }
                     limpiarCampos();
                     listarProductos();
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(this, "El codigo debe ser mayor a 0(cero)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                     jtId.setText("");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Quedan campos sin llenar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Los campos codigo, precio y stock deben ser numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btAgregarActionPerformed
@@ -468,7 +474,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private void jtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIdKeyTyped
         // validar numeros en textfield
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
+        if (c < '0' || c > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_jtIdKeyTyped
@@ -492,7 +498,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if((c<'0' || c>'9') && (c<'.' || c>'.')){
+        if ((c < '0' || c > '9') && (c < '.' || c > '.')) {
             evt.consume();
         }
     }//GEN-LAST:event_jtPrecioKeyTyped
@@ -500,14 +506,14 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private void jtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtStockKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
+        if (c < '0' || c > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_jtStockKeyTyped
 
     private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
         // TODO add your handling code here:
-        if(!jtNombre.getText().isEmpty()){
+        if (!jtNombre.getText().isEmpty()) {
             jtable.clearSelection();
             listarProductos();
         }
@@ -515,7 +521,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
     private void jtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIdKeyReleased
         // TODO add your handling code here:
-        if(!jtId.getText().isEmpty()){
+        if (!jtId.getText().isEmpty()) {
             jtable.clearSelection();
             listarProductos();
         }
@@ -527,7 +533,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
     private void jtDescKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDescKeyReleased
         // TODO add your handling code here:
-        if(!jtDesc.getText().isEmpty()){
+        if (!jtDesc.getText().isEmpty()) {
             jtable.clearSelection();
             listarProductos();
         }
@@ -535,19 +541,19 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
     private void jtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableMouseClicked
         // TODO add your handling code here:
-        if(jtable.getSelectedRow()!=-1){
-           int fila=jtable.getSelectedRow();
-        jtId.setText(jtable.getValueAt(fila, 0)+"");
-        jtNombre.setText(jtable.getValueAt(fila, 1)+"");
-        jtDesc.setText(jtable.getValueAt(fila, 2)+"");
-        jtPrecio.setText(jtable.getValueAt(fila, 3)+"");
-        jtStock.setText(jtable.getValueAt(fila, 4)+"");
-        if((jtable.getValueAt(fila, 5)+"").equalsIgnoreCase("true")){
-            jrbEstado.setSelected(true);
-        }else{
-            jrbEstado.setSelected(false);
-        }
-        //listarProductos();
+        if (jtable.getSelectedRow() != -1) {
+            int fila = jtable.getSelectedRow();
+            jtId.setText(jtable.getValueAt(fila, 0) + "");
+            jtNombre.setText(jtable.getValueAt(fila, 1) + "");
+            jtDesc.setText(jtable.getValueAt(fila, 2) + "");
+            jtPrecio.setText(jtable.getValueAt(fila, 3) + "");
+            jtStock.setText(jtable.getValueAt(fila, 4) + "");
+            if ((jtable.getValueAt(fila, 5) + "").equalsIgnoreCase("true")) {
+                jrbEstado.setSelected(true);
+            } else {
+                jrbEstado.setSelected(false);
+            }
+            //listarProductos();
         }
     }//GEN-LAST:event_jtableMouseClicked
 
@@ -620,14 +626,14 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbl;
     // End of variables declaration//GEN-END:variables
 
-    private void setearIcono(JLabel jLabelName, String root){
-        ImageIcon image=new ImageIcon(root);
-        Icon icon=new ImageIcon(image.getImage().getScaledInstance(120,120,Image.SCALE_DEFAULT)) ;
+    private void setearIcono(JLabel jLabelName, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT));
         jLabelName.setIcon(icon);
         this.repaint();
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         jtId.setText("");
         jtNombre.setText("");
         jtDesc.setText("");
@@ -635,33 +641,32 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jtStock.setText("");
         jrbEstado.setSelected(false);
     }
-    
-    public void listarProductos(){
-        
+
+    public void listarProductos() {
+
         //tabla.setRowCount(0);
-        
         ProductoData pd = new ProductoData();
-        
+
 //        ArrayList<Producto> array = new ArrayList<>(); 
 //        array = pd.listarProductoPorId(Integer.parseInt(jtId.getText()));
-        if(jtable.getSelectedRow()==-1){
-            if(!jtId.getText().equalsIgnoreCase("")||!jtNombre.getText().isEmpty() || !jtDesc.getText().isEmpty()){
-            tabla.setRowCount(0);
-            for (Producto a : pd.listarProductoPorNombreDescYId(jtId.getText(), jtNombre.getText(), jtDesc.getText())) {
-            tabla.addRow(new Object[]{a.getIdProducto(), a.getNombreProducto(), a.getDescripcion(), 
-                a.getPrecioActual(), a.getStock(), a.isEstado()});
-        }
-        }else{
-            tabla.setRowCount(0);
-            for (Producto a : pd.listarProducto()) {
-                tabla.addRow(new Object[]{a.getIdProducto(), a.getNombreProducto(), a.getDescripcion(), 
-                a.getPrecioActual(), a.getStock(), a.isEstado()});
+        if (jtable.getSelectedRow() == -1) {
+            if (!jtId.getText().equalsIgnoreCase("") || !jtNombre.getText().isEmpty() || !jtDesc.getText().isEmpty()) {
+                tabla.setRowCount(0);
+                for (Producto a : pd.listarProductoPorNombreDescYId(jtId.getText(), jtNombre.getText(), jtDesc.getText())) {
+                    tabla.addRow(new Object[]{a.getIdProducto(), a.getNombreProducto(), a.getDescripcion(),
+                        a.getPrecioActual(), a.getStock(), a.isEstado()});
+                }
+            } else {
+                tabla.setRowCount(0);
+                for (Producto a : pd.listarProducto()) {
+                    tabla.addRow(new Object[]{a.getIdProducto(), a.getNombreProducto(), a.getDescripcion(),
+                        a.getPrecioActual(), a.getStock(), a.isEstado()});
+                }
             }
         }
-        }
     }
-    
-    public void borrado(){
+
+    public void borrado() {
         jtId.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -675,9 +680,9 @@ public class ProductosView extends javax.swing.JInternalFrame {
             @Override
             public void changedUpdate(DocumentEvent e) {
             }
-            
+
         });
-        
+
         jtNombre.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -691,9 +696,9 @@ public class ProductosView extends javax.swing.JInternalFrame {
             @Override
             public void changedUpdate(DocumentEvent e) {
             }
-            
+
         });
-        
+
         jtDesc.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -707,7 +712,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             @Override
             public void changedUpdate(DocumentEvent e) {
             }
-            
+
         });
     }
 }
