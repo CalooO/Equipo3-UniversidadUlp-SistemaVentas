@@ -467,27 +467,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }
     
-    public void listarPorId(){
-        
-        borrarFilas();
-        
-        DetalleVentaData dvd = new DetalleVentaData();
-
-        String id = jtId.getText();
-        for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorId(id)) {
-
-            modelo.addRow(new Object[]{
-                detaVenta.getIdDetalleVenta(),
-                detaVenta.getVenta().getFechaVenta(),
-                detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
-                detaVenta.getProducto().getNombreProducto(),
-                detaVenta.getProducto().getDescripcion(),
-                "$" + detaVenta.getPrecioVenta(),
-                detaVenta.getCantidad()
-            });
-        }
-    }
-    
     public void borrarFilas(){
         
         for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
@@ -500,58 +479,53 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
         try {
             if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null && jtId.getText().isEmpty()) {
+                    && jcbProductos.getSelectedItem() == null) {
 
                 borrarFilas();
                 listarPorFecha();
 
             } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() != null && jtId.getText().isEmpty()) {
+                    && jcbProductos.getSelectedItem() != null) {
 
                 borrarFilas();
                 listarPorProductos();
 
             } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null && jtId.getText().isEmpty()) {
+                    && jcbProductos.getSelectedItem() != null) {
 
                 borrarFilas();
                 listarPorClientesYProductos();
 
             } else if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null && jtId.getText().isEmpty()) {
+                    && jcbProductos.getSelectedItem() != null) {
 
                 borrarFilas();
                 listarPorClienteProductoYFecha();
 
             } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null && jtId.getText().isEmpty()) {
+                    && jcbClientes.getSelectedItem() != null) {
 
                 borrarFilas();
                 listarPorClientes();
 
             } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null
-                    && jcbClientes.getSelectedItem() == null && jtId.getText().isEmpty()) {
+                    && jcbClientes.getSelectedItem() == null) {
 
                 borrarFilas();
                 listarPorProductoYFecha();
 
             } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null && jtId.getText().isEmpty()) {
+                    && jcbClientes.getSelectedItem() != null) {
 
                 borrarFilas();
                 listarPorClienteYFecha();
                 
             }else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null && jtId.getText().isEmpty()) {
+                    && jcbProductos.getSelectedItem() == null) {
 
                 borrarFilas();
                 listarTodo();
                 
-            }else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null && !jtId.getText().isEmpty()){
-                
-                borrarFilas();
-                listarPorId();
             }
 
         } catch (NullPointerException ex) {

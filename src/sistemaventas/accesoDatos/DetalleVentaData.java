@@ -68,50 +68,6 @@ public class DetalleVentaData {
         return listaDetalleVenta;
     }
     
-    public List<DetalleVenta> listarDetalleVentaPorId(String id){
-        
-        String sql = "SELECT * FROM detalleventa WHERE idDetalleVenta LIKE ?";
-        
-        ArrayList<DetalleVenta> listaDetalleVenta = new ArrayList<>();
-        
-        try{
-            id = id + "%";
-            
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                
-                DetalleVenta detalleVenta = new DetalleVenta();
-                
-                detalleVenta.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
-                detalleVenta.setCantidad(rs.getInt("cantidad"));
-                detalleVenta.setPrecioVenta(rs.getDouble("precioVenta"));
-                for(Producto producto:prodData.listarProducto()){
-                    
-                    if(rs.getInt("idProducto") == producto.getIdProducto())
-                        detalleVenta.setProducto(producto);
-                }
-                for(Venta venta:ventaData.listarVentas()){
-                    
-                    if(rs.getInt("idVenta") == venta.getIdVenta())
-                        detalleVenta.setVenta(venta);
-                }
-                
-                listaDetalleVenta.add(detalleVenta);
-            }
-            ps.close();
-            
-        } catch (SQLException ex) {
-            
-            JOptionPane.showMessageDialog(null, "Error al acceder a la "
-                    + "tabla de detalles de venta " + ex.getMessage());
-        }
-        
-        return listaDetalleVenta;
-    }
-    
     public List<DetalleVenta> listarDetalleVentasPorProducto(int id){
         
         String sql = "SELECT idDetalleVenta, cantidad, idVenta, "
