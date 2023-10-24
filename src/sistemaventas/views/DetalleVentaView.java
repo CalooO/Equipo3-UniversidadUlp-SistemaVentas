@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import sistemaventas.accesoDatos.ClienteData;
@@ -122,8 +124,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jtLista = new javax.swing.JTable();
         jbLimpiarTodo = new javax.swing.JButton();
         jbLimpiarFecha = new javax.swing.JButton();
-        jtId = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -233,7 +233,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jdFechaKeyTyped(evt);
             }
         });
-        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 170, 30));
+        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, 30));
 
         jlElegirProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirProducto.setText("Elegir producto:");
@@ -241,7 +241,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirFecha.setText("Elegir fecha:");
-        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jlElegirCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirCliente.setText("Elegir cliente:");
@@ -295,12 +295,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jbLimpiarFechaActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, 20));
-        jpCuerpo.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, 30));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("ID:");
-        jpCuerpo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 110, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -472,6 +467,27 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }
     
+    public void listarPorId(){
+        
+        borrarFilas();
+        
+        DetalleVentaData dvd = new DetalleVentaData();
+
+        String id = jtId.getText();
+        for (DetalleVenta detaVenta : dvd.listarDetalleVentaPorId(id)) {
+
+            modelo.addRow(new Object[]{
+                detaVenta.getIdDetalleVenta(),
+                detaVenta.getVenta().getFechaVenta(),
+                detaVenta.getVenta().getCliente().getApellido() + ", " + detaVenta.getVenta().getCliente().getNombre(),
+                detaVenta.getProducto().getNombreProducto(),
+                detaVenta.getProducto().getDescripcion(),
+                "$" + detaVenta.getPrecioVenta(),
+                detaVenta.getCantidad()
+            });
+        }
+    }
+    
     public void borrarFilas(){
         
         for (int fila = jtLista.getRowCount() - 1; fila >= 0; fila--) {
@@ -484,52 +500,58 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         
         try {
             if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
+                    && jcbProductos.getSelectedItem() == null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorFecha();
 
             } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() != null) {
+                    && jcbProductos.getSelectedItem() != null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorProductos();
 
             } else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null) {
+                    && jcbProductos.getSelectedItem() != null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorClientesYProductos();
 
             } else if (jdFecha.getDate() != null && jcbClientes.getSelectedItem() != null
-                    && jcbProductos.getSelectedItem() != null) {
+                    && jcbProductos.getSelectedItem() != null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorClienteProductoYFecha();
 
             } else if (jdFecha.getDate() == null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null) {
+                    && jcbClientes.getSelectedItem() != null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorClientes();
 
             } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() != null
-                    && jcbClientes.getSelectedItem() == null) {
+                    && jcbClientes.getSelectedItem() == null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorProductoYFecha();
 
             } else if (jdFecha.getDate() != null && jcbProductos.getSelectedItem() == null
-                    && jcbClientes.getSelectedItem() != null) {
+                    && jcbClientes.getSelectedItem() != null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarPorClienteYFecha();
                 
             }else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
-                    && jcbProductos.getSelectedItem() == null) {
+                    && jcbProductos.getSelectedItem() == null && jtId.getText().isEmpty()) {
 
                 borrarFilas();
                 listarTodo();
+                
+            }else if (jdFecha.getDate() == null && jcbClientes.getSelectedItem() == null
+                    && jcbProductos.getSelectedItem() == null && !jtId.getText().isEmpty()){
+                
+                borrarFilas();
+                listarPorId();
             }
 
         } catch (NullPointerException ex) {
@@ -629,7 +651,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jIcono;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -645,7 +666,6 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpBarraSuperior;
     private javax.swing.JPanel jpCuerpo;
     private javax.swing.JPanel jpSalir;
-    private javax.swing.JTextField jtId;
     private javax.swing.JTable jtLista;
     // End of variables declaration//GEN-END:variables
 }
