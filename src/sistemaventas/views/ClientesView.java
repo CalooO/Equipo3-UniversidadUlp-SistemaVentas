@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import sistemaventas.accesoDatos.ClienteData;
 import sistemaventas.entidades.Cliente;
 
@@ -36,7 +37,7 @@ public class ClientesView extends javax.swing.JInternalFrame {
         setearIcono(jLabel7, "src/Imagenes/logo fravemax azul.png");
         panel2.setBackground(new Color(255, 255, 255));
         modelo();
-        jtTable.clearSelection();
+        tamañoColumna();
         listarClientes();
 
         borrado();
@@ -51,15 +52,24 @@ public class ClientesView extends javax.swing.JInternalFrame {
     };
 
     private void modelo() {
-        tabla.addColumn("Codigo");
+        tabla.addColumn("ID");
         tabla.addColumn("Apellido");
         tabla.addColumn("Nombre");
         tabla.addColumn("Domicilio");
         tabla.addColumn("Telefono");
 
         jtTable.setModel(tabla);
-    }
 
+    }
+    private void tamañoColumna() {
+        TableColumnModel columnModel = jtTable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(22);
+        columnModel.getColumn(1).setPreferredWidth(80);
+        columnModel.getColumn(2).setPreferredWidth(80);
+        columnModel.getColumn(3).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(50);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -269,7 +279,7 @@ public class ClientesView extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtTable);
 
-        panel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 117, 377, 363));
+        panel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 117, 400, 363));
 
         jButton1.setText("Borrar datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -567,7 +577,7 @@ public class ClientesView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void listarClientes() {
-//        ClienteData cd = new ClienteData();
+        ClienteData cd = new ClienteData();
         if (jtTable.getSelectedRow() == -1) {
             if (!jtId.getText().equalsIgnoreCase("") || !jtApellido.getText().isEmpty()) {
                 tabla.setRowCount(0);
@@ -575,14 +585,14 @@ public class ClientesView extends javax.swing.JInternalFrame {
                     tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(),
                         cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
                 }
-            }
-        } else {
-            tabla.setRowCount(0);
-            for (Cliente cliente : cd.listarCliente()) {
-                tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
+            } else {
+                tabla.setRowCount(0);
+                for (Cliente cliente : cd.listarCliente()) {
+                    tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
+                    System.out.println(cliente.getIdCliente());
+                }
             }
         }
-
     }
 
     public void borrado() {

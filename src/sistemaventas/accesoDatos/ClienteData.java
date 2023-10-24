@@ -94,7 +94,7 @@ public class ClienteData {
     }
         
     public ArrayList<Cliente> listarCliente (){
-        String sql="select * from cliente ";
+        String sql="select * from cliente";
         ArrayList<Cliente> listaCliente = new ArrayList<>();
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -190,13 +190,13 @@ public class ClienteData {
                 ps.setString(1, id);break;
             case 2:
                 sql="select * from cliente where apellido LIKE ?";
-                ape+="%";
+                ape=ape+"%";
                 ps=con.prepareStatement(sql);
                 ps.setString(1, ape);break;
             case 3:
                 sql="select * from cliente where idCliente LIKE ? and apellido LIKE ?";
-                id+="%";
-                ape+="%";
+                id=id+"%";
+                ape=ape+"%";
                 ps=con.prepareStatement(sql);
                 ps.setString(1, id);
                 ps.setString(2, ape);
@@ -205,13 +205,13 @@ public class ClienteData {
         
             ResultSet rs=ps.executeQuery();
            while(rs.next()){
-               Cliente prod=new Cliente();
-                prod.setIdCliente(rs.getInt("idCliente"));
-                prod.setApellido(rs.getString("apellido"));
-                prod.setNombre(rs.getString("nombre"));
-                prod.setDireccion(rs.getString("domicilio"));
-                prod.setTelefono(rs.getString("telefono"));
-                listaCliente.add(prod);
+               Cliente cliente=new Cliente();
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDireccion(rs.getString("domicilio"));
+                cliente.setTelefono(rs.getString("telefono"));
+                listaCliente.add(cliente);
            }
             ps.close();
             

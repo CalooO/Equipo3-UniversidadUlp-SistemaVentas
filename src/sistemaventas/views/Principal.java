@@ -540,6 +540,8 @@ public class Principal extends javax.swing.JFrame {
         p.setVisible(true);
         jdpMain.add(p);
         jdpMain.moveToFront(p);
+        p.setLocation(50, 50);
+        
     }//GEN-LAST:event_jlProductoMouseClicked
 
     private void jlProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlProductoMouseEntered
@@ -558,6 +560,7 @@ public class Principal extends javax.swing.JFrame {
             c.setVisible(true);
             jdpMain.add(c);
             jdpMain.moveToFront(c);
+            c.setLocation(50, 50);
     }//GEN-LAST:event_jlClienteMouseClicked
 
     private void jpClienteCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jpClienteCaretPositionChanged
@@ -580,6 +583,7 @@ public class Principal extends javax.swing.JFrame {
         vvw.setVisible(true);
         jdpMain.add(vvw);
         jdpMain.moveToFront(vvw);
+        vvw.setLocation(50, 50);
     }//GEN-LAST:event_jlVentasMouseClicked
 
     private void jlVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlVentasMouseEntered
@@ -599,6 +603,7 @@ public class Principal extends javax.swing.JFrame {
         detaVentas.setVisible(true);
         jdpMain.add(detaVentas);
         jdpMain.moveToFront(detaVentas);
+        detaVentas.setLocation(50, 50);
     }//GEN-LAST:event_jlDetalleVentasMouseClicked
 
     private void jlDetalleVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlDetalleVentasMouseEntered

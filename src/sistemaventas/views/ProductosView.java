@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import sistemaventas.accesoDatos.ProductoData;
 import sistemaventas.entidades.Producto;
 
@@ -31,8 +32,10 @@ public class ProductosView extends javax.swing.JInternalFrame {
      */
     public ProductosView() {
         initComponents();
+       
         setearIcono(jLabel6, "src/Imagenes/logo fravemax azul.png");
         modelo();
+        tamañoColumna();
         listarProductos();
         borrado();
     }
@@ -46,7 +49,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
     };
 
     private void modelo() {
-        tabla.addColumn("Codigo");
+        tabla.addColumn("ID");
         tabla.addColumn("Producto");
         tabla.addColumn("Descripcion");
         tabla.addColumn("Precio");
@@ -54,7 +57,17 @@ public class ProductosView extends javax.swing.JInternalFrame {
         tabla.addColumn("Estado");
         jtable.setModel(tabla);
     }
+    
+    private void tamañoColumna() {
+        TableColumnModel columnModel = jtable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(22);
+        columnModel.getColumn(1).setPreferredWidth(80);
+        columnModel.getColumn(2).setPreferredWidth(110);
+        columnModel.getColumn(3).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(50);
+        columnModel.getColumn(5).setPreferredWidth(50);
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
