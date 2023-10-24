@@ -67,9 +67,7 @@ public class DetalleVentaData {
         
         return listaDetalleVenta;
     }
-    //listarDetalleVentaPorIDVenta
-    //listarDetalleVentaPorIDVentaPorProducto
-    //ventaDatas porCliente/porFecha/porClienteporFecha
+    
     public List<DetalleVenta> listarDetalleVentasPorProducto(int id){
         
         String sql = "SELECT idDetalleVenta, cantidad, idVenta, "

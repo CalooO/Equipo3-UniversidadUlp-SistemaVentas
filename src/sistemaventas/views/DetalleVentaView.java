@@ -35,7 +35,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     private void tamañoColumna() {
         TableColumnModel columnModel = jtLista.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(50);
+        columnModel.getColumn(0).setPreferredWidth(22);
         columnModel.getColumn(1).setPreferredWidth(80);
         columnModel.getColumn(2).setPreferredWidth(110);
         columnModel.getColumn(3).setPreferredWidth(100);
@@ -122,6 +122,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jtLista = new javax.swing.JTable();
         jbLimpiarTodo = new javax.swing.JButton();
         jbLimpiarFecha = new javax.swing.JButton();
+        jtId = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -194,14 +196,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jcbProductosActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 410, 30));
+        jpCuerpo.add(jcbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 410, 30));
 
         jcbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClientesActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 410, 30));
+        jpCuerpo.add(jcbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 410, 30));
 
         jdFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -231,19 +233,19 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                 jdFechaKeyTyped(evt);
             }
         });
-        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 170, 30));
+        jpCuerpo.add(jdFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 170, 30));
 
         jlElegirProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirProducto.setText("Elegir producto:");
-        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
+        jpCuerpo.add(jlElegirProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, 20));
 
         jlElegirFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirFecha.setText("Elegir fecha:");
-        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
+        jpCuerpo.add(jlElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         jlElegirCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlElegirCliente.setText("Elegir cliente:");
-        jpCuerpo.add(jlElegirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jpCuerpo.add(jlElegirCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
 
         jPanel1.setMaximumSize(null);
 
@@ -278,22 +280,27 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         jpCuerpo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 695, 260));
 
-        jbLimpiarTodo.setText("LIMPIAR CAMPOS");
+        jbLimpiarTodo.setText("Limpiar Campos");
         jbLimpiarTodo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbLimpiarTodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarTodoActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, 20));
+        jpCuerpo.add(jbLimpiarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 130, 20));
 
-        jbLimpiarFecha.setText("LIMPIAR FECHA");
+        jbLimpiarFecha.setText("Limpiar Fecha");
         jbLimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarFechaActionPerformed(evt);
             }
         });
-        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, 20));
+        jpCuerpo.add(jbLimpiarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, 20));
+        jpCuerpo.add(jtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("ID:");
+        jpCuerpo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -622,6 +629,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jIcono;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -637,6 +645,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpBarraSuperior;
     private javax.swing.JPanel jpCuerpo;
     private javax.swing.JPanel jpSalir;
+    private javax.swing.JTextField jtId;
     private javax.swing.JTable jtLista;
     // End of variables declaration//GEN-END:variables
 }
