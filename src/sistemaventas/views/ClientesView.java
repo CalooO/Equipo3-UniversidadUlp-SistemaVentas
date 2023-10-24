@@ -82,7 +82,8 @@ public class ClientesView extends javax.swing.JInternalFrame {
         panel1 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        jpSalir = new javax.swing.JPanel();
+        jlSalir = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -183,46 +184,55 @@ public class ClientesView extends javax.swing.JInternalFrame {
 
         panel1.setBackground(new java.awt.Color(0, 0, 153));
         panel1.setPreferredSize(new java.awt.Dimension(700, 100));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CLIENTES");
+        panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 103, 27));
 
         jLabel7.setPreferredSize(new java.awt.Dimension(100, 100));
+        panel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 114, -1));
 
-        jButton4.setText("Salir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jpSalir.setBackground(new java.awt.Color(0, 51, 153));
+
+        jlSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSalir.setText("x");
+        jlSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlSalirMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(20, 20, 20))
+        javax.swing.GroupLayout jpSalirLayout = new javax.swing.GroupLayout(jpSalir);
+        jpSalir.setLayout(jpSalirLayout);
+        jpSalirLayout.setHorizontalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        jpSalirLayout.setVerticalGroup(
+            jpSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        panel1.add(jpSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, -1, -1));
 
         panel2.add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -299,16 +309,6 @@ public class ClientesView extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jtBotonBuscarActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
-        if (mainFrame != null) {
-            // Llama al método en MainFrame
-            mainFrame.mostrarMenu();
-        }
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jtBotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBotonGuardarActionPerformed
         // TODO add your handling code here:
@@ -472,10 +472,37 @@ public class ClientesView extends javax.swing.JInternalFrame {
         jtTelefono.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
+
+        Principal mainFrame = (Principal) SwingUtilities.getWindowAncestor(this);
+        if (mainFrame != null) {
+            // Llama al método en MainFrame
+            mainFrame.mostrarMenu();
+        }
+
+        this.dispose();
+    }//GEN-LAST:event_jlSalirMouseClicked
+
+    private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
+
+        jpSalir.setBackground(new Color(204, 0, 0));
+        jlSalir.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_jlSalirMouseEntered
+
+    private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
+
+        jpSalir.setBackground(new Color(0, 51, 153));
+        jlSalir.setForeground(Color.white);
+    }//GEN-LAST:event_jlSalirMouseExited
+
+    private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
+        jpSalir.setBackground(new Color(255, 51, 51));
+        jlSalir.setForeground(Color.black);
+    }//GEN-LAST:event_jlSalirMousePressed
+
                   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -486,6 +513,8 @@ public class ClientesView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jlSalir;
+    private javax.swing.JPanel jpSalir;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JButton jtBotonBuscar;
     private javax.swing.JButton jtBotonEliminar;

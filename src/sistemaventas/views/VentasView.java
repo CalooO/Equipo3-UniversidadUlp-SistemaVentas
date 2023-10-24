@@ -427,7 +427,7 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
 
-            jpSalir.setBackground(new Color(102,102,102));
+            jpSalir.setBackground(new Color(0,51,153));
             jlSalir.setForeground(Color.white);
         
     }//GEN-LAST:event_jlSalirMouseExited
