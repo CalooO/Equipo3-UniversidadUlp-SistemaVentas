@@ -419,14 +419,19 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         btBuscarActionPerformed(evt);
                     }
                     if (!jtNombre.getText().isEmpty()) {
-                        int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
+                        if(jrbEstado.isSelected()){
+                            int x = JOptionPane.showConfirmDialog(this, "¿Estas seguro que deseas dar de baja el producto?",
                                 "ADVERTENCIA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-                        if (x == 0) {
-                            pd.borrarProducto(Integer.parseInt(jtId.getText()));
-                            jrbEstado.setSelected(false);
+                            if (x == 0) {
+                                pd.borrarProducto(Integer.parseInt(jtId.getText()));
+                                jrbEstado.setSelected(false);
+                            }
+                            limpiarCampos();
+                            
+                            listarProductos();
+                        }else{
+                            JOptionPane.showMessageDialog(this, "El producto ya esta dado de baja", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
-                        limpiarCampos();
-                        listarProductos();
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El codigo debe ser mayor a 0(cero)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
@@ -471,7 +476,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         }
                     }
                     limpiarCampos();
-                    listarProductos();
                 } else {
                     JOptionPane.showMessageDialog(this, "El codigo debe ser mayor a 0(cero)", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                     jtId.setText("");
@@ -481,6 +485,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Los campos codigo, precio y stock deben ser numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }finally{
+            listarProductos();
         }
     }//GEN-LAST:event_btAgregarActionPerformed
 
@@ -653,6 +659,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jtPrecio.setText("");
         jtStock.setText("");
         jrbEstado.setSelected(false);
+        jtable.clearSelection();
     }
 
     public void listarProductos() {
