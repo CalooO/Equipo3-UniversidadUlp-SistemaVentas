@@ -589,8 +589,7 @@ public class ClientesView extends javax.swing.JInternalFrame {
                 tabla.setRowCount(0);
                 for (Cliente cliente : cd.listarCliente()) {
                     tabla.addRow(new Object[]{cliente.getIdCliente(), cliente.getApellido(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()});
-                    System.out.println(cliente.getIdCliente());
-                }
+                    }
             }
         }
     }
