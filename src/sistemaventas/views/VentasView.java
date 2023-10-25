@@ -14,9 +14,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import sistemaventas.accesoDatos.*;
 import sistemaventas.entidades.*;
-
 
 /**
  *
@@ -29,23 +30,24 @@ public class VentasView extends javax.swing.JInternalFrame {
      */
     public VentasView() {
         initComponents();
-        
+
         llenarClientes();
         llenarProductos();
         setearIcono(jLabel10, "src/Imagenes/logo fravemax azul.png");
         jtStock.setEditable(false);
         jtPrecio.setEditable(false);
         jrDebito.setSelected(true);
-        
+        borrado();
 
     }
-    
-    private void setearIcono(JLabel jLabelName, String root){
-        ImageIcon image=new ImageIcon(root);
-        Icon icon=new ImageIcon(image.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)) ;
+
+    private void setearIcono(JLabel jLabelName, String root) {
+        ImageIcon image = new ImageIcon(root);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         jLabelName.setIcon(icon);
         this.repaint();
     }
+
     private void limpiarTXT() {
         jtCantidad.setText("");
         jFecha.setDate(null);
@@ -66,8 +68,10 @@ public class VentasView extends javax.swing.JInternalFrame {
     }
 
     public void actualizarPrecio() {
+        
         Producto producto = (Producto) jcomboProducto.getSelectedItem();
         int cantidad;
+        
         double precio = producto.getPrecioActual();
         jtStock.setText("" + producto.getStock());
         if (jtCantidad.getText().isEmpty()) {
@@ -85,6 +89,7 @@ public class VentasView extends javax.swing.JInternalFrame {
         } else {
             jtPrecio.setText("$" + precio);
         }
+       
     }
 
     private void llenarProductos() {
@@ -93,7 +98,7 @@ public class VentasView extends javax.swing.JInternalFrame {
         jcomboProducto.removeAllItems();
         jcomboProducto.addItem(null);
         for (Producto producto : listaProductos) {
-            if (producto.isEstado()!=false) {
+            if (producto.isEstado() != false) {
                 jcomboProducto.addItem(new Producto(producto.getIdProducto(), producto.getNombreProducto(),
                         producto.getDescripcion(), producto.getPrecioActual(), producto.getStock(), producto.isEstado()));
             }
@@ -243,6 +248,14 @@ public class VentasView extends javax.swing.JInternalFrame {
                 jtCantidadActionPerformed(evt);
             }
         });
+        jtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtCantidadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCantidadKeyTyped(evt);
+            }
+        });
         jpCuerpo.add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 180, -1));
 
         buttonGroup1.add(jrEfectivo);
@@ -331,8 +344,8 @@ public class VentasView extends javax.swing.JInternalFrame {
             if (jcomboProducto.getSelectedItem() != null && jcomboCliente.getSelectedItem() != null && !jtCantidad.getText().isEmpty() && jFecha.getDate() != null) {
                 Cliente cliente = (Cliente) jcomboCliente.getSelectedItem();
                 idCliente = cliente.getIdCliente();
-                if (jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(LocalDate.now())||
-                        jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isEqual(LocalDate.now())) {
+                if (jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(LocalDate.now())
+                        || jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isEqual(LocalDate.now())) {
                     fechaVenta = jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 } else {
                     JOptionPane.showMessageDialog(this, "El campo fecha no puede ser posterior al día de hoy.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
@@ -366,8 +379,6 @@ public class VentasView extends javax.swing.JInternalFrame {
                     if (stockProd == 0) {
                         productoData.borrarProducto(producto.getIdProducto());
                         llenarProductos();
-                    }else{
-                    jtStock.setText(""+producto.getStock());
                     }
                     limpiarTXT();
                 }
@@ -389,10 +400,10 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void jcomboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboProductoActionPerformed
         // TODO add your handling code here:
-        if(jcomboProducto.getSelectedItem()==null){
+        if (jcomboProducto.getSelectedItem() == null) {
             jtPrecio.setText("");
             jtStock.setText("");
-        }else{
+        } else {
             actualizarPrecio();
         }
     }//GEN-LAST:event_jcomboProductoActionPerformed
@@ -421,22 +432,51 @@ public class VentasView extends javax.swing.JInternalFrame {
 
     private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
 
-        jpSalir.setBackground(new Color(204,0,0));
-        jlSalir.setForeground(new Color(204,204,204));
+        jpSalir.setBackground(new Color(204, 0, 0));
+        jlSalir.setForeground(new Color(204, 204, 204));
     }//GEN-LAST:event_jlSalirMouseEntered
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
 
-            jpSalir.setBackground(new Color(0,51,153));
-            jlSalir.setForeground(Color.white);
-        
+        jpSalir.setBackground(new Color(0, 51, 153));
+        jlSalir.setForeground(Color.white);
+
     }//GEN-LAST:event_jlSalirMouseExited
 
     private void jlSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMousePressed
-        jpSalir.setBackground(new Color(255,51,51));
+        jpSalir.setBackground(new Color(255, 51, 51));
         jlSalir.setForeground(Color.black);
     }//GEN-LAST:event_jlSalirMousePressed
 
+    private void jtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCantidadKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtCantidadKeyTyped
+
+    private void jtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCantidadKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtCantidadKeyPressed
+
+    public void borrado() {
+        jtCantidad.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarPrecio();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarPrecio();
+            }
+
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

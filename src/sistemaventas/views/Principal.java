@@ -289,7 +289,6 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jtPassword.setForeground(new java.awt.Color(153, 153, 153));
-        jtPassword.setText("jPasswordField1");
         jtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jtPasswordMousePressed(evt);
@@ -650,7 +649,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jtUsuario.setText("");
         if(jtPassword.getText().isEmpty()){
-            jtPassword.setText("**********");
+            jtPassword.setText("");
             jtUsuario.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_jtUsuarioMousePressed
@@ -659,7 +658,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jtPassword.setText("");
         if(jtUsuario.getText().isEmpty()){
-            jtUsuario.setText("Ingrese el usuario");
+            jtUsuario.setText("");
             jtUsuario.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_jtPasswordMousePressed
@@ -694,9 +693,9 @@ public class Principal extends javax.swing.JFrame {
         jlEstado.setText("DESCONECTADO");
         jlEstado.setForeground(new Color(204,0,0));
         jifLogin.setVisible(true);
-        jtPassword.setText("**********");
+        jtPassword.setText("");
         jtUsuario.setForeground(new Color(153,153,153));
-        jtUsuario.setText("Ingrese el usuario");
+        jtUsuario.setText("");
         jtUsuario.setForeground(new Color(153,153,153));
     }//GEN-LAST:event_jlDesconectarMouseClicked
 
@@ -846,7 +845,7 @@ public void login(){
             }else{
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "ERROR DE INGRESO", JOptionPane.ERROR_MESSAGE);
                 jtUsuario.setText("");
-                jtPassword.setText("**********");
+                jtPassword.setText("");
             }
 }
 }
